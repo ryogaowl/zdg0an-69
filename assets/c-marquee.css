@@ -1,0 +1,45 @@
+/*
+  高さの内訳はティザーKVから差し引けるよう :root に公開する。
+  合計値 --marquee-total-height は「マーキー」セクション側で組み立てる
+  （他セクションに内包されたマーキーではKVの高さに影響させないため）。
+*/
+:root {
+  --marquee-padding-block: 24px;
+  --marquee-image-height: 72px;
+}
+
+.c-marquee {
+  display: block;
+  padding: var(--marquee-padding-block) 0;
+  background-color: var(--marquee-background, #ff6900);
+}
+
+/* Splide の初期化前でも横並びを保つ */
+.c-marquee .splide__list {
+  display: flex;
+  align-items: center;
+}
+
+.c-marquee__item {
+  display: flex;
+  align-items: center;
+}
+
+.c-marquee__image {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: var(--marquee-image-height);
+}
+
+.c-marquee__image--placeholder {
+  width: calc(var(--marquee-image-height) * 4);
+  fill: currentColor;
+  opacity: 0.4;
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --marquee-image-height: 28px;
+  }
+}

@@ -1,0 +1,95 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  MARQUEE
+  ----------------------------------------------------------------------------------------------------------------------
+
+  ブロックで登録した画像を横方向に自動スクロールさせるティザー用のマーキー。
+  Splide + Auto Scroll 拡張（CDN 読み込み）で動作する。
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  {%- comment -%} 直上のティザーKVが高さを差し引けるよう、このセクションの高さを公開する {%- endcomment -%}
+  {% style %}
+    :root {
+      --marquee-total-height: calc(var(--marquee-image-height) + var(--marquee-padding-block) * 2);
+    }
+  {% endstyle %}
+
+  {% render 'c-marquee',
+    blocks: section.blocks,
+    background: section.settings.background_color,
+    speed_pc: section.settings.speed_pc,
+    speed_sp: section.settings.speed_sp
+  %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "画像自動スクロール",
+  "tag": "section",
+  "class": "shopify-section--marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#FF6900"
+    },
+    {
+      "type": "header",
+      "content": "スクロール速度"
+    },
+    {
+      "type": "range",
+      "id": "speed_pc",
+      "label": "スクロール速度（PC）",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 10,
+      "info": "数値が大きいほど速くなります（10 が標準）。"
+    },
+    {
+      "type": "range",
+      "id": "speed_sp",
+      "label": "スクロール速度（SP）",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "画像",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "画像"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "代替テキスト",
+          "info": "装飾目的の画像の場合は空のままにしてください。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "画像自動スクロール",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

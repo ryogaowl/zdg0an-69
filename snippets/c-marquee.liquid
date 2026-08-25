@@ -1,0 +1,62 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  MARQUEE
+  ----------------------------------------------------------------------------------------------------------------------
+
+  画像を横方向に自動スクロールさせるマーキー。Splide + Auto Scroll 拡張（CDN）で動作する。
+
+  引数:
+  - blocks     : 画像ブロックの配列。各ブロックは settings.image / settings.image_alt を持つ
+  - background : 背景色。未指定の場合は透過
+  - speed_pc   : スクロール速度（PC）1〜50
+  - speed_sp   : スクロール速度（SP）1〜50
+
+  使用例:
+  {% render 'c-marquee', blocks: marquee_blocks, background: '#FF6900', speed_pc: 10, speed_sp: 6 %}
+{%- endcomment -%}
+
+{%- if blocks != blank and blocks.size > 0 -%}
+  {% # theme-check-disable RemoteAsset %}
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css"
+  >
+  {{- 'c-marquee.css' | asset_url | stylesheet_tag -}}
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer="defer"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"
+    defer="defer"
+  ></script>
+  {% # theme-check-enable RemoteAsset %}
+  <script src="{{ 'c-marquee.js' | asset_url }}" defer="defer"></script>
+
+  <marquee-banner
+    class="c-marquee splide"
+    {% if background != blank %}
+      style="--marquee-background: {{ background }};"
+    {% endif %}
+    data-speed-pc="{{ speed_pc | default: 10 }}"
+    data-speed-sp="{{ speed_sp | default: 6 }}"
+  >
+    <div class="splide__track">
+      <ul class="splide__list">
+        {%- for block in blocks -%}
+          {%- assign image = block.settings.image -%}
+          <li class="splide__slide c-marquee__item" {{ block.shopify_attributes }}>
+            {%- if image != blank -%}
+              {%- comment -%} 表示高さは固定のため、Retina 相当（表示高さの約3倍）で書き出す {%- endcomment -%}
+              {{
+                image
+                | image_url: height: 220
+                | image_tag: class: 'c-marquee__image', loading: 'lazy', alt: block.settings.image_alt
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'c-marquee__image c-marquee__image--placeholder' }}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </marquee-banner>
+{%- endif -%}

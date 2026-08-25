@@ -13,8 +13,6 @@
 <section
   class="c-teaser-kv{% if section.settings.background_sp != blank %} c-teaser-kv--has-sp{% endif %}"
   style="
-    --teaser-kv-height-pc: {{ section.settings.height_pc }}vh;
-    --teaser-kv-height-sp: {{ section.settings.height_sp }}vh;
     --teaser-kv-text-color: {{ section.settings.text_color }};
     --teaser-kv-padding-pc: {{ section.settings.padding_pc }}px;
     --teaser-kv-padding-sp: {{ section.settings.padding_sp }}px;
@@ -158,27 +156,8 @@
     },
     {
       "type": "header",
-      "content": "レイアウト"
-    },
-    {
-      "type": "range",
-      "id": "height_pc",
-      "label": "高さ（PC）",
-      "min": 40,
-      "max": 100,
-      "step": 5,
-      "unit": "vh",
-      "default": 90
-    },
-    {
-      "type": "range",
-      "id": "height_sp",
-      "label": "高さ（SP）",
-      "min": 40,
-      "max": 100,
-      "step": 5,
-      "unit": "vh",
-      "default": 85
+      "content": "レイアウト",
+      "info": "高さは、下に配置したマーキーと合わせて画面いっぱい（100vh）になるよう自動で調整されます。"
     },
     {
       "type": "range",

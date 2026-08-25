@@ -1,0 +1,407 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  TEASER MAIN CONTENT
+  ----------------------------------------------------------------------------------------------------------------------
+
+  ティザーページの本文セクション。
+  ボーダー背景の上に、裏側のシンボル（画面中央に追従）・左見出し追従のテキスト・マーキー・
+  ロゴと製品画像のフッターを積み重ねる。
+{%- endcomment -%}
+
+{%- liquid
+  assign content_blocks = section.blocks | where: 'type', 'content'
+  assign marquee_blocks = section.blocks | where: 'type', 'marquee_image'
+  assign grid_image = section.settings.grid_image
+  assign symbol_image = section.settings.symbol_image
+  assign symbol_opacity = section.settings.symbol_opacity | divided_by: 100.0
+-%}
+
+{{- 'c-teaser-main-content.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'c-teaser-main-content.js' | asset_url }}" defer="defer"></script>
+
+<teaser-main-content
+  class="c-teaser-main"
+  style="
+    --teaser-main-background: {{ section.settings.background_color }};
+    --teaser-main-text-color: {{ section.settings.text_color }};
+    --teaser-main-subtitle-color: {{ section.settings.subtitle_color }};
+    --teaser-main-title-color: {{ section.settings.title_color }};
+    --teaser-main-grid-width: {{ section.settings.grid_width }}px;
+    --teaser-main-content-width: {{ section.settings.content_width }}px;
+    --teaser-main-padding-top: {{ section.settings.padding_top }}px;
+    --teaser-main-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --teaser-main-row-gap: {{ section.settings.row_gap }}px;
+    --teaser-main-sticky-top: {{ section.settings.sticky_top }}px;
+    --teaser-main-symbol-width: {{ section.settings.symbol_width }}px;
+    --teaser-main-symbol-opacity: {{ symbol_opacity }};
+    --teaser-main-footer-background: {{ section.settings.footer_background }};
+    --teaser-main-footer-padding: {{ section.settings.footer_padding }}px;
+    --teaser-main-footer-logo-width: {{ section.settings.footer_logo_width }}px;
+    --teaser-main-footer-product-width: {{ section.settings.footer_product_width }}px;
+  "
+  {{ section.shopify_attributes }}
+>
+  <div
+    class="c-teaser-main__body"
+    {% if grid_image != blank %}
+      {%- assign grid_image_width = section.settings.grid_width | times: 2 -%}
+      style="background-image: url({{ grid_image | image_url: width: grid_image_width }});"
+    {% endif %}
+  >
+    {%- if symbol_image != blank -%}
+      <div class="c-teaser-main__symbol-area" aria-hidden="true">
+        <div class="c-teaser-main__symbol">
+          {{
+            symbol_image
+            | image_url: width: 1600
+            | image_tag:
+              class: 'c-teaser-main__symbol-image',
+              widths: '400,600,800,1200,1600',
+              sizes: '(max-width: 767px) 80vw, 50vw',
+              loading: 'lazy',
+              alt: ''
+          }}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="c-teaser-main__inner">
+      {%- for block in content_blocks -%}
+        <div class="c-teaser-main__row" data-reveal {{ block.shopify_attributes }}>
+          <div class="c-teaser-main__head">
+            {%- if block.settings.subtitle != blank -%}
+              <p class="c-teaser-main__subtitle">{{ block.settings.subtitle | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h2 class="c-teaser-main__title">{{ block.settings.title | escape | newline_to_br }}</h2>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.text != blank -%}
+            <div class="c-teaser-main__text rte">{{ block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {% render 'c-marquee',
+    blocks: marquee_blocks,
+    background: section.settings.marquee_background,
+    speed_pc: section.settings.marquee_speed_pc,
+    speed_sp: section.settings.marquee_speed_sp
+  %}
+
+  {%- if section.settings.footer_logo != blank or section.settings.footer_product != blank -%}
+    <div class="c-teaser-main__footer">
+      {%- if section.settings.footer_logo != blank -%}
+        {{
+          section.settings.footer_logo
+          | image_url: width: 800
+          | image_tag:
+            class: 'c-teaser-main__footer-logo',
+            widths: '200,300,400,600,800',
+            sizes: '(max-width: 767px) 70vw, 25vw',
+            loading: 'lazy',
+            alt: shop.name
+        }}
+      {%- endif -%}
+      {%- if section.settings.footer_product != blank -%}
+        {{
+          section.settings.footer_product
+          | image_url: width: 1200
+          | image_tag:
+            class: 'c-teaser-main__footer-product',
+            widths: '300,500,700,900,1200',
+            sizes: '(max-width: 767px) 70vw, 35vw',
+            loading: 'lazy',
+            alt: ''
+        }}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</teaser-main-content>
+
+{% schema %}
+{
+  "name": "ティザー：メインコンテンツ",
+  "tag": "section",
+  "class": "shopify-section--teaser-main-content",
+  "settings": [
+    {
+      "type": "header",
+      "content": "背景"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "grid_image",
+      "label": "ボーダー背景画像",
+      "info": "上下方向に繰り返して表示します。"
+    },
+    {
+      "type": "range",
+      "id": "grid_width",
+      "label": "ボーダー背景画像の幅",
+      "min": 800,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "default": 1440
+    },
+    {
+      "type": "header",
+      "content": "シンボル画像",
+      "info": "本文の裏側に配置し、スクロール中は常に画面中央へ固定されます。"
+    },
+    {
+      "type": "image_picker",
+      "id": "symbol_image",
+      "label": "シンボル画像"
+    },
+    {
+      "type": "range",
+      "id": "symbol_width",
+      "label": "シンボルの幅",
+      "min": 100,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "symbol_opacity",
+      "label": "シンボルの不透明度",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "レイアウト"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "コンテンツの最大幅",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上の余白",
+      "min": 0,
+      "max": 320,
+      "step": 8,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下の余白",
+      "min": 0,
+      "max": 320,
+      "step": 8,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "コンテンツ同士の間隔",
+      "min": 40,
+      "max": 400,
+      "step": 8,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "sticky_top",
+      "label": "見出しの追従位置",
+      "min": 0,
+      "max": 320,
+      "step": 8,
+      "unit": "px",
+      "default": 120,
+      "info": "画面上端から見出しが止まる位置です。"
+    },
+    {
+      "type": "header",
+      "content": "文字色"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "サブタイトルの色",
+      "default": "#FF6900"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "タイトルの色",
+      "default": "#FF6900"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "本文の色",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "マーキー",
+      "info": "「マーキー画像」ブロックで登録した画像が流れます。"
+    },
+    {
+      "type": "color",
+      "id": "marquee_background",
+      "label": "マーキーの背景色",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed_pc",
+      "label": "スクロール速度（PC）",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 10,
+      "info": "数値が大きいほど速くなります（10 が標準）。"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed_sp",
+      "label": "スクロール速度（SP）",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "フッター"
+    },
+    {
+      "type": "color",
+      "id": "footer_background",
+      "label": "フッターの背景色",
+      "default": "#FF6900"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "ロゴ画像"
+    },
+    {
+      "type": "range",
+      "id": "footer_logo_width",
+      "label": "ロゴの幅",
+      "min": 80,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 320
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_product",
+      "label": "製品画像"
+    },
+    {
+      "type": "range",
+      "id": "footer_product_width",
+      "label": "製品画像の幅",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 460
+    },
+    {
+      "type": "range",
+      "id": "footer_padding",
+      "label": "フッターの上下余白",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "コンテンツ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "サブタイトル",
+          "default": "Mission"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "タイトル",
+          "info": "改行がそのまま反映されます。",
+          "default": "みんなの目線を、\n1°上げる。"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "本文"
+        }
+      ]
+    },
+    {
+      "type": "marquee_image",
+      "name": "マーキー画像",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "画像"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "代替テキスト",
+          "info": "装飾目的の画像の場合は空のままにしてください。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ティザー：メインコンテンツ",
+      "blocks": [
+        {
+          "type": "content"
+        },
+        {
+          "type": "content"
+        },
+        {
+          "type": "content"
+        },
+        {
+          "type": "marquee_image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

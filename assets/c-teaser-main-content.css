@@ -1,0 +1,186 @@
+.c-teaser-main {
+  display: block;
+  background-color: var(--teaser-main-background, #000000);
+  color: var(--teaser-main-text-color, #ffffff);
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------
+   本文エリア（ボーダー背景 + シンボル + テキスト）
+---------------------------------------------------------------------------------------------------------------------- */
+.c-teaser-main__body {
+  position: relative;
+  /*
+    overflow: hidden はスクロールコンテナを作ってしまい、内側の position: sticky が
+    一切効かなくなる。clip はスクロールコンテナを作らないため、はみ出しを切り取りつつ
+    シンボルと見出しの追従を維持できる。
+  */
+  overflow-x: clip;
+  padding-top: var(--teaser-main-padding-top, 120px);
+  padding-bottom: var(--teaser-main-padding-bottom, 120px);
+  background-repeat: repeat;
+  background-position: left;
+  background-size: var(--teaser-main-grid-width, 1440px) auto;
+}
+
+/* シンボル（ビックリマーク）は本文の裏側に敷き、スクロール中は画面中央に留める */
+.c-teaser-main__symbol-area {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  margin-top: 99px;
+}
+
+/* 画面いっぱいの高さの枠を貼り付かせ、その中央に画像を置くことで常に画面中央に見せる */
+.c-teaser-main__symbol {
+  display: flex;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-teaser-main__symbol-image {
+  width: var(--teaser-main-symbol-width, 560px);
+  max-width: 80%;
+  height: auto;
+  opacity: var(--teaser-main-symbol-opacity, 1);
+}
+
+.c-teaser-main__inner {
+  position: relative;
+  z-index: 1;
+  width: min(var(--teaser-main-content-width, 1200px), calc(100% - 48px));
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+.c-teaser-main__row {
+  display: flex;
+  gap: 0 clamp(24px, 5vw, 80px);
+  justify-content: space-between;
+}
+
+.c-teaser-main__row + .c-teaser-main__row {
+  margin-top: var(--teaser-main-row-gap, 160px);
+}
+
+/* 右側の本文をスクロールしている間、左側の見出しを追従させる */
+.c-teaser-main__head {
+  position: sticky;
+  top: var(--teaser-main-sticky-top, 120px);
+  align-self: start;
+}
+
+.c-teaser-main__subtitle {
+  margin: 0 0 17px;
+  color: var(--teaser-main-subtitle-color, #ff6900);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.c-teaser-main__title {
+  margin: 0;
+  color: var(--teaser-main-title-color, #ff6900);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 2;
+}
+
+.c-teaser-main__text {
+  font-size: 24px;
+  line-height: 2.4;
+  letter-spacing: 0;
+  width: 100%;
+  max-width: 560px;
+}
+
+.c-teaser-main__text > :first-child {
+  margin-top: 0;
+}
+
+.c-teaser-main__text > :last-child {
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------
+   フッター（ロゴ + 製品画像）
+---------------------------------------------------------------------------------------------------------------------- */
+.c-teaser-main__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding: var(--teaser-main-footer-padding, 64px) 24px;
+  background-color: var(--teaser-main-footer-background, #ff6900);
+}
+
+.c-teaser-main__footer-logo {
+  display: block;
+  width: var(--teaser-main-footer-logo-width, 320px);
+  max-width: 40vw;
+  height: auto;
+}
+
+.c-teaser-main__footer-product {
+  display: block;
+  width: var(--teaser-main-footer-product-width, 460px);
+  max-width: 45vw;
+  height: auto;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------
+   スクロールに合わせたフェードイン
+---------------------------------------------------------------------------------------------------------------------- */
+.js .c-teaser-main [data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.js .c-teaser-main [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media screen and (max-width: 767px) {
+  .c-teaser-main__row {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .c-teaser-main__head {
+    position: static;
+  }
+
+  .c-teaser-main__title {
+    font-size: 2.2rem;
+    line-height: 1.7;
+  }
+
+  .c-teaser-main__text {
+    font-size: 1.4rem;
+    line-height: 2;
+  }
+
+  .c-teaser-main__footer {
+    flex-direction: column;
+  }
+
+  .c-teaser-main__footer-logo,
+  .c-teaser-main__footer-product {
+    max-width: 70vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .c-teaser-main [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

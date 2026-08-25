@@ -3,7 +3,9 @@
     display: flex;
     align-items: flex-end;
     overflow: hidden;
-    min-height: var(--teaser-kv-height-pc, 90vh);
+    /* 直下のマーキーと合わせてちょうど1画面に収める */
+    min-height: calc(100vh - var(--marquee-total-height, 0px));
+    min-height: calc(100svh - var(--marquee-total-height, 0px));
     color: var(--teaser-kv-text-color, #ffffff);
   }
   .c-teaser-kv {
@@ -120,10 +122,6 @@
   }
 
   @media screen and (max-width: 767px) {
-    .c-teaser-kv {
-      min-height: var(--teaser-kv-height-sp, 90vh);
-    }
-
     .c-teaser-kv--has-sp .c-teaser-kv__bg-image--pc {
       display: none;
     }
