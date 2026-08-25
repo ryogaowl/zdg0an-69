@@ -1,0 +1,269 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  TEASER KV
+  ----------------------------------------------------------------------------------------------------------------------
+
+  ティザー用のキービジュアル。
+  背景画像の上に、ロゴ・リードテキスト・商品画像・スクロール矢印を重ねて表示する。
+  PC / SP でそれぞれ背景画像とレイアウトを切り替える。
+{%- endcomment -%}
+
+{%- assign scrim_alpha = section.settings.scrim_opacity | times: 1.0 | divided_by: 100.0 -%}
+{{- 'c-teaser-kv.css' | asset_url | stylesheet_tag -}}
+<section
+  class="c-teaser-kv{% if section.settings.background_sp != blank %} c-teaser-kv--has-sp{% endif %}"
+  style="
+    --teaser-kv-height-pc: {{ section.settings.height_pc }}vh;
+    --teaser-kv-height-sp: {{ section.settings.height_sp }}vh;
+    --teaser-kv-text-color: {{ section.settings.text_color }};
+    --teaser-kv-padding-pc: {{ section.settings.padding_pc }}px;
+    --teaser-kv-padding-sp: {{ section.settings.padding_sp }}px;
+  "
+  {{ section.shopify_attributes }}
+>
+  {%- comment -%} 背景 {%- endcomment -%}
+  <div class="c-teaser-kv__bg">
+    {%- if section.settings.background_pc != blank -%}
+      {{
+        section.settings.background_pc
+        | image_url: width: 2400
+        | image_tag:
+          class: 'c-teaser-kv__bg-image c-teaser-kv__bg-image--pc',
+          widths: '750,1100,1500,2000,2400',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: ''
+      }}
+    {%- endif -%}
+
+    {%- if section.settings.background_sp != blank -%}
+      {{
+        section.settings.background_sp
+        | image_url: width: 1200
+        | image_tag:
+          class: 'c-teaser-kv__bg-image c-teaser-kv__bg-image--sp',
+          widths: '400,600,800,1000,1200',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: ''
+      }}
+    {%- endif -%}
+
+    {%- if scrim_alpha > 0 -%}
+      <div
+        class="c-teaser-kv__scrim"
+        style="background-color: {{ section.settings.scrim_color | color_modify: 'alpha', scrim_alpha }};"
+        aria-hidden="true"
+      ></div>
+    {%- endif -%}
+  </div>
+
+  <div class="c-teaser-kv__inner">
+
+    {%- comment -%} 下部：ロゴ / リード + 商品画像 {%- endcomment -%}
+    {%- comment -%} 中央の矢印 {%- endcomment -%}
+    {%- if section.settings.show_arrow -%}
+      <div class="c-teaser-kv__arrow" aria-hidden="true">
+        {%- if section.settings.arrow_link != blank -%}
+          <a href="{{ section.settings.arrow_link }}" class="c-teaser-kv__arrow-link">
+            {%- render 'c-teaser-kv-arrow' -%}
+          </a>
+        {%- else -%}
+          {%- render 'c-teaser-kv-arrow' -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="c-teaser-kv__footer">
+      <div class="c-teaser-kv__logo">
+        {%- if section.settings.logo != blank -%}
+          {{
+            section.settings.logo
+            | image_url: width: 800
+            | image_tag:
+              class: 'c-teaser-kv__logo-image',
+              widths: '200,300,400,600,800',
+              sizes: '(max-width: 767px) 50vw, 30vw',
+              loading: 'eager',
+              alt: section.settings.logo_alt | default: shop.name
+          }}
+        {%- elsif section.settings.logo_text != blank -%}
+          <span class="c-teaser-kv__logo-text">{{ section.settings.logo_text | escape }}</span>
+        {%- endif -%}
+      </div>
+      <div class="c-teaser-kv__right">
+        {%- if section.settings.product_image != blank -%}
+          <div class="c-teaser-kv__product">
+            {{
+              section.settings.product_image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'c-teaser-kv__product-image',
+                widths: '300,500,700,900,1200',
+                sizes: '(max-width: 767px) 60vw, 35vw',
+                loading: 'eager',
+                alt: ''
+            }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.lead != blank -%}
+          <p class="c-teaser-kv__lead">{{ section.settings.lead | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+ 
+</style>
+
+{% schema %}
+{
+  "name": "ティザーKV",
+  "tag": "section",
+  "class": "shopify-section--teaser-kv",
+  "settings": [
+    {
+      "type": "header",
+      "content": "背景"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_pc",
+      "label": "背景画像（PC）"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_sp",
+      "label": "背景画像（SP）",
+      "info": "未設定の場合はPC用の画像を使用します。"
+    },
+    {
+      "type": "color",
+      "id": "scrim_color",
+      "label": "背景に重ねる色",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "scrim_opacity",
+      "label": "重ねる色の不透明度",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "レイアウト"
+    },
+    {
+      "type": "range",
+      "id": "height_pc",
+      "label": "高さ（PC）",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "height_sp",
+      "label": "高さ（SP）",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "padding_pc",
+      "label": "内側の余白（PC）",
+      "min": 16,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_sp",
+      "label": "内側の余白（SP）",
+      "min": 12,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文字色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "矢印"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "矢印を表示",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "arrow_link",
+      "label": "矢印のリンク先",
+      "info": "同一ページ内へ移動する場合は #セクションID を指定してください。"
+    },
+    {
+      "type": "header",
+      "content": "ロゴ"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "ロゴ画像"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "ロゴの代替テキスト"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "ロゴテキスト",
+      "info": "ロゴ画像が未設定のときに表示されます。",
+      "default": "ichido"
+    },
+    {
+      "type": "header",
+      "content": "リード / 商品画像"
+    },
+    {
+      "type": "text",
+      "id": "lead",
+      "label": "リードテキスト",
+      "default": "目線を、上げろ。"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "商品画像",
+      "info": "背景を透過したPNGを推奨します。"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ティザーKV"
+    }
+  ]
+}
+{% endschema %}
