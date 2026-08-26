@@ -9,10 +9,15 @@
       const startedAt = Date.now();
 
       const check = () => {
-        if (window.Splide && window.splide && window.splide.Extensions && window.splide.Extensions.AutoScroll) {
+        if (
+          window.Splide &&
+          window.splide &&
+          window.splide.Extensions &&
+          window.splide.Extensions.AutoScroll
+        ) {
           resolve();
         } else if (Date.now() - startedAt > SPLIDE_WAIT_TIMEOUT) {
-          reject(new Error('Splide を読み込めませんでした。'));
+          reject(new Error("Splide を読み込めませんでした。"));
         } else {
           setTimeout(check, 50);
         }
@@ -35,24 +40,26 @@
           this.resizeObserver = new ResizeObserver(this.handleResize);
           this.resizeObserver.observe(this);
           /* 画像の読み込み完了で各スライドの幅が確定するため、再計算する */
-          window.addEventListener('load', this.handleResize);
+          window.addEventListener("load", this.handleResize);
         })
         .catch((error) => {
-          console.warn('[c-marquee]', error.message);
+          console.warn("[c-marquee]", error.message);
         });
     }
 
     disconnectedCallback() {
       this.resizeObserver?.disconnect();
-      window.removeEventListener('load', this.handleResize);
+      window.removeEventListener("load", this.handleResize);
       clearTimeout(this.resizeTimer);
       this.destroySplide();
     }
 
     initSplide() {
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
       const autoScroll = {
-        speed: this.getSpeed('speedPc'),
+        speed: this.getSpeed("speedPc"),
         pauseOnHover: false,
         pauseOnFocus: false,
         autoStart: !reducedMotion,
@@ -60,17 +67,18 @@
 
       this.cloneCount = this.computeCloneCount();
       this.splide = new window.Splide(this, {
-        type: 'loop',
+        type: "loop",
         autoWidth: true,
         gap: `${GAP}px`,
         clones: this.cloneCount,
         arrows: false,
         pagination: false,
-        drag: 'free',
+        drag: "free",
         autoScroll: autoScroll,
         breakpoints: {
           [SP_BREAKPOINT]: {
-            autoScroll: { speed: this.getSpeed('speedSp') },
+            autoScroll: { speed: this.getSpeed("speedSp") },
+            gap: `14px`,
           },
         },
       });
@@ -95,7 +103,9 @@
       画像の合計幅が画面幅より狭いと隙間ができるため、必要な周回数を自前で求める。
     */
     computeCloneCount() {
-      const slides = this.querySelectorAll('.splide__slide:not(.splide__slide--clone)');
+      const slides = this.querySelectorAll(
+        ".splide__slide:not(.splide__slide--clone)"
+      );
       if (!slides.length) return 0;
 
       let setWidth = 0;
@@ -124,7 +134,7 @@
     }
   }
 
-  if (!customElements.get('marquee-banner')) {
-    customElements.define('marquee-banner', MarqueeBanner);
+  if (!customElements.get("marquee-banner")) {
+    customElements.define("marquee-banner", MarqueeBanner);
   }
 })();

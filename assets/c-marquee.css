@@ -40,6 +40,7 @@
 
 @media screen and (max-width: 767px) {
   :root {
-    --marquee-image-height: 28px;
+    --marquee-image-height: 36px;
+    --marquee-padding-block: 12px;
   }
 }
