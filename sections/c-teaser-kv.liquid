@@ -6,16 +6,19 @@
   ティザー用のキービジュアル。
   背景画像の上に、ロゴ・リードテキスト・商品画像・スクロール矢印を重ねて表示する。
   PC / SP でそれぞれ背景画像とレイアウトを切り替える。
+  SP では「リードテキスト＋ロゴ」と商品画像を横並びにし、その下に矢印を置いて、
+  直下のマーキーまで含めて1画面に収まるようにしている。高さは c-teaser-kv.js が
+  読み込み時に px で確定させ、スクロール中のアドレスバーの開閉では変化させない。
+  テーマ設定を有効にすると、背景から順に浮かび上がるアニメーションが付く。
 {%- endcomment -%}
 
 {%- assign scrim_alpha = section.settings.scrim_opacity | times: 1.0 | divided_by: 100.0 -%}
 {{- 'c-teaser-kv.css' | asset_url | stylesheet_tag -}}
-<section
-  class="c-teaser-kv{% if section.settings.background_sp != blank %} c-teaser-kv--has-sp{% endif %}"
+<script src="{{ 'c-teaser-kv.js' | asset_url }}" defer="defer"></script>
+<teaser-kv
+  class="c-teaser-kv{% if section.settings.background_sp != blank %} c-teaser-kv--has-sp{% endif %}{% if section.settings.enable_animation %} c-teaser-kv--animate{% endif %}"
   style="
     --teaser-kv-text-color: {{ section.settings.text_color }};
-    --teaser-kv-padding-pc: {{ section.settings.padding_pc }}px;
-    --teaser-kv-padding-sp: {{ section.settings.padding_sp }}px;
   "
   {{ section.shopify_attributes }}
 >
@@ -75,6 +78,13 @@
     {%- endif -%}
     <div class="c-teaser-kv__footer">
       <div class="c-teaser-kv__logo">
+        {%- comment -%}
+          SPでは「リードテキスト → ロゴ」を左側に縦積みにするため、リードテキストをここにも置いて
+          PC版（.c-teaser-kv__right 内）とCSSで出し分けている。
+        {%- endcomment -%}
+        {%- if section.settings.lead != blank -%}
+          <p class="c-teaser-kv__lead c-teaser-kv__lead--sp">{{ section.settings.lead | escape }}</p>
+        {%- endif -%}
         {%- if section.settings.logo != blank -%}
           {{
             section.settings.logo
@@ -106,12 +116,12 @@
           </div>
         {%- endif -%}
         {%- if section.settings.lead != blank -%}
-          <p class="c-teaser-kv__lead">{{ section.settings.lead | escape }}</p>
+          <p class="c-teaser-kv__lead c-teaser-kv__lead--pc">{{ section.settings.lead | escape }}</p>
         {%- endif -%}
       </div>
     </div>
   </div>
-</section>
+</teaser-kv>
 
 <style>
  
@@ -184,6 +194,17 @@
       "id": "text_color",
       "label": "文字色",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "アニメーション"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "表示アニメーションを付ける",
+      "info": "背景 → ロゴ・商品画像・リードテキスト → 矢印 の順に、ぼかしを抜きながら浮かび上がるように表示します。",
+      "default": true
     },
     {
       "type": "header",

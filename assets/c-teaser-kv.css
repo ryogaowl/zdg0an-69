@@ -1,178 +1,341 @@
- .c-teaser-kv {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    /* 直下のマーキーと合わせてちょうど1画面に収める */
-    min-height: calc(100vh - var(--marquee-total-height, 0px));
-    min-height: calc(100svh - var(--marquee-total-height, 0px));
-    color: var(--teaser-kv-text-color, #ffffff);
-  }
-  .c-teaser-kv {
-    background:#000;
-  }
-  .c-teaser-kv__bg,
-  .c-teaser-kv__scrim {
-    position: absolute;
-    inset: 0;
-  }
+.c-teaser-kv {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  /* 直下のマーキーと合わせてちょうど1画面に収める */
+  min-height: calc(100vh - var(--marquee-total-height, 0px));
+  min-height: calc(100svh - var(--marquee-total-height, 0px));
+  color: var(--teaser-kv-text-color, #ffffff);
+}
+.c-teaser-kv {
+  background: #000;
+}
+.c-teaser-kv__bg,
+.c-teaser-kv__scrim {
+  position: absolute;
+  inset: 0;
+}
 
-  .c-teaser-kv__bg-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.c-teaser-kv__bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  .c-teaser-kv__bg-image--sp {
+.c-teaser-kv__bg-image--sp {
+  display: none;
+}
+
+.c-teaser-kv__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0px 44px 36px 84px;
+}
+.c-teaser-kv__inner:after {
+  content: "";
+  background: #000;
+  height: 160px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+.c-teaser-kv__arrow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.c-teaser-kv__arrow-link {
+  display: inline-flex;
+  color: inherit;
+}
+
+.c-teaser-kv__arrow svg {
+  width: 28.33px;
+  height: auto;
+  animation: c-teaser-kv-bounce 2s ease-in-out infinite;
+}
+
+@keyframes c-teaser-kv-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.c-teaser-kv__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.c-teaser-kv__logo {
+  flex: 0 0 310px;
+}
+.c-teaser-kv__logo-image {
+  display: block;
+  width: 100%;
+  max-width: 310px;
+  height: auto;
+}
+
+.c-teaser-kv__logo-text {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.c-teaser-kv__right {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 16px;
+}
+
+/*
+  リードテキストはPC/SPで配置場所が異なるため、Liquid側で2箇所に出力して
+  ここで出し分けている。PC版は商品画像の下端に重ね、SP版はロゴの上に積む。
+*/
+.c-teaser-kv__lead {
+  margin: 0;
+  font-size: clamp(20px, 4vw, 50px);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.c-teaser-kv__lead--pc {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-left: 16px;
+}
+
+.c-teaser-kv__lead--sp {
+  display: none;
+}
+
+.c-teaser-kv__product-image {
+  display: block;
+  width: 100%;
+  max-width: 422px;
+  height: auto;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------
+   表示アニメーション（テーマ設定で任意）
+   背景 → ロゴ・商品画像・リードテキスト → 矢印 の順に表示する。
+   本文セクションが「下からのスライドアップ」なので、KVは
+   「ぼかしを抜きながら拡大して浮かび上がる」動きにして印象を分けている。
+---------------------------------------------------------------------------------------------------------------------- */
+.c-teaser-kv--animate {
+  --teaser-kv-anim-easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.c-teaser-kv--animate .c-teaser-kv__bg {
+  animation: c-teaser-kv-bg-in 1.8s var(--teaser-kv-anim-easing) both;
+}
+
+/* ロゴ・商品画像・リードテキストはひとかたまりとして同時に出す */
+.c-teaser-kv--animate .c-teaser-kv__logo,
+.c-teaser-kv--animate .c-teaser-kv__product,
+.c-teaser-kv--animate .c-teaser-kv__lead {
+  transform-origin: bottom;
+  animation: c-teaser-kv-emerge 1.1s var(--teaser-kv-anim-easing) 0.8s both;
+}
+
+/* 矢印は translateX(-50%) で中央寄せしているため、opacity だけを動かす */
+.c-teaser-kv--animate .c-teaser-kv__arrow {
+  animation: c-teaser-kv-fade 0.8s var(--teaser-kv-anim-easing) both;
+  animation-delay: 2s;
+}
+
+@keyframes c-teaser-kv-bg-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes c-teaser-kv-emerge {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes c-teaser-kv-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .c-teaser-kv__logo {
+    flex: 0 0 20vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .c-teaser-kv--has-sp .c-teaser-kv__bg-image--pc {
     display: none;
   }
 
-  .c-teaser-kv__inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding:0px 44px 36px 84px;
-  }
-  .c-teaser-kv__inner:after {
-    content:"";
-    background:#000;
-    height:160px;
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    z-index: -1;
-  }
-  .c-teaser-kv__arrow {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .c-teaser-kv__arrow-link {
-    display: inline-flex;
-    color: inherit;
-  }
-
-  .c-teaser-kv__arrow svg {
-    width: 28.33px;
-    height: auto;
-    animation: c-teaser-kv-bounce 2s ease-in-out infinite;
-  }
-
-  @keyframes c-teaser-kv-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-  }
-
-  .c-teaser-kv__footer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-  }
-.c-teaser-kv__logo {
-    flex: 0 0 310px;
-}
-  .c-teaser-kv__logo-image {
+  .c-teaser-kv--has-sp .c-teaser-kv__bg-image--sp {
     display: block;
-    width: 100%;
-    max-width: 310px;
-    height: auto;
   }
 
-  .c-teaser-kv__logo-text {
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.01em;
+  /*
+    アドレスバーが出ている状態（svh）を基準に、下のマーキーまで含めて
+    ちょうど1画面に収める。min-height だと中身の高さで伸びてしまうため
+    height で固定し、商品画像側を svh で頭打ちにしている。
+  */
+  .c-teaser-kv {
+    min-height: 0;
+    height: calc(100vh - var(--marquee-total-height, 0px));
+    height: calc(100svh - var(--marquee-total-height, 0px));
+  }
+
+  /*
+    スクロール中のアドレスバーの開閉で高さが変わらないよう、JSが読み込み時に
+    測った値（--teaser-kv-viewport-height）があればそちらを優先する。
+    JSが動かない環境では上のビューポート単位がそのまま使われる。
+  */
+  .c-teaser-kv--fixed-height {
+    height: calc(var(--teaser-kv-viewport-height) - var(--marquee-total-height, 0px));
+  }
+
+  /* 下端の余白は黒帯側（最後に並ぶ要素）に持たせるため、ここでは 0 にしておく */
+  .c-teaser-kv__inner {
+    padding: 15px 8px 25.11px 25px;
+    background: #000;
+  }
+
+  /* 黒帯の高さは中身に合わせたいので、固定高の疑似要素ではなく各要素の背景で描く */
+  .c-teaser-kv__inner::after {
+    display: none;
+  }
+
+  .c-teaser-kv__footer,
+  .c-teaser-kv__arrow {
+    background: #000;
+  }
+
+  /* 左に「リードテキスト → ロゴ」、右に商品画像を並べる */
+  .c-teaser-kv__footer {
+    gap: 15px;
+    padding-top: 0px;
+    align-items: flex-start;
+    padding-bottom: var(--teaser-kv-padding-sp, 24px);
+  }
+
+  /* 矢印が下に続く場合は、下端の余白は矢印側が持つ */
+  .c-teaser-kv__arrow ~ .c-teaser-kv__footer {
+    padding-bottom: 0;
+  }
+
+  .c-teaser-kv__lead--pc {
+    display: none;
+  }
+
+  .c-teaser-kv__lead--sp {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .c-teaser-kv__logo {
+    flex: 0 0 40vw;
+    padding-top: 16px;
+    min-width: 0;
+  }
+
+  .c-teaser-kv__logo-image {
+    max-width: 166px;
   }
 
   .c-teaser-kv__right {
-    display: flex;
-    flex-direction: column;
-    position:relative;
-    gap: 16px;
+    flex: auto;
   }
-
-    .c-teaser-kv__lead {
-        margin: 0;
-        font-size: clamp(16px, 4vw, 50px);
-        font-weight: 500;
-        letter-spacing: 0;
-        line-height: 1.2;
-        text-align: left;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding-left: 16px;
-    }
 
   .c-teaser-kv__product-image {
-    display: block;
-    width: 100%;
-    max-width: 422px;
-    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 26vh;
+    max-height: 26svh;
   }
 
-  @media screen and (max-width: 767px) {
-    .c-teaser-kv--has-sp .c-teaser-kv__bg-image--pc {
-      display: none;
-    }
+  /* DOM上はフッターより前にあるので、order で最後に回す */
+  .c-teaser-kv__arrow {
+    order: 1;
+    padding-top: 0;
+    bottom: 12px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin: 0 !important;
+  }
+  .c-teaser-kv__arrow svg {
+    width: 19.67px;
+  }
+}
 
-    .c-teaser-kv--has-sp .c-teaser-kv__bg-image--sp {
-      display: block;
-    }
-
-    .c-teaser-kv__inner {
-      padding: var(--teaser-kv-padding-sp, 24px);
-    }
-
-    .c-teaser-kv__footer {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .c-teaser-kv__right {
-      align-items: flex-start;
-      width: 100%;
-    }
-
-    .c-teaser-kv__lead {
-      text-align: left;
-      order: -1;
-    }
-
-    .c-teaser-kv__product {
-      width: 100%;
-      text-align: right;
-    }
-
-    .c-teaser-kv__product-image {
-      max-width: 60%;
-      margin-left: auto;
-    }
-
-    .c-teaser-kv__logo-image {
-      max-width: 200px;
-    }
-
-    .c-teaser-kv__arrow {
-      order: 1;
-      margin-top: 20px;
-      margin-bottom: 0;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .c-teaser-kv__arrow svg {
+    animation: none;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .c-teaser-kv__arrow svg {
-      animation: none;
+  .c-teaser-kv--animate .c-teaser-kv__bg,
+  .c-teaser-kv--animate .c-teaser-kv__logo,
+  .c-teaser-kv--animate .c-teaser-kv__product,
+  .c-teaser-kv--animate .c-teaser-kv__lead,
+  .c-teaser-kv--animate .c-teaser-kv__arrow {
+    animation: none;
+  }
+  @keyframes c-teaser-kv-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
     }
   }
+}
+
+@media screen and (max-width: 500px) {
+  .c-teaser-kv__logo-image {
+    max-width: 150px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .c-teaser-kv__logo {
+    flex: 0 0 160px;
+    padding-top: 8px;
+  }
+}
