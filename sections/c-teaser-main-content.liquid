@@ -12,42 +12,56 @@
   assign content_blocks = section.blocks | where: 'type', 'content'
   assign marquee_blocks = section.blocks | where: 'type', 'marquee_image'
   assign grid_image = section.settings.grid_image
+  assign grid_image_sp = section.settings.grid_image_sp
   assign symbol_image = section.settings.symbol_image
   assign symbol_opacity = section.settings.symbol_opacity | divided_by: 100.0
+  assign grid_image_width = section.settings.grid_width | times: 2
+  assign grid_image_sp_width = section.settings.grid_width_sp | times: 2
+  comment
+    デザイン基準幅 1440px でちょうど指定サイズになり、それより狭い画面では比例して縮む
+  endcomment
+  assign symbol_width_vw = section.settings.symbol_width | times: 100.0 | divided_by: 1440.0 | round: 4
 -%}
 
 {{- 'c-teaser-main-content.css' | asset_url | stylesheet_tag -}}
 <script src="{{ 'c-teaser-main-content.js' | asset_url }}" defer="defer"></script>
 
 <teaser-main-content
-  class="c-teaser-main"
+  class="c-teaser-main{% if grid_image_sp != blank %} c-teaser-main--has-sp-grid{% endif %}"
   style="
     --teaser-main-background: {{ section.settings.background_color }};
     --teaser-main-text-color: {{ section.settings.text_color }};
     --teaser-main-subtitle-color: {{ section.settings.subtitle_color }};
     --teaser-main-title-color: {{ section.settings.title_color }};
     --teaser-main-grid-width: {{ section.settings.grid_width }}px;
+    {%- if grid_image != blank %}
+      --teaser-main-grid-image: url({{ grid_image | image_url: width: grid_image_width }});
+    {%- endif %}
+    --teaser-main-grid-width-sp: {{ section.settings.grid_width_sp }}px;
+    {%- if grid_image_sp != blank %}
+      --teaser-main-grid-image-sp: url({{ grid_image_sp | image_url: width: grid_image_sp_width }});
+    {%- endif %}
     --teaser-main-content-width: {{ section.settings.content_width }}px;
     --teaser-main-padding-top: {{ section.settings.padding_top }}px;
     --teaser-main-padding-bottom: {{ section.settings.padding_bottom }}px;
     --teaser-main-row-gap: {{ section.settings.row_gap }}px;
     --teaser-main-sticky-top: {{ section.settings.sticky_top }}px;
-    --teaser-main-symbol-width: {{ section.settings.symbol_width }}px;
+    --teaser-main-symbol-width: min({{ section.settings.symbol_width }}px, {{ symbol_width_vw }}vw);
+    {%- if symbol_image != blank %}
+      {%- comment -%} 貼り付く位置の計算に実際の表示高さが必要なため、縦横比から求める {%- endcomment -%}
+      --teaser-main-symbol-height: calc(var(--teaser-main-symbol-width) / {{ symbol_image.aspect_ratio }});
+    {%- endif %}
     --teaser-main-symbol-opacity: {{ symbol_opacity }};
     --teaser-main-footer-background: {{ section.settings.footer_background }};
-    --teaser-main-footer-padding: {{ section.settings.footer_padding }}px;
     --teaser-main-footer-logo-width: {{ section.settings.footer_logo_width }}px;
     --teaser-main-footer-product-width: {{ section.settings.footer_product_width }}px;
   "
   {{ section.shopify_attributes }}
 >
-  <div
-    class="c-teaser-main__body"
-    {% if grid_image != blank %}
-      {%- assign grid_image_width = section.settings.grid_width | times: 2 -%}
-      style="background-image: url({{ grid_image | image_url: width: grid_image_width }});"
-    {% endif %}
-  >
+  {%- comment -%}
+    ボーダーは .c-teaser-main::after が --teaser-main-grid-image を参照して描画する。
+  {%- endcomment -%}
+  <div class="c-teaser-main__body">
     {%- if symbol_image != blank -%}
       <div class="c-teaser-main__symbol-area" aria-hidden="true">
         <div class="c-teaser-main__symbol">
@@ -141,7 +155,7 @@
       "type": "image_picker",
       "id": "grid_image",
       "label": "ボーダー背景画像",
-      "info": "上下方向に繰り返して表示します。"
+      "info": "繰り返して表示します。マーキーとフッターの背景の上にも重なります。"
     },
     {
       "type": "range",
@@ -152,6 +166,22 @@
       "step": 20,
       "unit": "px",
       "default": 1440
+    },
+    {
+      "type": "image_picker",
+      "id": "grid_image_sp",
+      "label": "ボーダー背景画像（SP）",
+      "info": "画面幅 767px 以下で使用します。未設定の場合はPC用の画像をそのまま使います。"
+    },
+    {
+      "type": "range",
+      "id": "grid_width_sp",
+      "label": "ボーダー背景画像の幅（SP）",
+      "min": 320,
+      "max": 800,
+      "step": 5,
+      "unit": "px",
+      "default": 375
     },
     {
       "type": "header",
@@ -167,11 +197,12 @@
       "type": "range",
       "id": "symbol_width",
       "label": "シンボルの幅",
-      "min": 100,
+      "min": 400,
       "max": 1200,
-      "step": 20,
+      "step": 8,
       "unit": "px",
-      "default": 560
+      "default": 856,
+      "info": "画面幅 1440px のときのサイズです。狭い画面では比例して縮みます。"
     },
     {
       "type": "range",
@@ -236,7 +267,7 @@
       "step": 8,
       "unit": "px",
       "default": 120,
-      "info": "画面上端から見出しが止まる位置です。"
+      "info": "画面上端から見出しが止まる位置です。" 
     },
     {
       "type": "header",
@@ -306,39 +337,9 @@
       "label": "ロゴ画像"
     },
     {
-      "type": "range",
-      "id": "footer_logo_width",
-      "label": "ロゴの幅",
-      "min": 80,
-      "max": 600,
-      "step": 10,
-      "unit": "px",
-      "default": 320
-    },
-    {
       "type": "image_picker",
       "id": "footer_product",
       "label": "製品画像"
-    },
-    {
-      "type": "range",
-      "id": "footer_product_width",
-      "label": "製品画像の幅",
-      "min": 100,
-      "max": 800,
-      "step": 10,
-      "unit": "px",
-      "default": 460
-    },
-    {
-      "type": "range",
-      "id": "footer_padding",
-      "label": "フッターの上下余白",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 64
     }
   ],
   "blocks": [

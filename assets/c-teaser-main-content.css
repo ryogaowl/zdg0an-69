@@ -1,11 +1,30 @@
 .c-teaser-main {
   display: block;
+  position: relative;
+  isolation: isolate;
   background-color: var(--teaser-main-background, #000000);
   color: var(--teaser-main-text-color, #ffffff);
 }
 
+/*
+  ボーダーはセクション全体を貫く1枚のレイヤーとして敷く。
+  空の div はテーマの `div:empty { display: none }`（base.css）で消えるため擬似要素で描く。
+  マーキーとフッターの「背景」より手前、マーキー画像やロゴなどの「中身」より奥。
+*/
+.c-teaser-main::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background-image: var(--teaser-main-grid-image, none);
+  background-repeat: repeat;
+  background-position: left;
+  background-size: var(--teaser-main-grid-width, 1440px) auto;
+  pointer-events: none;
+}
+
 /* ----------------------------------------------------------------------------------------------------------------------
-   本文エリア（ボーダー背景 + シンボル + テキスト）
+   本文エリア（シンボル + テキスト）
 ---------------------------------------------------------------------------------------------------------------------- */
 .c-teaser-main__body {
   position: relative;
@@ -13,45 +32,46 @@
     overflow: hidden はスクロールコンテナを作ってしまい、内側の position: sticky が
     一切効かなくなる。clip はスクロールコンテナを作らないため、はみ出しを切り取りつつ
     シンボルと見出しの追従を維持できる。
+    縦も切ること。シンボルは画面高さを基準に配置するため本文が短い画面では
+    このエリアからはみ出し、下のマーキー（同じオレンジ）に重なって文字が読めなくなる。
   */
-  overflow-x: clip;
+  overflow: clip;
   padding-top: var(--teaser-main-padding-top, 120px);
   padding-bottom: var(--teaser-main-padding-bottom, 120px);
-  background-repeat: repeat;
-  background-position: left;
-  background-size: var(--teaser-main-grid-width, 1440px) auto;
 }
 
 /* シンボル（ビックリマーク）は本文の裏側に敷き、スクロール中は画面中央に留める */
 .c-teaser-main__symbol-area {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   inset: 0;
   pointer-events: none;
-  margin-top: 99px;
+  /* デザイン基準幅 1440px で 99px。狭い画面では比例して縮む（99 / 1440 = 6.875%） */
+  margin-top: min(99px, 6.875vw);
 }
 
-/* 画面いっぱいの高さの枠を貼り付かせ、その中央に画像を置くことで常に画面中央に見せる */
+/*
+  100svh の枠を align-items: center で使うと、貼り付く前の位置が
+  (100svh - 画像の高さ) / 2 だけ下にずれ、上部余白が指定値より大きく見えてしまう。
+  枠は画像と同じ高さのままにして、「画面中央に来る位置」で貼り付かせる。
+*/
 .c-teaser-main__symbol {
   display: flex;
   position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-  align-items: center;
+  top: calc((100vh - var(--teaser-main-symbol-height, 0px)) / 2);
+  top: calc((100svh - var(--teaser-main-symbol-height, 0px)) / 2);
   justify-content: center;
 }
 
 .c-teaser-main__symbol-image {
-  width: var(--teaser-main-symbol-width, 560px);
-  max-width: 80%;
+  width: var(--teaser-main-symbol-width, 856px);
   height: auto;
   opacity: var(--teaser-main-symbol-opacity, 1);
 }
 
 .c-teaser-main__inner {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   width: min(var(--teaser-main-content-width, 1200px), calc(100% - 48px));
   margin: 0 auto;
   margin-top: 80px;
@@ -110,25 +130,38 @@
 /* ----------------------------------------------------------------------------------------------------------------------
    フッター（ロゴ + 製品画像）
 ---------------------------------------------------------------------------------------------------------------------- */
+/*
+  マーキーとフッターは、背景色をボーダーの奥（z-index なし）に、
+  中身の画像だけをボーダーの手前（z-index: 3）に出す。
+  .splide__track は Splide 側で z-index: 0 が当たっているため上書きする。
+*/
+.c-teaser-main .c-marquee .splide__track,
+.c-teaser-main__footer-logo,
+.c-teaser-main__footer-product {
+  position: relative;
+  z-index: 3;
+}
+
 .c-teaser-main__footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(24px, 4vw, 64px);
-  padding: var(--teaser-main-footer-padding, 64px) 24px;
+  gap: clamp(24px, 4vw, 70px);
+  padding: 49px 24px;
+  padding-bottom: 83px;
   background-color: var(--teaser-main-footer-background, #ff6900);
 }
 
 .c-teaser-main__footer-logo {
   display: block;
-  width: var(--teaser-main-footer-logo-width, 320px);
+  width: 310px;
   max-width: 40vw;
   height: auto;
 }
 
 .c-teaser-main__footer-product {
   display: block;
-  width: var(--teaser-main-footer-product-width, 460px);
+  width: 422px;
   max-width: 45vw;
   height: auto;
 }
@@ -146,34 +179,69 @@
   opacity: 1;
   transform: none;
 }
-
+.c-teaser-main__body {
+  padding-bottom: 200px;
+}
 @media screen and (max-width: 767px) {
-  .c-teaser-main__row {
-    flex-direction: column;
-    gap: 24px;
+  /* SP用のボーダー画像が設定されているときだけ差し替える（未設定ならPC用のまま） */
+  .c-teaser-main--has-sp-grid::after {
+    background-image: var(--teaser-main-grid-image-sp, none);
+    background-size: var(--teaser-main-grid-width-sp, 375px) auto;
   }
 
+  .c-teaser-main__symbol-area {
+    margin-top: 60px;
+  }
+  .c-teaser-main__symbol-image {
+    --teaser-main-symbol-width: 82.4vw;
+  }
+  .c-teaser-main__inner {
+    margin-top: 0;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  .c-teaser-main__body {
+    padding-top: 86px;
+    padding-bottom: 150px;
+  }
+  .c-teaser-main__row {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .c-teaser-main__subtitle {
+    margin: 0 0 7px;
+    font-size: 14px;
+  }
+  .c-teaser-main__row + .c-teaser-main__row {
+    margin-top: 100px;
+  }
   .c-teaser-main__head {
     position: static;
   }
 
   .c-teaser-main__title {
-    font-size: 2.2rem;
-    line-height: 1.7;
+    font-size: 24px;
+    line-height: 1.6;
   }
 
   .c-teaser-main__text {
-    font-size: 1.4rem;
-    line-height: 2;
+    font-size: 16px;
+    line-height: 1.8;
   }
 
   .c-teaser-main__footer {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 0;
+    padding-top: 53px;
+    padding-bottom: 57px;
   }
-
+  .c-teaser-main__footer-logo {
+    margin-top: -4px;
+  }
   .c-teaser-main__footer-logo,
   .c-teaser-main__footer-product {
-    max-width: 70vw;
+    max-width: 72vw;
+    width: 100%;
   }
 }
 
