@@ -84,7 +84,7 @@
 }
 
 .c-teaser-main__row + .c-teaser-main__row {
-  margin-top: var(--teaser-main-row-gap, 200px);
+  margin-top: 200px;
 }
 
 /* 右側の本文をスクロールしている間、左側の見出しを追従させる */
