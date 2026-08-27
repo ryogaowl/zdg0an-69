@@ -84,7 +84,7 @@
 }
 
 .c-teaser-main__row + .c-teaser-main__row {
-  margin-top: var(--teaser-main-row-gap, 160px);
+  margin-top: var(--teaser-main-row-gap, 200px);
 }
 
 /* 右側の本文をスクロールしている間、左側の見出しを追従させる */
@@ -110,6 +110,7 @@
   font-size: 32px;
   font-weight: 700;
   line-height: 2;
+  letter-spacing:0.1em;
 }
 
 .c-teaser-main__text {
