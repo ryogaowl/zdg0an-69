@@ -188,6 +188,9 @@
       line-height: 2;
       max-width: 450px;
   }
+  .c-teaser-main__title {
+    font-size: 25px;
+  }
 }
 @media screen and (max-width: 767px) {
   /* SP用のボーダー画像が設定されているときだけ差し替える（未設定ならPC用のまま） */
