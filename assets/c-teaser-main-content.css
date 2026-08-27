@@ -18,7 +18,7 @@
   inset: 0;
   background-image: var(--teaser-main-grid-image, none);
   background-repeat: repeat;
-  background-position: left;
+  background-position: left top;
   background-size: var(--teaser-main-grid-width, 1440px) auto;
   pointer-events: none;
 }
