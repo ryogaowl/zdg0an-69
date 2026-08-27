@@ -182,6 +182,13 @@
 .c-teaser-main__body {
   padding-bottom: 200px;
 }
+@media screen and (max-width: 1200px) {
+  .c-teaser-main__text {
+      font-size: 18px;
+      line-height: 2;
+      max-width: 450px;
+  }
+}
 @media screen and (max-width: 767px) {
   /* SP用のボーダー画像が設定されているときだけ差し替える（未設定ならPC用のまま） */
   .c-teaser-main--has-sp-grid::after {
