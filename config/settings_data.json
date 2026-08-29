@@ -10,6 +10,7 @@
 {
   "current": {
     "logo_width": 90,
+    "favicon": "shopify://shop_images/fabicon180.png",
     "type_header_font": "murecho_n4",
     "heading_scale": 100,
     "type_body_font": "murecho_n4",
@@ -146,8 +147,8 @@
         "settings": {
           "background": "#000000",
           "background_gradient": "",
-          "text": "#FF6900",
-          "button": "#FF6900",
+          "text": "#ff6900",
+          "button": "#ff6900",
           "button_label": "#ffffff",
           "secondary_button_label": "#000000",
           "shadow": "#000000"
