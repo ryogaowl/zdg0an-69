@@ -25,7 +25,10 @@
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
-
+    {%- if request.page_type != 'index' and request.design_mode == false -%}
+      <meta http-equiv="refresh" content="0; url={{ routes.root_url }}">
+      <script>window.location.replace({{ routes.root_url | json }});</script>
+    {%- endif -%}
     {% render 'meta-tags' %}
 
     <script type="module">
