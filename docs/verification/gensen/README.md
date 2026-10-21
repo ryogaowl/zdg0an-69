@@ -59,6 +59,7 @@ Figmaとの差異・確定待ち:
 
 - [PC先頭](pc-firstview.jpg) / [PC全体](pc-1440.jpg)
 - [SP先頭](sp-firstview.jpg) / [SP全体](sp-375.jpg)
+- [下書きテーマのカート表示](draft-cart.jpg)（リダイレクト削除後）
 - [商品登録・検索非表示の設計](../../knowledge/gensen-product-registration.md)
 
 ## 反映と復旧
@@ -71,7 +72,7 @@ GitHubへのプッシュ結果とプレビューへの同期結果は、末尾�
 
 ## 先方共有用文面
 
-GENSENの商品ページをPC・スマートフォン向けに実装し、このテーマのトップページへの強制リダイレクトを削除しました。画像切り替え、FAQ、数量制限、カート追加の正常・異常系はローカル環境で確認済みです。
+GENSENの商品ページをPC・スマートフォン向けに実装し、online-storeブランチへ反映しました。このテーマのトップページへの強制リダイレクトを削除し、下書きテーマのカートページで反映を確認しています。画像切り替え、FAQ、数量制限、カート追加の正常・異常系はローカル環境で確認済みです。
 
 共有済みの[テーマプレビュー](https://ichido.co/?_ab=0&_fd=0&_sc=1&preview_theme_id=200718221472)は確認できていますが、商品が未登録のため、商品ページ自体はまだこのリンクから確認できません。添付のPC/SP確認画像でレイアウトをご確認ください。FAQ・成分バッジの正式文言、商品価格等の登録情報が確定後、商品登録と検索非表示設定を行い、商品ページの確認URLを発行します。Mikawayaの定期購入部分は仮表示です。本番公開は行っていません。
 
@@ -149,9 +150,18 @@ GENSENの商品ページをPC・スマートフォン向けに実装し、この
 | --- | --- |
 | `docs/knowledge/gensen-product-registration.md` | 商品構成・下書き・seo.hidden・Mikawaya導入手順 |
 | `docs/verification/gensen/README.md` | 検証・変更一覧・反映状態・復旧・先方共有文面 |
+| `docs/verification/gensen/draft-cart.jpg` | 下書きテーマのリダイレクト削除反映を確認したブラウザ画像 |
 | `docs/verification/gensen/pc-1440.jpg` | ローカル検証画像（PC） |
 | `docs/verification/gensen/pc-firstview.jpg` | ローカル検証画像（PC） |
 | `docs/verification/gensen/sp-375.jpg` | ローカル検証画像（SP） |
 | `docs/verification/gensen/sp-firstview.jpg` | ローカル検証画像（SP） |
 
 ファイル自体の削除はなし。リダイレクト処理のみ既存ファイルから除去。
+
+## 反映確認
+
+- 実装コミット: `2d97cbef155dba342669057962e0ba737c8d65c7`。`origin/online-store` へのプッシュ成功とリモートSHA一致を確認した。
+- 直後の初回確認では旧リダイレクトが残っていたが、同期後の再確認で [下書きテーマのカート](https://ichido.co/cart?preview_theme_id=200718221472) が `/cart` のまま表示された。ページタイトルは「ショッピングカート – ichido」、カートは空、meta refreshなし。商品追加は行っていない。
+- プレビューバーは `zdg0an-69/online-store` / `Draft`。今回のリダイレクト削除の反映を実ブラウザで確認済み。本番への公開切替なし。
+- 商品テンプレートの実商品への割当・表示は、商品未登録のため未検証。商品ページ全体のリモート反映成功を確認したという意味ではない。
+- viewportは復元し、ローカル検証タブを閉じた。サーバーは検証終了後に停止。
