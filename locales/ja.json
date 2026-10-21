@@ -527,5 +527,27 @@
       "expanded": "ギフトカードカードの受取人フォームを展開しました",
       "collapsed": "ギフトカードカードの受取人フォームを折りたたみました"
     }
+  },
+  "gensen": {
+    "policies": "ストア情報・ポリシー",
+    "navigation": "メインナビゲーション",
+    "menu": "メニュー",
+    "account": "アカウント",
+    "cart": "カート",
+    "gallery": "商品画像",
+    "image": "商品画像 {{ number }} を表示",
+    "subscription_placeholder": "定期購入のデフォルトの仕様になります",
+    "preparing": "販売準備中",
+    "plan_required": "定期購入の設定準備中です。",
+    "quantity": "数量",
+    "variant": "商品タイプ",
+    "faq": "FAQ",
+    "faq_label": "よくあるご質問",
+    "faq_list": "FAQ List",
+    "related_title": "Other Product",
+    "other_label": "他の商品",
+    "product_list": "Product",
+    "newsletter": "メールマガジン登録",
+    "contact": "お問い合わせ"
   }
 }

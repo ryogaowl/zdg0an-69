@@ -551,5 +551,27 @@
       "expanded": "Форма с данными получателя подарочной карты развернута",
       "collapsed": "Форма с данными получателя подарочной карты свернута"
     }
+  },
+  "gensen": {
+    "policies": "Store information and policies",
+    "navigation": "Main navigation",
+    "menu": "Menu",
+    "account": "Account",
+    "cart": "Cart",
+    "gallery": "Product images",
+    "image": "Show image {{ number }}",
+    "subscription_placeholder": "Subscription options will appear here.",
+    "preparing": "Coming soon",
+    "plan_required": "Subscription setup is in progress.",
+    "quantity": "Quantity",
+    "variant": "Product option",
+    "faq": "FAQ",
+    "faq_label": "Frequently asked questions",
+    "faq_list": "FAQ List",
+    "related_title": "Other Product",
+    "other_label": "Other products",
+    "product_list": "Product",
+    "newsletter": "Newsletter",
+    "contact": "Contact"
   }
 }

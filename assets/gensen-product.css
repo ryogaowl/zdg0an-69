@@ -1,0 +1,201 @@
+.gensen {
+  --gensen-orange: #ff6900;
+  display: block;
+  background: #222;
+  color: #fff;
+  font: 400 16px/1.6 'Noto Sans JP', sans-serif;
+  letter-spacing: 0;
+}
+.gensen *, .gensen *::before, .gensen *::after { box-sizing: border-box; }
+.gensen [hidden] { display: none !important; }
+.gensen .gensen-mobile { display: none; }
+.gensen h1, .gensen h2, .gensen h3, .gensen p, .gensen ul { margin: 0; }
+.gensen h1, .gensen h2, .gensen h3 { color: var(--gensen-orange); letter-spacing: 0; }
+.gensen a { color: inherit; text-decoration: none; }
+.gensen button, .gensen input, .gensen select, .gensen summary { font: inherit; }
+.gensen button, .gensen summary { cursor: pointer; }
+.gensen img { display: block; }
+.gensen :focus-visible { outline: 3px solid #fff; outline-offset: 5px; box-shadow: none; }
+.gensen [id] { scroll-margin-top: 24px; }
+.gensen-announcement { height: 40px; border-bottom: 1px solid #444; display: flex; align-items: center; justify-content: center; color: var(--gensen-orange); }
+.gensen-announcement > * { display: flex; align-items: center; gap: 21px; }
+.gensen-header { display: flex; align-items: center; gap: 70px; min-height: 91px; padding: 15px 40px 15px 80px; background: #000; }
+.gensen-logo { margin-right: auto; flex-shrink: 0; }
+.gensen-navigation { display: flex; align-items: center; gap: 19px; font: 400 18px/1.2 'Montserrat', sans-serif; color: var(--gensen-orange); }
+.gensen-navigation a:hover, .gensen-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.gensen-header__actions { display: flex; align-items: center; gap: 10px; }
+.gensen-layout { max-width: 1120px; margin: 0 auto; padding-top: 80px; display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 400px); column-gap: 80px; row-gap: 100px; }
+.gensen-gallery { min-width: 0; grid-column: 1; grid-row: 1; }
+.gensen-gallery__stage { aspect-ratio: 1; background: #000; position: relative; }
+.gensen-gallery__slide { width: 100%; height: 100%; position: absolute; inset: 0; }
+.gensen-gallery__slide > img, .gensen-gallery__slide > video, .gensen-gallery__slide > iframe, .gensen-gallery__slide > model-viewer { width: 100%; height: 100%; object-fit: contain; border: 0; }
+.gensen-gallery__fallback > .gensen-bottle { position: absolute; width: 24.84375%; height: 84.84375%; left: 37.65625%; top: 13.125%; object-fit: contain; }
+.gensen-gallery__thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26.6667px; margin-top: 29px; }
+.gensen-thumb { position: relative; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; padding: 0; border: 0; background: #000; }
+.gensen-thumb[aria-pressed='true']::after, .gensen-thumb--fallback::after { content: ''; position: absolute; inset: 0; border: 4px solid var(--gensen-orange); pointer-events: none; }
+.gensen-thumb > img:not(.gensen-desktop) { width: 100%; height: 100%; object-fit: contain; }
+.gensen-thumb--fallback > img { max-width: 25%; max-height: 84%; align-self: end; margin-bottom: 3px; }
+.gensen-purchase { grid-column: 2; grid-row: 1 / span 2; min-width: 0; }
+.gensen-purchase__sticky { position: sticky; top: 30px; }
+.gensen-title { display: flex; align-items: baseline; gap: 13px; white-space: nowrap; }
+.gensen-title > span { font: 600 50px/1.2 'Montserrat', sans-serif; }
+.gensen-title > small { font: 700 30px/1.2 'Noto Sans JP', sans-serif; }
+.gensen-subtitle { margin-top: 8px !important; font-size: 20px; line-height: 1.6; }
+.gensen-badges { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; list-style: none; padding: 0; margin-top: 46px !important; }
+.gensen-badges li { border: 1px solid var(--gensen-orange); border-radius: 40px; min-height: 30px; display: flex; align-items: center; justify-content: center; color: var(--gensen-orange); font-size: 10px; white-space: nowrap; }
+.gensen .product-form { display: block; margin-top: 35px; }
+.gensen-subscription-placeholder { min-height: 429px; display: flex; align-items: center; justify-content: center; background: #555; color: #000; font-size: 12px; font-weight: 700; text-align: center; padding: 20px; }
+.gensen-purchase__details { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+.gensen-price { font-size: 24px; }
+.gensen-purchase__details select, .gensen-purchase__details input { color: #fff; background: #222; border: 1px solid #888; border-radius: 0; padding: 10px 12px; width: 100%; min-height: 44px; }
+.gensen-purchase__details input { max-width: 110px; }
+.gensen-error, .gensen-plan-notice { margin: 15px 0 !important; color: #fff; }
+.gensen-button { display: inline-flex; position: relative; width: 260px; height: 60px; padding: 0; border: 0; align-items: center; justify-content: center; background: transparent; color: var(--gensen-orange) !important; font: 700 16px/1.6 'Montserrat', sans-serif !important; letter-spacing: 1.28px; vertical-align: middle; }
+.gensen-button__art { position: absolute; inset: 0; pointer-events: none; }
+.gensen-button__label { position: relative; z-index: 1; }
+.gensen-button--filled { color: #000 !important; font-family: 'Noto Sans JP', sans-serif !important; font-weight: 400 !important; letter-spacing: 0; margin-top: 29px; }
+.gensen-button:disabled { cursor: not-allowed; }
+.gensen-button:hover:not(:disabled) { filter: brightness(1.12); }
+.gensen-button__arrow { position: absolute; right: 20px; top: 24px; }
+.gensen-button .loading__spinner { z-index: 2; }
+.gensen-button.loading .gensen-button__label { visibility: hidden; }
+.gensen-content { grid-column: 1; grid-row: 2; min-width: 0; }
+.gensen-story + .gensen-story { margin-top: 100px; }
+.gensen-story__heading { display: flex; align-items: center; gap: 40px; }
+.gensen-story__heading h2 { font: 500 24px/1.4 'Noto Sans JP', sans-serif; }
+.gensen-story--intro h2 { font-size: 30px; }
+.gensen-point { width: 80px; height: 80px; flex: 0 0 80px; position: relative; }
+.gensen-point > span { position: absolute; inset: 14px 0 0; display: block; text-align: center; font: 600 14px/1.2 'Montserrat', sans-serif; color: #000; }
+.gensen-point strong { display: block; font-size: 30px; line-height: 1.2; }
+.gensen-story__body { margin-top: 20px; font-size: 16px; line-height: 1.625; font-weight: 500; overflow-wrap: anywhere; }
+.gensen-story--intro .gensen-story__body { margin-top: 30px; }
+.gensen-story__image { position: relative; height: 307px; margin-top: 40px; overflow: hidden; }
+.gensen-story__image > img { position: absolute; max-width: none; object-fit: cover; }
+.gensen-story__image--lake > img { width: 100.15625%; height: 156.6775%; left: 0; top: -19.54397%; }
+.gensen-story__image--source > img { width: 108.28125%; height: 150.4886%; left: -7.03125%; top: -40.7166%; }
+.gensen-story__image--facility > img { width: 100.625%; height: 140.0651%; left: -.46875%; top: -29.31596%; }
+.gensen-story__image--mineral > img { width: 103.75%; height: 144.2997%; left: -1.875%; top: -22.14984%; }
+.gensen-story__image--waterfall > img { width: 103.59375%; height: 143.9739%; left: -1.25%; top: -40.7166%; }
+.gensen-story__image--custom > img { width: 100%; height: 100%; left: 0; top: 0; object-fit: cover; }
+.gensen-panel { padding: 40px; margin-top: 100px; background: #000; }
+.gensen-panel > h2 { font: 700 40px/1.2 'Montserrat', sans-serif; }
+.gensen-panel__subtitle { margin-top: 5px !important; color: var(--gensen-orange); font-size: 18px; font-weight: 500; line-height: 1.2; }
+.gensen-faq { padding-bottom: 72px; }
+.gensen-faq__items { margin-top: 53px; }
+.gensen-faq__item { border-top: 1px solid #fff; }
+.gensen-faq__item:last-child { border-bottom: 1px solid #fff; }
+.gensen-faq__item summary { min-height: 101px; display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 24px 33px 24px 13px; list-style: none; font-size: 18px; font-weight: 700; line-height: 1.25; }
+.gensen-faq__item summary::-webkit-details-marker, .gensen-menu summary::-webkit-details-marker { display: none; }
+.gensen-faq__item summary > span { position: relative; width: 15px; height: 15px; flex: 0 0 15px; }
+.gensen-faq__item summary > span::before, .gensen-faq__item summary > span::after { content: ''; position: absolute; background: #fff; top: 7px; left: 0; height: 1px; width: 15px; }
+.gensen-faq__item summary > span::after { transform: rotate(90deg); }
+.gensen-faq__item[open] summary > span::after { transform: none; }
+.gensen-faq__answer { padding: 0 33px 26px 13px; font-size: 14px; }
+.gensen-faq > .gensen-button { display: flex; margin: 60px auto 0; }
+.gensen-related__card { display: grid; grid-template-columns: 1fr 1fr; margin-top: 53px; min-height: 300px; border: 1px solid var(--gensen-orange); }
+.gensen-related__text { padding: 30px 31px; }
+.gensen-related__text h3 { font: 700 30px/1.2 'Montserrat', sans-serif; }
+.gensen-related__label { margin-top: 10px !important; color: var(--gensen-orange); font-size: 18px; }
+.gensen-related__catch { margin-top: 28px !important; color: var(--gensen-orange); font-size: 20px; line-height: 1.25; max-width: 185px; }
+.gensen-related__description { margin-top: 10px; font-size: 16px; line-height: 1.625; }
+.gensen-related__image { background: #222; position: relative; display: flex; align-items: end; justify-content: center; padding: 30px 20px 14px; }
+.gensen-related__image > img { width: 185px; height: 223px; object-fit: contain; max-width: 100%; }
+.gensen-footer { margin-top: 100px; }
+.gensen-footer__top { padding: 70px 25px 30px; }
+.gensen-footer__buttons { display: flex; justify-content: center; gap: 20px; }
+.gensen-footer__contact { display: flex; justify-content: center; gap: 40px; margin-top: 35px; color: var(--gensen-orange); }
+.gensen-footer__contact > * { display: inline-flex; align-items: center; gap: 15px; }
+.gensen-footer__contact img { transform: rotate(-90deg); }
+.gensen-footer__bottom { min-height: 227px; padding: 32px 25px 60px; background: #000; }
+.gensen-footer__policies { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 16px; }
+.gensen-footer__logo { display: block; width: 125px; margin: 40px auto 0; }
+@media (min-width: 990px) and (max-width: 1250px) {
+  .gensen-header { gap: 24px; padding-left: 30px; padding-right: 30px; }
+  .gensen-navigation { font-size: 15px; gap: 13px; }
+  .gensen-layout { margin-inline: 40px; column-gap: 40px; grid-template-columns: minmax(0, 1fr) 350px; }
+  .gensen-title > span { font-size: 43px; }
+  .gensen-title > small { font-size: 24px; }
+  .gensen-thumb--empty { overflow: hidden; }
+}
+@media (max-width: 989px) {
+  .gensen .gensen-desktop { display: none; }
+  .gensen .gensen-mobile { display: block; }
+  .gensen { font-size: 14px; }
+  .gensen-announcement { font-size: 12px; }
+  .gensen-announcement > * { gap: 10px; }
+  .gensen-header { min-height: 60px; padding: 10px 10px 0 25px; gap: 10px; background: #222; position: relative; }
+
+  .gensen-navigation { display: none; }
+  .gensen-header__actions { margin-left: auto; }
+  .gensen-menu summary { display: block; list-style: none; }
+  .gensen-menu nav { position: absolute; right: 10px; top: calc(100% + 10px); width: min(325px, calc(100vw - 50px)); z-index: 5; padding: 16px 25px; border: 1px solid var(--gensen-orange); background: #000; color: var(--gensen-orange); display: grid; }
+  .gensen-menu nav > * { padding: 12px 0; font-family: 'Montserrat', sans-serif; }
+  .gensen-layout { display: flex; flex-direction: column; gap: 0; margin-inline: auto; padding: 20px 25px 0; max-width: 690px; }
+  .gensen-gallery__thumbs { gap: 15px; margin-top: 14px; }
+  .gensen-thumb[aria-pressed='true']::after, .gensen-thumb--fallback::after { border-width: 2px; }
+  .gensen-purchase { margin-top: 40px; }
+  .gensen-purchase__sticky { position: static; }
+  .gensen-title { gap: 10px; }
+  .gensen-title > span { font-size: 30px; }
+  .gensen-title > small { font-size: 18px; }
+  .gensen-subtitle { font-size: 14px; margin-top: 10px !important; }
+  .gensen-badges { margin-top: 15px !important; gap: 5px; }
+  .gensen-badges li { min-height: 25px; }
+  .gensen .product-form { margin-top: 38px; }
+  .gensen-subscription-placeholder { min-height: 300px; }
+  .gensen-button { width: 225px; }
+  .gensen-button--filled { display: flex; margin: 40px auto 0; }
+  .gensen-content { margin-top: 100px; }
+  .gensen-story__heading { gap: 25px; }
+  .gensen-story__heading h2 { font-size: 18px; }
+  .gensen-story--intro h2 { font-size: clamp(21px, 6.4vw, 24px); letter-spacing: -.04em; }
+  .gensen-point { width: 50px; height: 50px; flex-basis: 50px; }
+  .gensen-point > span { top: 7px; font-size: 10px; }
+  .gensen-point strong { font-size: 24px; line-height: 1.2; }
+  .gensen-story__body, .gensen-story--intro .gensen-story__body { margin-top: 20px; font-size: 14px; line-height: 22px; font-weight: 400; }
+  .gensen-story__image { height: 250px; }
+  .gensen-story__image--lake > img { width: 126.7655%; height: 123.5964%; left: -13.3698%; top: -3.0237%; }
+  .gensen-story__image--source > img { width: 142.1538%; height: 123.2%; left: -21.2308%; top: -18%; }
+  .gensen-story__image--facility { margin-top: 20px; }
+  .gensen-story__image--facility > img { width: 135.3846%; height: 117.2%; left: -12%; top: -8%; }
+  .gensen-story__image--mineral > img { width: 115.3846%; height: 100%; left: -7.6923%; top: 0; }
+  .gensen-story__image--waterfall > img { width: 143.0769%; height: 124%; left: -21.5385%; top: -12%; }
+  .gensen-story__image--custom > img { width: 100%; height: 100%; left: 0; top: 0; }
+  .gensen-panel { margin-inline: -25px; padding: 30px 25px 56px; }
+  .gensen-panel__subtitle { margin-top: 4px !important; font-size: 16px; }
+  .gensen-faq__items { margin-top: 40px; }
+  .gensen-faq__item summary { min-height: 80px; padding: 18px 10px 18px 27px; gap: 15px; font-size: 14px; line-height: 1.4; }
+  .gensen-faq__item summary > span { width: 20px; height: 20px; flex-basis: 20px; }
+  .gensen-faq__item summary > span::before, .gensen-faq__item summary > span::after { width: 20px; top: 9px; }
+  .gensen-faq__answer { padding: 0 27px 24px; }
+  .gensen-faq > .gensen-button { margin-top: 40px; }
+  .gensen-related { margin-top: 10px; padding-bottom: 93px; }
+  .gensen-related__card { grid-template-columns: 1fr; margin-top: 44px; }
+  .gensen-related__text { display: grid; grid-template-columns: auto 1fr; column-gap: 15px; padding: 25px 24px; min-height: 214px; }
+  .gensen-related__text h3 { font-size: 30px; }
+  .gensen-related__label { margin-top: 9px !important; font-size: 18px; }
+  .gensen-related__catch { grid-column: 1 / -1; margin-top: 4px !important; max-width: none; font-size: 20px; }
+  .gensen-related__description { grid-column: 1 / -1; margin-top: 7px; }
+  .gensen-related__image { min-height: 257px; padding: 40px 20px 14px; }
+  .gensen-related__image > img { width: 168px; height: 203px; }
+  .gensen-footer { margin-top: 0; }
+  .gensen-footer__top { padding: 60px 25px 40px; }
+  .gensen-footer__buttons { flex-direction: column; align-items: center; }
+  .gensen-footer__contact { margin-top: 40px; justify-content: space-between; gap: 15px; font-size: 16px; }
+  .gensen-footer__contact > * { gap: 10px; }
+  .gensen-footer__bottom { min-height: 565px; padding: 60px 25px; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+  .gensen-footer__policies { display: grid; justify-content: start; gap: 4px; font-size: 16px; }
+  .gensen-footer__logo { margin: 0; flex-shrink: 0; }
+}
+@media (max-width: 359px) {
+  .gensen-layout { padding-inline: 20px; }
+  .gensen-panel { margin-inline: -20px; padding-inline: 20px; }
+  .gensen-header { padding-left: 20px; }
+
+  .gensen-header__actions { gap: 5px; }
+  .gensen-story__heading { gap: 16px; }
+  .gensen-badges { grid-template-columns: repeat(2, 1fr); }
+  .gensen-footer__contact { font-size: 13px; }
+}
+
+.gensen-gallery__slide:not(.gensen-gallery__fallback) > img { height: 84.84375%; margin-top: 13.125%; }

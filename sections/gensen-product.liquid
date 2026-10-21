@@ -1,0 +1,447 @@
+<script src="{{ 'gensen-product.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'gensen-form-' | append: section.id
+  assign gallery_id = 'gensen-gallery-' | append: section.id
+  assign faq_id = 'gensen-faq-' | append: section.id
+  assign first_media = current_variant.featured_media | default: product.featured_media
+  assign faq_blocks = section.blocks | where: 'type', 'faq'
+  assign related = section.settings.related_product
+  assign purchase_available = false
+  if section.settings.allow_purchase and current_variant.available and product.requires_selling_plan == false and current_variant.requires_selling_plan == false
+    assign purchase_available = true
+  endif
+-%}
+<gensen-product class="gensen" data-section-id="{{ section.id }}" data-purchase-enabled="{{ section.settings.allow_purchase }}" data-add-label="{{ 'products.product.add_to_cart' | t | escape }}" data-sold-label="{{ 'products.product.sold_out' | t | escape }}" data-preparing-label="{{ 'gensen.preparing' | t | escape }}">
+  {% if section.settings.announcement != blank %}
+    <div class="gensen-announcement">
+      {% if section.settings.announcement_link != blank %}<a href="{{ section.settings.announcement_link }}">{% else %}<span>{% endif %}
+        {{ section.settings.announcement | escape }}
+        <img src="{{ 'gensen-announcement-arrow.svg' | asset_url }}" width="20" height="20" alt="">
+      {% if section.settings.announcement_link != blank %}</a>{% else %}</span>{% endif %}
+    </div>
+  {% endif %}
+  <header class="gensen-header">
+    <a class="gensen-logo gensen-desktop" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      <img src="{{ 'gensen-logo.svg' | asset_url }}" width="112" height="31" alt="ichido">
+    </a>
+    {% capture navigation %}
+      {% if section.settings.menu != blank %}
+        {% for link in section.settings.menu.links %}<a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>{% endfor %}
+      {% else %}
+        {% if section.settings.story_link != blank %}<a href="{{ section.settings.story_link }}">BRAND STORY</a>{% else %}<span>BRAND STORY</span>{% endif %}
+        <a href="#{{ gallery_id }}">PRODUCT</a>
+        <a href="#{{ faq_id }}">{{ 'gensen.faq' | t }}</a>
+        {% if section.settings.news_link != blank %}<a href="{{ section.settings.news_link }}">NEWS</a>{% else %}<span>NEWS</span>{% endif %}
+        {% if section.settings.contact_link != blank %}<a href="{{ section.settings.contact_link }}">CONTACT</a>{% else %}<span>CONTACT</span>{% endif %}
+      {% endif %}
+    {% endcapture %}
+    <nav class="gensen-navigation" aria-label="{{ 'gensen.navigation' | t }}">{{ navigation }}</nav>
+    <div class="gensen-header__actions">
+      <a href="{{ routes.account_url }}" aria-label="{{ 'gensen.account' | t }}">
+        <img class="gensen-desktop" src="{{ 'gensen-account.svg' | asset_url }}" width="60" height="60" alt="">
+        <img class="gensen-mobile" src="{{ 'gensen-account-mobile.svg' | asset_url }}" width="50" height="50" alt="">
+      </a>
+      <a href="{{ routes.cart_url }}" aria-label="{{ 'gensen.cart' | t }}">
+        <img class="gensen-desktop" src="{{ 'gensen-cart.svg' | asset_url }}" width="60" height="60" alt="">
+        <img class="gensen-mobile" src="{{ 'gensen-cart-mobile.svg' | asset_url }}" width="50" height="50" alt="">
+      </a>
+      <details class="gensen-menu gensen-mobile">
+        <summary aria-label="{{ 'gensen.menu' | t }}"><img src="{{ 'gensen-menu.svg' | asset_url }}" width="50" height="50" alt=""></summary>
+        <nav aria-label="{{ 'gensen.navigation' | t }}">{{ navigation }}</nav>
+      </details>
+    </div>
+  </header>
+  <div class="gensen-layout">
+    <div class="gensen-gallery" id="{{ gallery_id }}" role="region" aria-label="{{ 'gensen.gallery' | t }}">
+      <div class="gensen-gallery__stage">
+        {% if product.media.size > 0 %}
+          {% for media in product.media %}
+            <div class="gensen-gallery__slide" id="gensen-media-{{ section.id }}-{{ media.id }}" data-media-id="{{ media.id }}"{% unless media.id == first_media.id %} hidden{% endunless %}>
+              {% if media.media_type == 'image' %}
+                {% if media.id == first_media.id %}
+                  {{ media | image_url: width: 1440 | image_tag: widths: '375, 640, 960, 1440', sizes: '(min-width: 990px) 640px, calc(100vw - 50px)', loading: 'eager', fetchpriority: 'high', alt: media.alt }}
+                {% else %}
+                  {{ media | image_url: width: 1440 | image_tag: widths: '375, 640, 960, 1440', sizes: '(min-width: 990px) 640px, calc(100vw - 50px)', loading: 'lazy', alt: media.alt }}
+                {% endif %}
+              {% else %}
+                {{ media | media_tag: image_size: '960x', controls: true, preload: 'none' }}
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="gensen-gallery__slide gensen-gallery__fallback">
+            <img class="gensen-bottle" src="{{ 'gensen-bottle.png' | asset_url }}" width="301" height="1027" alt="GENSEN 源泉水" fetchpriority="high">
+          </div>
+        {% endif %}
+      </div>
+      <div class="gensen-gallery__thumbs">
+        {% if product.media.size > 0 %}
+          {% for media in product.media %}
+            <button class="gensen-thumb" type="button" data-media-target="{{ media.id }}" aria-controls="gensen-media-{{ section.id }}-{{ media.id }}" aria-label="{{ 'gensen.image' | t: number: forloop.index }}" aria-pressed="{% if media.id == first_media.id %}true{% else %}false{% endif %}">
+              {{ media.preview_image | image_url: width: 280 | image_tag: loading: 'lazy', alt: '' }}
+            </button>
+          {% endfor %}
+        {% else %}
+          <div class="gensen-thumb gensen-thumb--fallback" aria-current="true"><img src="{{ 'gensen-bottle.png' | asset_url }}" width="301" height="1027" alt="" loading="lazy"></div>
+          {% for i in (1..3) %}<div class="gensen-thumb gensen-thumb--empty"><img class="gensen-desktop" src="{{ 'gensen-placeholder.svg' | asset_url }}" width="140" height="140" alt="" loading="lazy"></div>{% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="gensen-purchase">
+      <div class="gensen-purchase__sticky">
+        <h1 class="gensen-title"><span>{{ section.settings.brand_name | default: product.title | escape }}</span><small>{{ section.settings.product_label | escape }}</small></h1>
+        <p class="gensen-subtitle">{{ section.settings.subtitle | escape }}</p>
+        {% if section.settings.show_badges and section.settings.badges != blank %}
+          <ul class="gensen-badges" role="list">{% assign badges = section.settings.badges | split: ',' %}{% for badge in badges %}<li>{{ badge | strip | escape }}</li>{% endfor %}</ul>
+        {% endif %}
+        <product-form class="product-form" data-section-id="{{ section.id }}">
+          <div class="product-form__error-message-wrapper gensen-error" role="alert" hidden><span class="product-form__error-message"></span></div>
+          {% form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' %}
+            {% if section.settings.show_purchase_details %}
+              <div class="gensen-purchase__details">
+                <p class="gensen-price" data-price aria-live="polite">{{ current_variant.price | money }}</p>
+                <label{% if product.has_only_default_variant %} class="visually-hidden"{% endif %} for="gensen-variant-{{ section.id }}">{{ 'gensen.variant' | t }}</label>
+                <select id="gensen-variant-{{ section.id }}" name="id" data-variant{% if product.has_only_default_variant %} hidden{% endif %}>
+                  {% for variant in product.variants %}
+                    <option value="{{ variant.id }}" data-price="{{ variant.price | money | escape }}" data-available="{{ variant.available }}" data-requires-plan="{{ variant.requires_selling_plan }}" data-media="{{ variant.featured_media.id }}" data-min="{{ variant.quantity_rule.min }}" data-step="{{ variant.quantity_rule.increment }}" data-max="{{ variant.quantity_rule.max }}"{% if variant.id == current_variant.id %} selected{% endif %}>{{ variant.title | escape }}</option>
+                  {% endfor %}
+                </select>
+                <label for="gensen-quantity-{{ section.id }}">{{ 'gensen.quantity' | t }}</label>
+                <input id="gensen-quantity-{{ section.id }}" type="number" name="quantity" value="{{ current_variant.quantity_rule.min | default: 1 }}" min="{{ current_variant.quantity_rule.min | default: 1 }}" step="{{ current_variant.quantity_rule.increment | default: 1 }}"{% if current_variant.quantity_rule.max != blank %} max="{{ current_variant.quantity_rule.max }}"{% endif %} inputmode="numeric" required>
+              </div>
+            {% else %}
+              <input type="hidden" name="id" value="{{ current_variant.id }}">
+              <input type="hidden" name="quantity" value="{{ current_variant.quantity_rule.min | default: 1 }}">
+            {% endif %}
+            {% if section.settings.show_subscription_placeholder %}
+              <div class="gensen-subscription-placeholder">{{ 'gensen.subscription_placeholder' | t }}</div>
+            {% endif %}
+            {% for block in section.blocks %}{% if block.type == '@app' %}<div class="gensen-app" {{ block.shopify_attributes }}>{% render block %}</div>{% endif %}{% endfor %}
+            <p class="gensen-plan-notice"{% unless product.requires_selling_plan or current_variant.requires_selling_plan %} hidden{% endunless %}>{{ 'gensen.plan_required' | t }}</p>
+            <button class="gensen-button gensen-button--filled product-form__submit" type="submit" name="add"{% unless purchase_available %} disabled{% endunless %}>
+              <span class="gensen-button__label" data-submit-label>{% if section.settings.allow_purchase == false or product.requires_selling_plan or current_variant.requires_selling_plan %}{{ 'gensen.preparing' | t }}{% elsif current_variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+              {% render 'gensen-button-art', kind: 'fill' %}
+              {% render 'loading-spinner' %}
+            </button>
+          {% endform %}
+        </product-form>
+      </div>
+    </div>
+    <div class="gensen-content">
+      {% for block in section.blocks %}
+        {% if block.type == 'story' %}
+          <section class="gensen-story{% if block.settings.number == blank %} gensen-story--intro{% endif %}" {{ block.shopify_attributes }}>
+            <div class="gensen-story__heading">
+              {% if block.settings.number != blank %}
+                <div class="gensen-point" aria-hidden="true">
+                  <img class="gensen-desktop" src="{{ 'gensen-point.svg' | asset_url }}" width="80" height="80" alt="" loading="lazy">
+                  <img class="gensen-mobile" src="{{ 'gensen-point-mobile.svg' | asset_url }}" width="50" height="50" alt="" loading="lazy">
+                  <span>POINT<strong>{{ block.settings.number | escape }}</strong></span>
+                </div>
+              {% endif %}
+              <h2>{{ block.settings.heading | escape }}</h2>
+            </div>
+            <div class="gensen-story__body">{{ block.settings.body }}</div>
+            <div class="gensen-story__image gensen-story__image--{{ block.settings.image_slot }}{% if block.settings.image != blank %} gensen-story__image--custom{% endif %}">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 1440 | image_tag: widths: '375, 640, 960, 1440', sizes: '(min-width: 990px) 640px, calc(100vw - 50px)', loading: 'lazy', alt: block.settings.image_alt }}
+              {% else %}
+                <img src="{{ 'gensen-' | append: block.settings.image_slot | append: '.jpg' | asset_url }}" width="{% if block.settings.image_slot == 'lake' %}4032{% else %}4096{% endif %}" height="{% if block.settings.image_slot == 'lake' %}3024{% else %}2732{% endif %}" alt="{{ block.settings.image_alt | escape }}" loading="lazy">
+              {% endif %}
+            </div>
+          </section>
+        {% endif %}
+      {% endfor %}
+      {% if faq_blocks.size > 0 %}
+        <section class="gensen-faq gensen-panel" id="{{ faq_id }}">
+          <h2>{{ 'gensen.faq' | t }}</h2><p class="gensen-panel__subtitle">{{ 'gensen.faq_label' | t }}</p>
+          <div class="gensen-faq__items">
+            {% for block in faq_blocks %}
+              <details class="gensen-faq__item" {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }}<span aria-hidden="true"></span></summary><div class="gensen-faq__answer">{{ block.settings.answer }}</div></details>
+            {% endfor %}
+          </div>
+          {% if section.settings.faq_link != blank %}
+            <a class="gensen-button" href="{{ section.settings.faq_link }}">{% render 'gensen-button-art' %}<span class="gensen-button__label">{{ 'gensen.faq_list' | t }}</span></a>
+          {% else %}
+            <span class="gensen-button" aria-disabled="true">{% render 'gensen-button-art' %}<span class="gensen-button__label">{{ 'gensen.faq_list' | t }}</span></span>
+          {% endif %}
+        </section>
+      {% endif %}
+      <section class="gensen-related gensen-panel">
+        <h2>{{ 'gensen.related_title' | t }}</h2><p class="gensen-panel__subtitle">{{ 'gensen.other_label' | t }}</p>
+        {% if related != blank %}<a class="gensen-related__card" href="{{ related.url }}">{% else %}<div class="gensen-related__card">{% endif %}
+          <div class="gensen-related__text"><h3>{{ related.title | default: section.settings.related_title | escape }}</h3><p class="gensen-related__label">{{ section.settings.related_label | escape }}</p><p class="gensen-related__catch">{{ section.settings.related_catch | escape }}</p><div class="gensen-related__description">{% if related != blank %}{{ related.description | strip_html | truncate: 90 }}<p>{{ related.price | money }}</p>{% else %}{{ section.settings.related_description }}{% endif %}</div></div>
+          <div class="gensen-related__image">{% if related.featured_image != blank %}{{ related.featured_image | image_url: width: 650 | image_tag: loading: 'lazy', alt: related.title }}{% else %}<img src="{{ 'gensen-protein.png' | asset_url }}" width="753" height="912" alt="DAICHI プロテイン" loading="lazy">{% endif %}</div>
+        {% if related != blank %}</a>{% else %}</div>{% endif %}
+      </section>
+    </div>
+  </div>
+  <footer class="gensen-footer">
+    <div class="gensen-footer__top">
+      <div class="gensen-footer__buttons">
+        <a class="gensen-button" href="{% if section.settings.product_list_link != blank %}{{ section.settings.product_list_link }}{% else %}#{{ gallery_id }}{% endif %}">{% render 'gensen-button-art' %}<span class="gensen-button__label">{{ 'gensen.product_list' | t }}</span><img class="gensen-button__arrow gensen-desktop" src="{{ 'gensen-arrow.svg' | asset_url }}" width="14.7071" height="10.7071" alt="" loading="lazy"></a>
+        <a class="gensen-button" href="{% if section.settings.faq_link != blank %}{{ section.settings.faq_link }}{% else %}#{{ faq_id }}{% endif %}">{% render 'gensen-button-art' %}<span class="gensen-button__label">{{ 'gensen.faq' | t }}</span><img class="gensen-button__arrow gensen-desktop" src="{{ 'gensen-arrow.svg' | asset_url }}" width="14.7071" height="10.7071" alt="" loading="lazy"></a>
+      </div>
+      <div class="gensen-footer__contact">
+        {% if section.settings.newsletter_link != blank %}<a href="{{ section.settings.newsletter_link }}">{% else %}<span>{% endif %}{{ 'gensen.newsletter' | t }}<img src="{{ 'gensen-chevron.svg' | asset_url }}" width="10.7071" height="6.06066" alt="" loading="lazy">{% if section.settings.newsletter_link != blank %}</a>{% else %}</span>{% endif %}
+        {% if section.settings.contact_link != blank %}<a href="{{ section.settings.contact_link }}">{% else %}<span>{% endif %}{{ 'gensen.contact' | t }}<img src="{{ 'gensen-chevron.svg' | asset_url }}" width="10.7071" height="6.06066" alt="" loading="lazy">{% if section.settings.contact_link != blank %}</a>{% else %}</span>{% endif %}
+      </div>
+    </div>
+    <div class="gensen-footer__bottom">
+      <nav class="gensen-footer__policies" aria-label="{{ 'gensen.policies' | t }}">
+        {% if section.settings.footer_menu != blank %}
+          {% for link in section.settings.footer_menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}
+        {% else %}
+          {% for policy in shop.policies %}{% if policy != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}
+        {% endif %}
+      </nav>
+      <a class="gensen-footer__logo" href="{{ routes.root_url }}"><img src="{{ 'gensen-footer-logo.svg' | asset_url }}" width="125" height="35" alt="ichido" loading="lazy"></a>
+    </div>
+  </footer>
+</gensen-product>
+<script type="application/ld+json">{{ product | structured_data }}</script>
+
+{% schema %}
+{
+  "name": "GENSEN 商品ページ",
+  "tag": "section",
+  "class": "gensen-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "商品表示・公開準備"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "商品名（空欄は商品データを使用）",
+      "default": "GENSEN"
+    },
+    {
+      "type": "text",
+      "id": "product_label",
+      "label": "商品名の補足",
+      "default": "／源泉水"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "商品仕様",
+      "default": "Core Water 1ケース（24本）"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badges",
+      "label": "特徴ラベルを表示",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badges",
+      "label": "特徴ラベル（カンマ区切り）",
+      "info": "Figmaの仮文言です。販売前に商品仕様に合わせて更新してください。",
+      "default": "国産,糖質3.5%,200kcal,タンパク質22g"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_purchase_details",
+      "label": "価格・数量・バリエーションを表示",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_purchase",
+      "label": "購入を有効にする",
+      "info": "価格・在庫・公開設定の確認後に有効化してください。定期購入のみの商品はMikawaya連携の実動作確認が必要です。",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subscription_placeholder",
+      "label": "定期購入の仮枠を表示",
+      "info": "Mikawaya導入時にオフにし、アプリブロックを追加します。",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "ヘッダー・リンク"
+    },
+    {
+      "type": "text",
+      "id": "announcement",
+      "label": "お知らせ",
+      "default": "キャンペーンやお知らせを掲載"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "お知らせリンク"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "ナビゲーションメニュー"
+    },
+    {
+      "type": "url",
+      "id": "story_link",
+      "label": "BRAND STORYリンク"
+    },
+    {
+      "type": "url",
+      "id": "news_link",
+      "label": "NEWSリンク"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "CONTACTリンク"
+    },
+    {
+      "type": "url",
+      "id": "faq_link",
+      "label": "FAQ一覧リンク"
+    },
+    {
+      "type": "url",
+      "id": "product_list_link",
+      "label": "商品一覧リンク"
+    },
+    {
+      "type": "url",
+      "id": "newsletter_link",
+      "label": "メールマガジン登録リンク"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "フッターメニュー"
+    },
+    {
+      "type": "header",
+      "content": "他の商品"
+    },
+    {
+      "type": "product",
+      "id": "related_product",
+      "label": "関連商品（未選択はデザイン確認用）"
+    },
+    {
+      "type": "text",
+      "id": "related_title",
+      "label": "関連商品名",
+      "default": "DAICHI"
+    },
+    {
+      "type": "text",
+      "id": "related_label",
+      "label": "カテゴリ",
+      "default": "プロテイン"
+    },
+    {
+      "type": "text",
+      "id": "related_catch",
+      "label": "キャッチコピー",
+      "default": "大地の恵みを、一杯に。"
+    },
+    {
+      "type": "richtext",
+      "id": "related_description",
+      "label": "関連商品仕様（未選択時）",
+      "default": "<p>Vegetable Protein<br>1kg (〇〇食分)<br>¥00,000</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "story",
+      "name": "商品ストーリー",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "見出し"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "説明"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "POINT番号（導入文は空欄）"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "画像（未選択はFigma画像）"
+        },
+        {
+          "type": "select",
+          "id": "image_slot",
+          "label": "画像・トリミング",
+          "default": "lake",
+          "options": [
+            {
+              "value": "lake",
+              "label": "潟沼"
+            },
+            {
+              "value": "source",
+              "label": "源泉"
+            },
+            {
+              "value": "facility",
+              "label": "採水施設"
+            },
+            {
+              "value": "mineral",
+              "label": "ミネラル"
+            },
+            {
+              "value": "waterfall",
+              "label": "滝"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "画像の説明"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "よくあるご質問",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "質問"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "回答"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GENSEN 商品ページ"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  }
+}
+{% endschema %}

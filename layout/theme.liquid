@@ -25,10 +25,12 @@
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
-    {%- if request.page_type != 'index' and request.design_mode == false -%}
-      <meta http-equiv="refresh" content="0; url={{ routes.root_url }}">
-      <script>window.location.replace({{ routes.root_url | json }});</script>
-    {%- endif -%}
+    {%- liquid
+      assign is_gensen_product = false
+      if template.name == 'product' and template.suffix == 'gensen'
+        assign is_gensen_product = true
+      endif
+    -%}
     {% render 'meta-tags' %}
 
     <script type="module">
@@ -66,6 +68,12 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {% if is_gensen_product %}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+      {{ 'gensen-product.css' | asset_url | stylesheet_tag }}
+    {% endif %}
     {{ content_for_header }}
 
     {%- liquid
@@ -333,7 +341,9 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
+    {% unless is_gensen_product %}
+      {% sections 'header-group' %}
+    {% endunless %}
 
     <main
       id="MainContent"
@@ -345,7 +355,9 @@
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {% unless is_gensen_product %}
+      {% sections 'footer-group' %}
+    {% endunless %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

@@ -1,0 +1,9 @@
+{% doc %}
+  Renders the original Figma button artwork at its desktop and mobile dimensions.
+  @param {string} [kind] - fill or outline
+{% enddoc %}
+{%- assign button_kind = kind | default: 'outline' -%}
+<span class="gensen-button__art" aria-hidden="true">
+  <img class="gensen-desktop" src="{{ 'gensen-button-' | append: button_kind | append: '.svg' | asset_url }}" width="260" height="60" alt="" loading="lazy">
+  <img class="gensen-mobile" src="{{ 'gensen-button-' | append: button_kind | append: '-mobile.svg' | asset_url }}" width="225" height="60" alt="" loading="lazy">
+</span>
