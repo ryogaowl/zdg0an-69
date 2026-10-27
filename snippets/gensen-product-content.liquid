@@ -1,0 +1,72 @@
+{% doc %}
+  Product-owned editorial content below the standard product gallery.
+  @param {product} product - Current product.
+  @param {section} section - Product section.
+{% enddoc %}
+{% liquid
+  assign stories = product.metafields.custom.product_stories.value
+  assign faqs = product.metafields.custom.product_faqs.value
+  assign related_products = product.metafields.custom.related_products.value
+%}
+<div class="gensen-content">
+  {% if stories != blank %}
+    {% for story in stories %}
+      <section class="gensen-story{% if story.point.value == blank %} gensen-story--intro{% endif %}">
+        <div class="gensen-story__heading">
+          {% if story.point.value != blank %}
+            <div class="gensen-point" aria-hidden="true">
+              <img class="gensen-desktop" src="{{ 'gensen-point.svg' | asset_url }}" width="80" height="80" alt="" loading="lazy">
+              <img class="gensen-mobile" src="{{ 'gensen-point-mobile.svg' | asset_url }}" width="50" height="50" alt="" loading="lazy">
+              <span>POINT<strong>{{ story.point.value | escape }}</strong></span>
+            </div>
+          {% endif %}
+          <h2>{{ story.heading.value | escape }}</h2>
+        </div>
+        {% if story.body != blank %}<div class="gensen-story__body">{{ story.body | metafield_tag }}</div>{% endif %}
+        {% if story.image.value != blank %}
+          <div class="gensen-story__image gensen-story__image--custom">
+            {{ story.image.value | image_url: width: 1440 | image_tag: widths: '375, 640, 960, 1440', sizes: '(min-width: 990px) 640px, calc(100vw - 50px)', loading: 'lazy' }}
+          </div>
+        {% endif %}
+      </section>
+    {% endfor %}
+  {% elsif product.description != blank %}
+    <div class="gensen-product-description rte">{{ product.description }}</div>
+  {% endif %}
+  {% if faqs != blank %}
+    <section class="gensen-faq gensen-panel" id="gensen-faq-{{ section.id }}">
+      <h2>{{ 'gensen.faq' | t }}</h2>
+      <p class="gensen-panel__subtitle">{{ 'gensen.faq_label' | t }}</p>
+      <gensen-faq class="gensen-faq__items">
+        {% for faq in faqs %}
+          {% if faq.question.value != blank and faq.answer != blank %}
+            <details class="gensen-faq__item">
+              <summary>{{ faq.question.value | escape }}<span aria-hidden="true"></span></summary>
+              <div class="gensen-faq__answer">{{ faq.answer | metafield_tag }}</div>
+            </details>
+          {% endif %}
+        {% endfor %}
+      </gensen-faq>
+    </section>
+  {% endif %}
+  {% if related_products != blank %}
+    <section class="gensen-related gensen-panel">
+      <h2>{{ 'gensen.related_title' | t }}</h2>
+      <p class="gensen-panel__subtitle">{{ 'gensen.other_label' | t }}</p>
+      {% for related in related_products %}
+        {% if related.id != product.id and related.url != blank %}
+          <a class="gensen-related__card" href="{{ related.url }}">
+            <div class="gensen-related__text">
+              <h3>{{ related.title | escape }}</h3>
+              <div class="gensen-related__description">
+                <p>{{ related.metafields.custom.product_subtitle.value | escape }}</p>
+                {% render 'price', product: related %}
+              </div>
+            </div>
+            {% if related.featured_image != blank %}<div class="gensen-related__image">{{ related.featured_image | image_url: width: 650 | image_tag: loading: 'lazy', alt: related.title }}</div>{% endif %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </section>
+  {% endif %}
+</div>

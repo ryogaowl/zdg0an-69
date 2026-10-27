@@ -1,5 +1,45 @@
 # GENSEN 商品ページ 実装・検証記録
 
+## main-product移行（2026-10-27、進行中）
+
+- 着手前に共有済み[下書き商品プレビュー](https://ichido.co/products/gensensui-water?preview_theme_id=200718221472&view=gensen)を確認。専用セクションの旧表示が残っていた。
+- ブランチは `online-store`。前回の未コミット修正を `5b01fa8` に保存し、Shopify側の `1db038f` までをマージしてから作業開始。他担当の更新は保持。
+- CLI Connectorの商品管理認証に成功。商品・メタフィールド・メタオブジェクト・画像操作とテーマ読み取りに必要な権限で接続。テーマ用CLIの別認証はアクセスエラーのため、GitHub連携で反映する。
+- 対象テーマは `gid://shopify/OnlineStoreTheme/200718221472`、`zdg0an-69/online-store`、UNPUBLISHED。変更前の3ファイルを `theme-before-main-product-20261027.json`、layout原本を `data-after-20261027.json` のtheme部分に保存。Gitの作業開始時原本との一致を確認。
+- `main-product.liquid` のギャラリー、購入フォーム、価格、数量、在庫、バリエーション、アプリブロックをそのまま利用し、GENSEN用のスタイルと商品メタフィールド表示を追加。専用の商品フォーム・静的なタイトル・定期購入の灰色仮枠は新テンプレートで使わない。
+- ユーザー追記により専用ヘッダー・フッターを廃止し、共通header-group/footer-groupを利用。別担当の共通デザイン自体には手を加えない。
+- 商品データ追加はユーザー承認済み。ストア所有の編集項目6定義、説明・FAQの2定義、説明5エントリー、画像5点を作成。`seo.hidden=1`、商品補足、説明の参照を保存・読み戻し確認。価格・在庫・status・元のdescriptionHtml・templateSuffixの一致を確認。画像5点READY。
+- FAQ・特徴ラベル・関連商品は正式値未登録で非表示。Mikawayaの実連携は未実施。
+- Theme Check 0エラー・15警告。ToolkitのLiquid検証は内部のFileType exportエラーで実行不能。Admin GraphQLの操作はToolkit検証成功。
+- ボタンは色反転・オレンジ罫線のtransition。FAQは開閉アニメーションとreduced-motion対応。検証結果は後続追記。
+
+### 今回の変更ファイル
+
+実装・運用コード：
+
+- `sections/main-product.liquid`：既存セクションにGENSEN用スタイル指定、商品補足ブロック、説明コンテンツを追加。
+- `templates/product.gensen.json`：main-productの標準ブロック構成へ移行。
+- `assets/product-info.js`：GENSENプレビューのバリエーション更新時にviewパラメーターを維持。
+- `assets/gensen-main-product.css`：標準コンポーネントのレイアウト・色・hover・transition。
+- `assets/gensen-interactions.js`：FAQ開閉アニメーション、連打・reduced-motion対応。
+- `snippets/gensen-product-content.liquid`：商品参照の説明・FAQ・関連商品。未登録時の分岐。
+- `layout/theme.liquid`：共通ヘッダー・フッターの非表示分岐を解除。
+- `tools/migrate-gensen-product-data.cjs`：対象商品限定・元データ照合・二重実行防止付きの移行処理。
+
+資料・証跡：
+
+- `docs/knowledge/gensen-product-registration.md`：編集項目・運用手順・現在値。
+- 本ファイル：移行の記録と復旧情報。
+- `data-before-20261027.json`：商品と既存定義の移行前原本。
+- `data-migration-plan-20261027.json`：追加項目と既存説明文の分割結果。
+- `data-migration-receipt-20261027.json`：作成リソースIDと各操作結果。
+- `data-after-20261027.json`：商品・参照画像の読み戻しとlayout原本。
+- `theme-before-main-product-20261027.json`：変更前テーマファイル原本。
+
+復旧は上記原本と後続差分を比較して対象ファイルだけ戻す。ストアデータは別操作で、説明参照を外せば元の商品説明へフォールバックする。追加データを削除する場合は他商品の参照を確認してから実施し、定義の一括削除はしない。復旧手順の実行は未検証。
+
+以下は初回実装・前回修正の履歴で、現行状態はこの節と後続の確認結果を優先する。
+
 確認日: 2026-10-22（JST）
 
 ## スキーマエラー修正後の最新状態

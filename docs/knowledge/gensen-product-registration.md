@@ -1,5 +1,33 @@
 # GENSEN 商品登録設計
 
+## 現行の管理方法（2026-10-27）
+
+CLI Connectorを `zdg0an-69.myshopify.com` に接続し、商品 `15907648274592`（`gensensui-water`）を読み取り確認した。価格5,000円、在庫0、在庫切れ販売DENY、UNLISTED、画像1点、定期購入プランなし。商品名は「GENSEN／源泉水×24本セット」。元の商品説明を移行元に使い、元の説明・価格・在庫・公開状態は維持した。
+
+ユーザーのメタフィールド追加承認に基づき、次を作成済み。テーマ専用の固定文言ではなく、商品管理画面から編集する。アプリを新規開発する案件ではないため、ストア所有の `custom` 名前空間・メタオブジェクトを使い、他の管理アプリからも扱えるようにした。
+
+| 管理項目 | 保存先・型 | 現在の内容 |
+| --- | --- | --- |
+| 商品名・画像・価格・在庫・バリエーション | Shopify標準の商品項目 | 既存データを表示。価格・在庫は今回未変更 |
+| 商品補足 | `custom.product_subtitle` / single_line_text_field | Core Water 1ケース（24本） |
+| 特徴ラベル | `custom.product_badges` / list.single_line_text_field | 定義のみ。仮の栄養表示は登録しない |
+| 説明セクション | `custom.product_stories` / list.metaobject_reference | 5件。順序は商品の参照リストで変更 |
+| FAQ | `custom.product_faqs` / list.metaobject_reference | 定義のみ。正式な質問・回答の登録後に表示 |
+| 関連商品 | `custom.related_products` / list.product_reference | 定義のみ。選択した実商品の画像・名称・価格・URLを表示 |
+| 検索非表示 | `seo.hidden` / number_integer | `1`を保存・再取得確認済み |
+
+説明セクションのメタオブジェクト `ichido_product_story` は「見出し」「本文（リッチテキスト）」「画像」「ポイント番号」で構成。FAQ `ichido_product_faq` は「質問」「回答（リッチテキスト）」で構成。管理画面のコンテンツ／メタオブジェクトで編集し、商品のメタフィールドから選択・並べ替える。画像は既存の5写真をShopifyファイルへ登録し、ファイル参照で指定。全画像READYを確認済み。
+
+GENSENテンプレートは既存の `main-product.liquid` を利用する。購入フォーム、価格、数量、バリエーション、メディアギャラリー、アプリブロックは標準機能を利用。商品補足・特徴は追加ブロック、長文は説明セクションの参照データから表示する。説明セクションが未設定の場合は標準の商品説明を表示。FAQ・関連商品は未設定時に非表示。
+
+ヘッダー・フッターは別担当者の共通セクションを利用する。今回の商品ページ専用デザインは作成しない。Mikawayaはまだ未導入で、`main-product` のアプリブロックとして後から配置・実動作確認する。商品テンプレートの恒久割当と本番テーマ公開は未実施。
+
+移行元・実行計画・結果・読み戻しは `docs/verification/gensen/*20261027.json` に保存。`tools/migrate-gensen-product-data.cjs` は実行済みの移行処理であり、レシートが存在する状態での再実行を禁止する。日々の更新には使わず管理画面から編集する。ストアデータはGitを戻しても復旧しない。
+
+参考：[動的データソース](https://shopify.dev/docs/storefronts/themes/architecture/settings/dynamic-sources)、[ストア所有メタオブジェクトの定義](https://shopify.dev/docs/apps/build/metaobjects/manage-metaobject-definitions)。
+
+以下は履歴。現行の状態はこの節を優先する。
+
 ## 最新状況（2026-10-22追記）
 
 商品 `gensensui-water` はユーザーにより登録済み。こちらからの商品作成・データ更新は行っていない。旧提案ハンドル `gensen-core-water-24` で別商品を作らず、登録済み商品を再利用する。

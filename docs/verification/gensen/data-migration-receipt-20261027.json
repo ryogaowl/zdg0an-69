@@ -1,0 +1,226 @@
+{
+  "store": "zdg0an-69.myshopify.com",
+  "productId": "gid://shopify/Product/15907648274592",
+  "results": [
+    {
+      "label": "definition:ichido_product_story",
+      "result": {
+        "metaobjectDefinitionCreate": {
+          "metaobjectDefinition": {
+            "id": "gid://shopify/MetaobjectDefinition/53385298080",
+            "type": "ichido_product_story"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "definition:ichido_product_faq",
+      "result": {
+        "metaobjectDefinitionCreate": {
+          "metaobjectDefinition": {
+            "id": "gid://shopify/MetaobjectDefinition/53385330848",
+            "type": "ichido_product_faq"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "field:custom.product_subtitle",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699750613152",
+            "namespace": "custom",
+            "key": "product_subtitle"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "field:custom.product_badges",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699750645920",
+            "namespace": "custom",
+            "key": "product_badges"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "field:custom.product_stories",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699750678688",
+            "namespace": "custom",
+            "key": "product_stories"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "field:custom.product_faqs",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699750711456",
+            "namespace": "custom",
+            "key": "product_faqs"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "field:custom.related_products",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699750744224",
+            "namespace": "custom",
+            "key": "related_products"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "field:seo.hidden",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699750776992",
+            "namespace": "seo",
+            "key": "hidden"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "files",
+      "result": {
+        "fileCreate": {
+          "files": [
+            {
+              "id": "gid://shopify/MediaImage/70782729879712",
+              "fileStatus": "UPLOADED"
+            },
+            {
+              "id": "gid://shopify/MediaImage/70782729912480",
+              "fileStatus": "UPLOADED"
+            },
+            {
+              "id": "gid://shopify/MediaImage/70782729945248",
+              "fileStatus": "UPLOADED"
+            },
+            {
+              "id": "gid://shopify/MediaImage/70782729978016",
+              "fileStatus": "UPLOADED"
+            },
+            {
+              "id": "gid://shopify/MediaImage/70782730010784",
+              "fileStatus": "UPLOADED"
+            }
+          ],
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:lake",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792191648",
+            "handle": "gensensui-water-lake"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:source",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792257184",
+            "handle": "gensensui-water-source"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:facility",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792289952",
+            "handle": "gensensui-water-facility"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:mineral",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792322720",
+            "handle": "gensensui-water-mineral"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:waterfall",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792355488",
+            "handle": "gensensui-water-waterfall"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "product-values",
+      "result": {
+        "metafieldsSet": {
+          "metafields": [
+            {
+              "namespace": "custom",
+              "key": "product_subtitle",
+              "type": "single_line_text_field",
+              "value": "Core Water 1ケース（24本）"
+            },
+            {
+              "namespace": "custom",
+              "key": "product_stories",
+              "type": "list.metaobject_reference",
+              "value": "[\"gid://shopify/Metaobject/675792191648\",\"gid://shopify/Metaobject/675792257184\",\"gid://shopify/Metaobject/675792289952\",\"gid://shopify/Metaobject/675792322720\",\"gid://shopify/Metaobject/675792355488\"]"
+            },
+            {
+              "namespace": "seo",
+              "key": "hidden",
+              "type": "number_integer",
+              "value": "1"
+            }
+          ],
+          "userErrors": []
+        }
+      }
+    }
+  ]
+}

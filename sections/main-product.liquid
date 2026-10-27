@@ -1,10 +1,14 @@
+{% liquid
+  assign gensen_design = section.settings.gensen_design
+%}
 <product-info
   id="MainProduct-{{ section.id }}"
-  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if gensen_design %} gensen gensen-main-product{% endif %}"
   data-section="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-update-url="true"
   data-url="{{ product.url }}"
+  {% if gensen_design and template.suffix == 'gensen' %}data-template-view="gensen"{% endif %}
   {% if section.settings.image_zoom == 'hover' %}
     data-zoom-on-hover
   {% endif %}
@@ -15,6 +19,11 @@
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+  {% if gensen_design %}
+    {{ 'gensen-main-product.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'gensen-interactions.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -97,6 +106,17 @@
                   >
                     {{- block.settings.text -}}
                   </p>
+                {%- when 'product_details' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {% if product.metafields.custom.product_subtitle.value != blank %}
+                      <p class="gensen-subtitle">{{ product.metafields.custom.product_subtitle.value | escape }}</p>
+                    {% endif %}
+                    {% if product.metafields.custom.product_badges.value != blank %}
+                      <ul class="gensen-badges" role="list">
+                        {% for badge in product.metafields.custom.product_badges.value %}<li>{{ badge | escape }}</li>{% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
                 {%- when 'title' -%}
                   <div class="product__title" {{ block.shopify_attributes }}>
                     <h1>{{ product.title | escape }}</h1>
@@ -193,7 +213,7 @@
                     {%- endif -%}
                   </p>
                 {%- when 'description' -%}
-                  {%- if product.description != blank -%}
+                  {%- if product.description != blank and gensen_design == false -%}
                     <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                       {{ product.description }}
                     </div>
@@ -696,6 +716,7 @@
             </a>
           </section>
         </div>
+        {% if gensen_design %}{% render 'gensen-product-content', product: product, section: section %}{% endif %}
       </div>
 
       {% render 'product-media-modal', variant_images: variant_images %}
@@ -2144,9 +2165,26 @@
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
         }
       ]
+    },
+    {
+      "type": "product_details",
+      "name": "商品の補足・特徴",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "商品のメタフィールド「商品補足」「特徴ラベル」を表示します。未登録の場合は表示しません。"
+        }
+      ]
     }
   ],
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "gensen_design",
+      "label": "GENSENのデザインを使用",
+      "default": false
+    },
     {
       "type": "checkbox",
       "id": "enable_sticky_info",

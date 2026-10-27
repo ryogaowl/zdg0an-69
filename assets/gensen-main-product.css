@@ -1,0 +1,76 @@
+.gensen-main-product {
+  --color-foreground: 255, 255, 255;
+  --color-background: 34, 34, 34;
+  --color-button: 255, 105, 0;
+  --color-button-text: 0, 0, 0;
+  --color-secondary-button-text: 255, 105, 0;
+  --color-link: 255, 105, 0;
+  --buttons-radius: 40px;
+  padding: 0;
+}
+.gensen-main-product > product-component > .page-width { max-width: 1200px; padding: 80px 40px 100px; }
+.gensen-main-product .product { display: grid; grid-template-columns: minmax(0, 640fr) minmax(0, 400fr); gap: 100px 80px; }
+.gensen-main-product .product > .grid__item { width: 100%; max-width: none; min-width: 0; }
+.gensen-main-product .product__media-wrapper { grid-column: 1; grid-row: 1; }
+.gensen-main-product .product__info-wrapper { grid-column: 2; grid-row: 1 / span 2; padding: 0; }
+.gensen-main-product .product__info-container { max-width: none; }
+.gensen-main-product .product__info-container.product__column-sticky { top: 30px; }
+.gensen-main-product media-gallery.product__column-sticky { position: static; }
+.gensen-main-product .product__title { margin: 0 0 10px; }
+.gensen-main-product .product__title h1 { font: 600 clamp(30px, 3vw, 44px)/1.35 'Montserrat', 'Noto Sans JP', sans-serif; overflow-wrap: anywhere; }
+.gensen-main-product .product__info-container > div { margin-block: 24px; }
+.gensen-main-product .product__info-container > .product__title { margin-top: 0; }
+.gensen-main-product .price { color: #fff; }
+.gensen-main-product .price--large { font-size: 28px; }
+.gensen-main-product .gensen-badges { display: flex; flex-wrap: wrap; margin-top: 20px !important; }
+.gensen-main-product .gensen-badges li { padding: 5px 14px; font-size: 12px; white-space: normal; }
+.gensen-main-product .product-form { margin: 24px 0 0; }
+.gensen-main-product .product-form__submit { border-radius: 40px; min-height: 60px; font-size: 16px; }
+.gensen-main-product .product-form__submit::after, .gensen-main-product .product-form__submit::before { border-radius: 40px; }
+.gensen-main-product .product-form__submit { transition: background-color .22s ease, color .22s ease, border-color .22s ease; }
+.gensen-main-product .product-form__submit::after { box-shadow: 0 0 0 1px #ff6900; }
+.gensen-main-product .product-form__submit:not(:disabled):hover,
+.gensen-main-product .product-form__submit:not(:disabled):focus-visible { background: #222; color: #ff6900; }
+.gensen-main-product .product-form__submit:not(:disabled):hover::after { box-shadow: 0 0 0 1px #ff6900; }
+.gensen-main-product .product-form__submit:disabled { cursor: not-allowed; }
+.gensen-main-product .thumbnail { transition: border-color .22s ease, opacity .22s ease; }
+.gensen-main-product .thumbnail:hover { opacity: .75; }
+.gensen-main-product .gensen-faq__items { display: block; }
+.gensen-main-product .gensen-faq__item summary { transition: color .22s ease, background-color .22s ease; }
+.gensen-main-product .gensen-faq__item summary:hover,
+.gensen-main-product .gensen-faq__item summary:focus-visible { color: #ff6900; }
+.gensen-main-product .gensen-faq__item summary > span::after { transition: transform .26s ease; }
+.gensen-main-product .gensen-related__card { transition: background-color .22s ease, color .22s ease; }
+.gensen-main-product .gensen-related__card:hover { background: #222; }
+.gensen-main-product .product__media-list { margin: 0; }
+.gensen-main-product .product__media-item { background: #000; }
+.gensen-main-product .thumbnail-list { margin-top: 24px; padding: 0; }
+.gensen-main-product .thumbnail { background: #000; }
+.gensen-main-product .thumbnail[aria-current='true'] { border: 2px solid #ff6900; box-shadow: none; }
+.gensen-main-product .gensen-content { grid-column: 1; grid-row: 2; margin: 0; min-width: 0; }
+.gensen-main-product .gensen-story__body p + p, .gensen-main-product .gensen-product-description p + p { margin-top: 1em; }
+.gensen-main-product .gensen-product-description { line-height: 1.8; overflow-wrap: anywhere; }
+.gensen-main-product .gensen-related__image img { object-fit: contain; }
+.gensen-main-product .gensen-footer { margin: 0; }
+.gensen-main-product .product__tax { margin-top: 8px; }
+@media (min-width: 990px) and (max-width: 1250px) {
+  .gensen-main-product .product { grid-template-columns: minmax(0, 1fr) 350px; column-gap: 40px; }
+}
+@media (max-width: 989px) {
+  .gensen-main-product > product-component > .page-width { max-width: 690px; padding: 20px 25px 60px; }
+  .gensen-main-product .product { display: flex; flex-direction: column; gap: 0; }
+  .gensen-main-product .product__media-wrapper { order: 0; }
+  .gensen-main-product .product__info-wrapper { order: 1; margin-top: 40px; }
+  .gensen-main-product .gensen-content { order: 2; margin-top: 80px; }
+  .gensen-main-product .product__info-container.product__column-sticky { position: static; }
+  .gensen-main-product .product__title h1 { font-size: 30px; }
+  .gensen-main-product .product__info-container > div { margin-block: 20px; }
+  .gensen-main-product .product__media-list { width: 100%; margin: 0; scroll-padding-left: 0; }
+  .gensen-main-product .product__media-item { width: 100%; margin-left: 0; padding: 0; }
+  .gensen-main-product .product__media-list::after { display: none; }
+  .gensen-main-product .slider-mobile-gutter, .gensen-main-product .thumbnail-slider { margin: 0; }
+  .gensen-main-product .gensen-story__image { height: 250px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gensen-main-product *, .gensen-main-product *::before, .gensen-main-product *::after { transition: none !important; }
+}

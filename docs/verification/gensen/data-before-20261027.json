@@ -1,0 +1,177 @@
+{
+  "themes": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/198973194400",
+        "name": "Rise",
+        "role": "UNPUBLISHED"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/199017463968",
+        "name": "ichido.co/main",
+        "role": "MAIN"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/200262779040",
+        "name": "ichido.co/main_開発用テーマ",
+        "role": "UNPUBLISHED"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/200718221472",
+        "name": "zdg0an-69/online-store",
+        "role": "UNPUBLISHED"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/200903229600",
+        "name": "Development (b2ff60-DESKTOP-9QA99O4)",
+        "role": "DEVELOPMENT"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/200903622816",
+        "name": "shopify_ichido/main",
+        "role": "UNPUBLISHED"
+      }
+    ]
+  },
+  "metaobjectDefinitions": {
+    "nodes": [
+      {
+        "id": "gid://shopify/MetaobjectDefinition/41257009312",
+        "type": "shopify--knowledge-base-fact",
+        "name": "Knowledge Base Facts",
+        "fieldDefinitions": [
+          {
+            "key": "external_id",
+            "type": {
+              "name": "id"
+            }
+          },
+          {
+            "key": "published",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "key": "category",
+            "type": {
+              "name": "single_line_text_field"
+            }
+          },
+          {
+            "key": "source",
+            "type": {
+              "name": "single_line_text_field"
+            }
+          },
+          {
+            "key": "title",
+            "type": {
+              "name": "single_line_text_field"
+            }
+          },
+          {
+            "key": "value_string",
+            "type": {
+              "name": "multi_line_text_field"
+            }
+          },
+          {
+            "key": "value_string_list",
+            "type": {
+              "name": "list.single_line_text_field"
+            }
+          },
+          {
+            "key": "value_boolean",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "key": "value_number",
+            "type": {
+              "name": "number_decimal"
+            }
+          },
+          {
+            "key": "value_reference",
+            "type": {
+              "name": "single_line_text_field"
+            }
+          },
+          {
+            "key": "references",
+            "type": {
+              "name": "list.single_line_text_field"
+            }
+          },
+          {
+            "key": "suggested_value_string",
+            "type": {
+              "name": "multi_line_text_field"
+            }
+          },
+          {
+            "key": "suggested_value_string_list",
+            "type": {
+              "name": "list.single_line_text_field"
+            }
+          },
+          {
+            "key": "suggested_value_boolean",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "key": "suggested_value_number",
+            "type": {
+              "name": "number_decimal"
+            }
+          },
+          {
+            "key": "suggested_value_reference",
+            "type": {
+              "name": "single_line_text_field"
+            }
+          },
+          {
+            "key": "suggested_references",
+            "type": {
+              "name": "list.single_line_text_field"
+            }
+          },
+          {
+            "key": "suggestion_state",
+            "type": {
+              "name": "single_line_text_field"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "product": {
+    "id": "gid://shopify/Product/15907648274592",
+    "title": "GENSEN／源泉水×24本セット",
+    "handle": "gensensui-water",
+    "descriptionHtml": "<p class=\"p1\"><b>地球の奥深くから、源泉水を。</b><b></b></p>\n<p class=\"p1\">仕事や創作に集中するほど、自分のカラダのことは後回しになりがちです。</p>\n<p class=\"p1\">私たちのカラダの<span class=\"s1\">約</span><span class=\"s2\">60</span><span class=\"s1\">％</span><span class=\"s3\"> </span><span class=\"s4\">約半分以上</span>を占める水だからこそ、毎日口にするものには、こだわりたい。</p>\n<p class=\"p1\"><span class=\"s5\">GENSEN</span>は、<span class=\"s5\">1000</span>年以上の歴史を持つ宮城県・鳴子温泉郷の地下約<span class=\"s5\">1,000m</span>から湧き出す天然の源泉水。</p>\n<p class=\"p1\">天然由来の成分を含みながら、硬度<span class=\"s5\">10mg/L</span>の超軟水で、やわらかくすっきりとした飲み心地です。<br><br></p>\n<p class=\"gmail-p1\"><span class=\"gmail-s1\"><b>POINT 01</b></span><b>｜違いは、水源の深さ。</b><b></b></p>\n<p class=\"gmail-p1\">一般的なミネラルウォーターの多くが地下数十～数百メートルから採水されるのに対し、<span class=\"gmail-s1\">GENSEN</span>の水源は地下約<span class=\"gmail-s1\">1,000m</span>。</p>\n<p class=\"gmail-p1\">そのため、地表からの酸化や汚染の影響を受けにくい環境にあり、水質検査でも「そのまま飲める源泉」と評価されたほどピュアな水。現在は地下約<span class=\"gmail-s1\">600m</span>と約<span class=\"gmail-s1\">1,000m</span>の<span class=\"gmail-s1\">2</span>つの水源から採水しています。</p>\n<p class=\"gmail-p2\"><br></p>\n<p class=\"gmail-p1\"><span class=\"gmail-s1\"><b>POINT 02</b></span><b>｜地下深くで守られた「マイナス電荷」。</b><b></b><b></b></p>\n<p class=\"gmail-p1\">地下深くで守られてきた<span class=\"gmail-s1\">GENSEN</span>には、「マイナス電荷」という特徴があります。</p>\n<p class=\"gmail-p1\">マイナス電荷とは、水が電子を保った状態のこと。水は空気や光、時間の影響によって少しずつ電子を失い、性質が変化していきます。<span class=\"gmail-s1\">GENSEN</span>は、外気や光に触れにくい地下深くの環境によって、自然界の電子を保った状態にあります。近年、この水に含まれる電子と、人の細胞内でエネルギーを作る働きに関わる電子との類似性について研究が行われています。</p>\n<p class=\"gmail-p1\"><span class=\"gmail-s1\">GENSEN</span>では、水が本来持つ状態をできるだけ損なわないよう、化学的な添加や過度な処理を行わず、必要最小限の処理でボトリングしています。<br><br></p>\n<p class=\"gmail-p1\"><span class=\"gmail-s1\"><b>POINT 03</b></span><b>｜天然由来の成分を含む水。</b><b></b><b></b></p>\n<p class=\"gmail-p2\"><span>地下深くをめぐる過程で、さまざまな天然由来の成分を含んだ水に。</span></p>\n<p class=\"gmail-p4\"><span class=\"gmail-s3\">■</span><span class=\"gmail-s4\">炭酸水素イオン</span> 67mg/L</p>\n<p class=\"gmail-p1\">炭酸水素イオンは血液の<span class=\"gmail-s1\">pH</span>バランスを保ち、</p>\n<p class=\"gmail-p1\">身体のコンディションに関わる活性酸素を抑制することの期待ができます。</p>\n<p class=\"gmail-p4\"><span class=\"gmail-s3\">■</span><span class=\"gmail-s4\">メタケイ酸</span> 47mg/L<span class=\"gmail-s4\">　シリカ換算：</span> 36mg/L</p>\n<p class=\"gmail-p1\">シリカを含む、温泉水由来の天然ミネラル成分。美容やウェルネス分野でも注目されている成分のひとつです。</p>\n<p class=\"gmail-p1\"><span class=\"gmail-s3\">■</span>ナノシリカ粒径<span class=\"gmail-s1\">1</span>～<span class=\"gmail-s1\">5nm</span></p>\n<p class=\"gmail-p1\">ナノスケールの微細なシリカが、水中に分散している状態。やわらかな口当たりと軽い飲み心地が特徴です。</p>\n<p class=\"gmail-p4\"><span class=\"gmail-s3\">■</span><span class=\"gmail-s4\">溶存酸素</span>8.88mg/L</p>\n<p class=\"gmail-p1\">溶存酸素量とは、水の中に溶けている酸素の量を示す数値。</p>\n<p class=\"gmail-p1\"><span class=\"gmail-s2\">※</span>製造時溶存酸素量。時間の経過や保管環境により変化する可能性があり、同数値を保証するものではありません。</p>\n<p class=\"gmail-p1\"><span class=\"gmail-s3\">■</span>硫酸イオン（サルフェート）<span class=\"gmail-s1\">39mg/L</span></p>\n<p class=\"gmail-p1\">火山性温泉に多く含まれる天然ミネラル。温泉の泉質や個性を特徴づける代表的な成分です。</p>\n<p class=\"gmail-p4\"><span class=\"gmail-s3\">■</span><span class=\"gmail-s4\">ゼータ電位</span>-24.0 mV</p>\n<p class=\"gmail-p1\">水中の微細な粒子の分散性を示す指標。マイナス側に大きいほど、安定した状態を保ちやすいとされています。<br><br></p>\n<p class=\"gmail-p1\"><span class=\"gmail-s1\"><b>POINT 04</b></span><b>｜それでいて、硬度</b><span class=\"gmail-s1\"><b>10</b></span><b>の超軟水。</b><b></b></p>\n<p class=\"gmail-p1\">さまざまな天然由来の成分を含みながら、硬度はわずか<span class=\"gmail-s1\">10mg/L</span>の超軟水。まろやかで飲みやすく、高齢者の方や乳幼児でも安心して飲むことができます。</p>\n<p class=\"gmail-p1\">さらに人の体液と近い弱アルカリ性。体との相性がよいため吸収率が高いと言われています。</p>\n<p class=\"gmail-p5\"><span>デスクワークや会議、移動の合間など、日常の中で少しずつ水分を補う習慣を。</span></p>\n<p class=\"gmail-p1\"> </p>",
+    "status": "UNLISTED",
+    "templateSuffix": "",
+    "updatedAt": "2026-10-22T19:28:22Z",
+    "variants": {
+      "nodes": [
+        {
+          "id": "gid://shopify/ProductVariant/67659053138080",
+          "price": "5000",
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY"
+        }
+      ]
+    },
+    "metafields": {
+      "nodes": []
+    }
+  }
+}

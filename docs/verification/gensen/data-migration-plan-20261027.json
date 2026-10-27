@@ -1,0 +1,212 @@
+{
+  "store": "zdg0an-69.myshopify.com",
+  "productId": "gid://shopify/Product/15907648274592",
+  "sourceUpdatedAt": "2026-10-22T19:28:22Z",
+  "definitions": [
+    {
+      "type": "ichido_product_story",
+      "name": "商品説明セクション",
+      "displayNameKey": "heading",
+      "access": {
+        "storefront": "PUBLIC_READ"
+      },
+      "fieldDefinitions": [
+        {
+          "key": "heading",
+          "name": "見出し",
+          "type": "single_line_text_field",
+          "required": true
+        },
+        {
+          "key": "body",
+          "name": "本文",
+          "type": "rich_text_field",
+          "required": true
+        },
+        {
+          "key": "image",
+          "name": "画像",
+          "type": "file_reference",
+          "validations": [
+            {
+              "name": "file_type_options",
+              "value": "[\"Image\"]"
+            }
+          ]
+        },
+        {
+          "key": "point",
+          "name": "ポイント番号（導入は空欄）",
+          "type": "single_line_text_field"
+        }
+      ]
+    },
+    {
+      "type": "ichido_product_faq",
+      "name": "商品FAQ",
+      "displayNameKey": "question",
+      "access": {
+        "storefront": "PUBLIC_READ"
+      },
+      "fieldDefinitions": [
+        {
+          "key": "question",
+          "name": "質問",
+          "type": "single_line_text_field",
+          "required": true
+        },
+        {
+          "key": "answer",
+          "name": "回答",
+          "type": "rich_text_field",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "namespace": "custom",
+      "key": "product_subtitle",
+      "name": "商品補足",
+      "type": "single_line_text_field"
+    },
+    {
+      "namespace": "custom",
+      "key": "product_badges",
+      "name": "特徴ラベル",
+      "type": "list.single_line_text_field"
+    },
+    {
+      "namespace": "custom",
+      "key": "product_stories",
+      "name": "説明セクション",
+      "type": "list.metaobject_reference",
+      "reference": "ichido_product_story"
+    },
+    {
+      "namespace": "custom",
+      "key": "product_faqs",
+      "name": "FAQ",
+      "type": "list.metaobject_reference",
+      "reference": "ichido_product_faq"
+    },
+    {
+      "namespace": "custom",
+      "key": "related_products",
+      "name": "関連商品",
+      "type": "list.product_reference"
+    },
+    {
+      "namespace": "seo",
+      "key": "hidden",
+      "name": "検索エンジンから非表示",
+      "type": "number_integer",
+      "validations": [
+        {
+          "name": "min",
+          "value": "0"
+        },
+        {
+          "name": "max",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "heading": "地球の奥深くから、源泉水を。",
+      "point": "",
+      "paragraphs": [
+        "仕事や創作に集中するほど、自分のカラダのことは後回しになりがちです。",
+        "私たちのカラダの約60％ 約半分以上を占める水だからこそ、毎日口にするものには、こだわりたい。",
+        "GENSENは、1000年以上の歴史を持つ宮城県・鳴子温泉郷の地下約1,000mから湧き出す天然の源泉水。",
+        "天然由来の成分を含みながら、硬度10mg/Lの超軟水で、やわらかくすっきりとした飲み心地です。"
+      ],
+      "asset": [
+        "lake",
+        "鳴子温泉郷の潟沼",
+        "https://ichido.co/cdn/shop/t/5/assets/gensen-lake.jpg?v=34827281091035440211792603916"
+      ]
+    },
+    {
+      "heading": "違いは、水源の深さ。",
+      "point": "1",
+      "paragraphs": [
+        "一般的なミネラルウォーターの多くが地下数十～数百メートルから採水されるのに対し、GENSENの水源は地下約1,000m。",
+        "そのため、地表からの酸化や汚染の影響を受けにくい環境にあり、水質検査でも「そのまま飲める源泉」と評価されたほどピュアな水。現在は地下約600mと約1,000mの2つの水源から採水しています。"
+      ],
+      "asset": [
+        "source",
+        "地中から湧き出す源泉",
+        "https://ichido.co/cdn/shop/t/5/assets/gensen-source.jpg?v=5699575806027827831792603922"
+      ]
+    },
+    {
+      "heading": "地下深くで守られた「マイナス電荷」。",
+      "point": "2",
+      "paragraphs": [
+        "地下深くで守られてきたGENSENには、「マイナス電荷」という特徴があります。",
+        "マイナス電荷とは、水が電子を保った状態のこと。水は空気や光、時間の影響によって少しずつ電子を失い、性質が変化していきます。GENSENは、外気や光に触れにくい地下深くの環境によって、自然界の電子を保った状態にあります。近年、この水に含まれる電子と、人の細胞内でエネルギーを作る働きに関わる電子との類似性について研究が行われています。",
+        "GENSENでは、水が本来持つ状態をできるだけ損なわないよう、化学的な添加や過度な処理を行わず、必要最小限の処理でボトリングしています。"
+      ],
+      "asset": [
+        "facility",
+        "源泉水の採水施設",
+        "https://ichido.co/cdn/shop/t/5/assets/gensen-facility.jpg?v=37395244863165191251792603914"
+      ]
+    },
+    {
+      "heading": "天然由来の成分を含む水。",
+      "point": "3",
+      "paragraphs": [
+        "地下深くをめぐる過程で、さまざまな天然由来の成分を含んだ水に。",
+        "■炭酸水素イオン 67mg/L",
+        "炭酸水素イオンは血液のpHバランスを保ち、",
+        "身体のコンディションに関わる活性酸素を抑制することの期待ができます。",
+        "■メタケイ酸 47mg/L　シリカ換算： 36mg/L",
+        "シリカを含む、温泉水由来の天然ミネラル成分。美容やウェルネス分野でも注目されている成分のひとつです。",
+        "■ナノシリカ粒径1～5nm",
+        "ナノスケールの微細なシリカが、水中に分散している状態。やわらかな口当たりと軽い飲み心地が特徴です。",
+        "■溶存酸素8.88mg/L",
+        "溶存酸素量とは、水の中に溶けている酸素の量を示す数値。",
+        "※製造時溶存酸素量。時間の経過や保管環境により変化する可能性があり、同数値を保証するものではありません。",
+        "■硫酸イオン（サルフェート）39mg/L",
+        "火山性温泉に多く含まれる天然ミネラル。温泉の泉質や個性を特徴づける代表的な成分です。",
+        "■ゼータ電位-24.0 mV",
+        "水中の微細な粒子の分散性を示す指標。マイナス側に大きいほど、安定した状態を保ちやすいとされています。"
+      ],
+      "asset": [
+        "mineral",
+        "天然由来のミネラル",
+        "https://ichido.co/cdn/shop/t/5/assets/gensen-mineral.jpg?v=110351296993050874371792603918"
+      ]
+    },
+    {
+      "heading": "それでいて、硬度10の超軟水。",
+      "point": "4",
+      "paragraphs": [
+        "さまざまな天然由来の成分を含みながら、硬度はわずか10mg/Lの超軟水。まろやかで飲みやすく、高齢者の方や乳幼児でも安心して飲むことができます。",
+        "さらに人の体液と近い弱アルカリ性。体との相性がよいため吸収率が高いと言われています。",
+        "デスクワークや会議、移動の合間など、日常の中で少しずつ水分を補う習慣を。"
+      ],
+      "asset": [
+        "waterfall",
+        "森の中を流れる滝",
+        "https://ichido.co/cdn/shop/t/5/assets/gensen-waterfall.jpg?v=103110624551114285371792603924"
+      ]
+    }
+  ],
+  "subtitle": "Core Water 1ケース（24本）",
+  "seoHidden": 1,
+  "unchanged": [
+    "title",
+    "descriptionHtml",
+    "price",
+    "inventory",
+    "status",
+    "templateSuffix",
+    "selling plans"
+  ]
+}

@@ -341,9 +341,7 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% unless is_gensen_product %}
-      {% sections 'header-group' %}
-    {% endunless %}
+    {% sections 'header-group' %}
 
     <main
       id="MainContent"
@@ -355,9 +353,7 @@
       {{ content_for_layout }}
     </main>
 
-    {% unless is_gensen_product %}
-      {% sections 'footer-group' %}
-    {% endunless %}
+    {% sections 'footer-group' %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

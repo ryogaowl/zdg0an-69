@@ -156,6 +156,7 @@ if (!customElements.get('product-info')) {
 
       buildRequestUrlWithParams(url, optionValues, shouldFetchFullPage = false) {
         const params = [];
+        if (this.dataset.templateView) params.push(`view=${encodeURIComponent(this.dataset.templateView)}`);
 
         !shouldFetchFullPage && params.push(`section_id=${this.sectionId}`);
 
@@ -243,7 +244,10 @@ if (!customElements.get('product-info')) {
         );
 
         if (this.dataset.updateUrl === 'false') return;
-        window.history.replaceState({}, '', `${url}${variantId ? `?variant=${variantId}` : ''}`);
+        const params = new URLSearchParams();
+        if (variantId) params.set('variant', variantId);
+        if (this.dataset.templateView) params.set('view', this.dataset.templateView);
+        window.history.replaceState({}, '', `${url}${params.size ? `?${params}` : ''}`);
       }
 
       setUnavailable() {
