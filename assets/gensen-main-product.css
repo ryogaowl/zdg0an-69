@@ -15,7 +15,7 @@ body.gensen-product-page #MainContent { background: #222222; }
 .gensen-main-product .product { display: grid; grid-template-columns: minmax(0, 640fr) minmax(0, 400fr); gap: 100px 80px; }
 .gensen-main-product .product > .grid__item { width: 100%; max-width: none; min-width: 0; }
 .gensen-main-product .product__media-wrapper { grid-column: 1; grid-row: 1; }
-.gensen-main-product .product__info-wrapper { grid-column: 2; grid-row: 1 / span 2; padding: 0; }
+.gensen-main-product .product .product__info-wrapper { grid-column: 2; grid-row: 1 / span 2; padding: 0; }
 .gensen-main-product .product__info-container { max-width: none; }
 .gensen-main-product .product__info-container.product__column-sticky { top: 30px; }
 .gensen-main-product media-gallery.product__column-sticky { position: static; }
@@ -30,7 +30,7 @@ body.gensen-product-page #MainContent { background: #222222; }
 .gensen-main-product .gensen-badges { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 40px !important; }
 .gensen-main-product .gensen-badges li { padding: 4px; font-size: 10px; white-space: normal; overflow-wrap: anywhere; }
 .gensen-main-product .product-form { margin: 24px 0 0; }
-.gensen-main-product .product-form__submit { border-radius: 40px; min-height: 60px; font-size: 16px; }
+.gensen-main-product .product-form__submit { width: 260px; max-width: 100%; border-radius: 40px; min-height: 60px; font-size: 16px; }
 .gensen-main-product .product-form__submit::after, .gensen-main-product .product-form__submit::before { border-radius: 40px; }
 .gensen-main-product .product-form__submit { transition: background-color .22s ease, color .22s ease, border-color .22s ease; }
 .gensen-main-product .product-form__submit::after { box-shadow: 0 0 0 1px #ff6900; }
@@ -87,6 +87,7 @@ body.gensen-product-page #MainContent { background: #222222; }
   .gensen-main-product .product { display: flex; flex-direction: column; gap: 0; }
   .gensen-main-product .product__media-wrapper { order: 0; }
   .gensen-main-product .product__info-wrapper { order: 1; margin-top: 40px; }
+  .gensen-main-product .product-form__submit { display: flex; width: 225px; margin-inline: auto; }
   .gensen-main-product .gensen-content { order: 2; margin-top: 80px; }
   .gensen-main-product .product__info-container.product__column-sticky { position: static; }
   .gensen-main-product .product__title h1 { font-size: 30px; }
