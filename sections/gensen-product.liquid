@@ -7,6 +7,7 @@
   assign faq_id = 'gensen-faq-' | append: section.id
   assign first_media = current_variant.featured_media | default: product.featured_media
   assign faq_blocks = section.blocks | where: 'type', 'faq'
+  assign footer_links = section.blocks | where: 'type', 'footer_link'
   assign related = section.settings.related_product
   assign purchase_available = false
   if section.settings.allow_purchase and current_variant.available and product.requires_selling_plan == false and current_variant.requires_selling_plan == false
@@ -191,8 +192,8 @@
     </div>
     <div class="gensen-footer__bottom">
       <nav class="gensen-footer__policies" aria-label="{{ 'gensen.policies' | t }}">
-        {% if section.settings.footer_menu != blank %}
-          {% for link in section.settings.footer_menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}
+        {% if footer_links.size > 0 %}
+          {% for block in footer_links %}{% if block.settings.url != blank %}<a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.title | escape }}</a>{% endif %}{% endfor %}
         {% else %}
           {% for policy in shop.policies %}{% if policy != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}
         {% endif %}
@@ -315,11 +316,6 @@
       "label": "メールマガジン登録リンク"
     },
     {
-      "type": "link_list",
-      "id": "footer_menu",
-      "label": "フッターメニュー"
-    },
-    {
       "type": "header",
       "content": "他の商品"
     },
@@ -356,6 +352,23 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "footer_link",
+      "name": "フッターリンク",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "表示名",
+          "default": "リンク"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "リンク先"
+        }
+      ]
     },
     {
       "type": "story",

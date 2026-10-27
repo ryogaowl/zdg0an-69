@@ -2,6 +2,37 @@
 
 確認日: 2026-10-22（JST）
 
+## スキーマエラー修正後の最新状態
+
+下記の初回記録より、この節の状態を優先する。
+
+- 商品 `gensensui-water` はユーザーにより登録済み。[確認済みの商品プレビュー](https://ichido.co/products/gensensui-water?preview_theme_id=200718221472&view=gensen)で新デザインが表示される。`view=gensen` で専用テンプレートを指定しており、通常URLへの恒久割当は未実施。
+- 原因は同一セクション内の2つの `link_list` 設定。Shopifyがセクション登録を拒否し、続いてテンプレート登録も失敗していた。同期遅延だけで説明できる状態ではなかった。
+- ヘッダーメニューを残し、フッターを表示名・URLの `footer_link` ブロックに変更。未追加時は既存のストアポリシーを表示する。
+- CLI再認証後、対象テーマ `200718221472` が `unpublished` であることを確認。修正前に対象2ファイルだけpullしたが、両ファイルは登録失敗で存在せず原本なし。
+- `sections/gensen-product.liquid` と `templates/product.gensen.json` のみ `--nodelete --strict` でアップロードし、終了コード0・サーバーエラーなし。テンプレートの内容変更はなし。
+- Theme Checkは0エラー・15警告。Toolkitは引き続き内部の `FileType` exportエラーで実行不能。静的検証では今回のサーバー制約を検出できなかったため、アップロード結果と実ページ表示を完了条件にする。
+- 実ストアのPC 1440px／SP 375pxで新デザイン、画像、FAQ開閉、メニュー、販売準備中の無効ボタンを確認。横はみ出しなし。初回のSVG2点の読込不良は再読み込み後に解消し、下部まで確認した時点で読込失敗画像0件・コンソールエラー／警告0件。SVG自体は変更していない。
+- 商品画像は登録済みの白キャップの画像1点で、Figmaの仮画像とは異なる。実カート追加・決済、商品データ変更、`seo.hidden` 設定、恒久的なテンプレート割当、本番公開は未実施。Mikawayaは仮表示。
+- 証跡：[実ストアPC](shopify-product-pc.jpg)／[実ストアSP](shopify-product-sp.jpg)。以下の旧PC/SP証跡はローカル模擬表示。
+- 修正後の `git diff --check` は正常。Gitリモート確認コマンドの実行が承認されなかったため、今回の修正は未コミット・未プッシュ。下書きテーマへのCLI反映は完了済みだが、Git側への保存が残っている。
+
+### 今回の変更ファイル
+
+- 実装：`sections/gensen-product.liquid` — 重複link_listを解消しフッターリンクブロックを追加。
+- 資料：`docs/verification/gensen/README.md` — 原因、修正、実ストア検証、共有文面を更新。
+- 資料：`docs/knowledge/gensen-product-registration.md` — 登録済み商品の再利用と残作業を追記。
+- 証跡：`docs/verification/gensen/shopify-product-pc.jpg`、`docs/verification/gensen/shopify-product-sp.jpg` — 実ストア画像を新規保存。
+- 削除ファイルなし。`templates/product.gensen.json` は内容変更せず再アップロード。
+
+### 最新の先方共有用文面
+
+GENSEN商品ページの登録エラーを修正し、下書きテーマへ反映しました。[商品ページのプレビュー](https://ichido.co/products/gensensui-water?preview_theme_id=200718221472&view=gensen)でPC・スマートフォン表示を確認済みです。レイアウト、登録済みの商品画像、FAQ・成分バッジの正式文言をご確認ください。定期購入は仮表示、購入ボタンは販売準備中です。本番公開は行っていません。通常の商品URLへのテンプレート割当と検索非表示設定は未実施です。
+
+---
+
+以下は初回実装時の記録。商品未登録・CLI権限不足・商品表示未検証という記載は当時の状態で、現在は上記を参照。
+
 ## 対象と状態
 
 - 作業ルート: `/Users/roomsadbeats/Documents/GitHub/zdg0an-69`
