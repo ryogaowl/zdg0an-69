@@ -24,7 +24,18 @@
         </div>
         {% if story.body != blank %}<div class="gensen-story__body">{{ story.body | metafield_tag }}</div>{% endif %}
         {% if story.image.value != blank %}
-          <div class="gensen-story__image gensen-story__image--custom">
+          {% liquid
+            assign image_layout = 'custom'
+            assign story_image_url = story.image.value | image_url: width: 1440
+            assign original_images = 'lake,source,facility,mineral,waterfall' | split: ','
+            for original_image in original_images
+              assign original_filename = 'ichido-gensen-story-' | append: original_image | append: '.jpg'
+              if story_image_url contains original_filename
+                assign image_layout = original_image
+              endif
+            endfor
+          %}
+          <div class="gensen-story__image gensen-story__image--{{ image_layout }}">
             {{ story.image.value | image_url: width: 1440 | image_tag: widths: '375, 640, 960, 1440', sizes: '(min-width: 990px) 640px, calc(100vw - 50px)', loading: 'lazy' }}
           </div>
         {% endif %}
@@ -52,6 +63,15 @@
           {% endif %}
         {% endfor %}
       </gensen-faq>
+      {% if section.settings.gensen_faq_link != blank %}
+        <a class="gensen-button gensen-faq-link" href="{{ section.settings.gensen_faq_link }}">
+          {% render 'gensen-button-art' %}
+          <span class="gensen-button__hover-art" aria-hidden="true">{% render 'gensen-button-art', kind: 'fill' %}</span>
+          <span class="gensen-button__label">{{ 'gensen.faq_list' | t }}</span>
+        </a>
+      {% else %}
+        <span class="gensen-button gensen-faq-link" aria-disabled="true">{% render 'gensen-button-art' %}<span class="gensen-button__label">{{ 'gensen.faq_list' | t }}</span></span>
+      {% endif %}
     </section>
   {% endif %}
   {% if related_products != blank %}
