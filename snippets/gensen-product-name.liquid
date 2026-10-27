@@ -1,0 +1,13 @@
+{% doc %}
+  Display name shared by the product heading and related product cards.
+  @param {product} product - Product to name.
+  @param {string} [separator] - Optional text before the product label.
+{% enddoc %}
+{% if product.metafields.custom.product_display_name.value != blank %}
+  <span class="gensen-product-name">{{ product.metafields.custom.product_display_name.value | escape }}</span>
+  {% if product.metafields.custom.product_label.value != blank %}
+    <small class="gensen-product-label">{{ separator }}{{ product.metafields.custom.product_label.value | escape }}</small>
+  {% endif %}
+{% else %}
+  {{ product.title | escape }}
+{% endif %}

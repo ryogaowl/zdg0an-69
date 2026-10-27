@@ -31,7 +31,12 @@
       </section>
     {% endfor %}
   {% elsif product.description != blank %}
-    <div class="gensen-product-description rte">{{ product.description }}</div>
+    <div class="gensen-product-description rte">
+      {% if product.metafields.custom.product_catchphrase.value != blank %}
+        <h2 class="gensen-catchphrase">{{ product.metafields.custom.product_catchphrase.value | escape }}</h2>
+      {% endif %}
+      {{ product.description }}
+    </div>
   {% endif %}
   {% if faqs != blank %}
     <section class="gensen-faq gensen-panel" id="gensen-faq-{{ section.id }}">
@@ -55,12 +60,19 @@
       <p class="gensen-panel__subtitle">{{ 'gensen.other_label' | t }}</p>
       {% for related in related_products %}
         {% if related.id != product.id and related.url != blank %}
-          <a class="gensen-related__card" href="{{ related.url }}">
+          <a class="gensen-related__card" href="{{ related.url }}{% if template.suffix == 'gensen' %}?view=gensen{% endif %}">
             <div class="gensen-related__text">
-              <h3>{{ related.title | escape }}</h3>
+              <h3>{% render 'gensen-product-name', product: related %}</h3>
+              {% if related.metafields.custom.product_catchphrase.value != blank %}
+                <p class="gensen-related__catch">{{ related.metafields.custom.product_catchphrase.value | escape }}</p>
+              {% endif %}
               <div class="gensen-related__description">
                 <p>{{ related.metafields.custom.product_subtitle.value | escape }}</p>
-                {% render 'price', product: related %}
+                {% if related.metafields.custom.coming_soon.value == true %}
+                  <p>{{ 'gensen.preparing' | t }}</p>
+                {% else %}
+                  {% render 'price', product: related %}
+                {% endif %}
               </div>
             </div>
             {% if related.featured_image != blank %}<div class="gensen-related__image">{{ related.featured_image | image_url: width: 650 | image_tag: loading: 'lazy', alt: related.title }}</div>{% endif %}

@@ -108,18 +108,11 @@
                   </p>
                 {%- when 'product_details' -%}
                   <div {{ block.shopify_attributes }}>
-                    {% if product.metafields.custom.product_subtitle.value != blank %}
-                      <p class="gensen-subtitle">{{ product.metafields.custom.product_subtitle.value | escape }}</p>
-                    {% endif %}
-                    {% if product.metafields.custom.product_badges.value != blank %}
-                      <ul class="gensen-badges" role="list">
-                        {% for badge in product.metafields.custom.product_badges.value %}<li>{{ badge | escape }}</li>{% endfor %}
-                      </ul>
-                    {% endif %}
+                    {% render 'gensen-product-details', product: product %}
                   </div>
                 {%- when 'title' -%}
                   <div class="product__title" {{ block.shopify_attributes }}>
-                    <h1>{{ product.title | escape }}</h1>
+                    <h1>{% if gensen_design %}{% render 'gensen-product-name', product: product, separator: '／' %}{% else %}{{ product.title | escape }}{% endif %}</h1>
                     <a href="{{ product.url }}" class="product__title">
                       <h2 class="h1">
                         {{ product.title | escape }}
@@ -127,6 +120,7 @@
                     </a>
                   </div>
                 {%- when 'price' -%}
+                  {% unless product.metafields.custom.coming_soon.value == true %}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
                       product: product,
@@ -161,7 +155,9 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
+                  {% endunless %}
                 {%- when 'inventory' -%}
+                  {% unless product.metafields.custom.coming_soon.value == true %}
                   <p
                     class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
                     {{ block.shopify_attributes }}
@@ -212,6 +208,7 @@
                       {%- endif -%}
                     {%- endif -%}
                   </p>
+                  {% endunless %}
                 {%- when 'description' -%}
                   {%- if product.description != blank and gensen_design == false -%}
                     <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
@@ -249,6 +246,7 @@
                     </details>
                   </div>
                 {%- when 'quantity_selector' -%}
+                  {% unless product.metafields.custom.coming_soon.value == true %}
                   <div
                     id="Quantity-Form-{{ section.id }}"
                     class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
@@ -475,6 +473,7 @@
                       </volume-pricing>
                     {%- endif -%}
                   </div>
+                  {% endunless %}
                 {%- when 'popup' -%}
                   <modal-opener
                     class="product-popup-modal__opener quick-add-hidden"
@@ -512,6 +511,11 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
+                  {% if product.metafields.custom.coming_soon.value == true %}
+                    <div {{ block.shopify_attributes }}>
+                      <button type="button" class="product-form__submit button button--full-width button--primary" disabled>{{ 'gensen.preparing' | t }}</button>
+                    </div>
+                  {% else %}
                   {%- render 'buy-buttons',
                     block: block,
                     product: product,
@@ -519,6 +523,7 @@
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+                  {% endif %}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">

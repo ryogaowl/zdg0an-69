@@ -1,0 +1,493 @@
+{
+  "gensen": {
+    "id": "gid://shopify/Product/15907648274592",
+    "handle": "gensensui-water",
+    "updatedAt": "2026-10-27T14:16:26Z",
+    "metafields": {
+      "nodes": [
+        {
+          "namespace": "seo",
+          "key": "hidden",
+          "value": "1",
+          "compareDigest": "d63bd9a826af91c1fea371965a64e11ee20f13e46b5f52c59901136605b3a487"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_stories",
+          "value": "[\"gid://shopify/Metaobject/675792191648\",\"gid://shopify/Metaobject/675792257184\",\"gid://shopify/Metaobject/675792289952\",\"gid://shopify/Metaobject/675792322720\",\"gid://shopify/Metaobject/675792355488\"]",
+          "compareDigest": "b7f75f7a7b9ae37d8f27c74d0ecca185b07080c26fbd8d29330209ca8ade776e"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_subtitle",
+          "value": "Core Water 1ケース（24本）",
+          "compareDigest": "20766cfdf638189af16290ae0c8fe99773e475f69469326a8a772baba67502bb"
+        },
+        {
+          "namespace": "custom",
+          "key": "related_products",
+          "value": "[\"gid://shopify/Product/15940586373280\"]",
+          "compareDigest": "3145a30d25b75847256cea0a8d879a0c9259291b42a34141aa4f094328222830"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_faqs",
+          "value": "[\"gid://shopify/Metaobject/675795566752\",\"gid://shopify/Metaobject/675795599520\",\"gid://shopify/Metaobject/675795632288\",\"gid://shopify/Metaobject/675795665056\",\"gid://shopify/Metaobject/675795697824\"]",
+          "compareDigest": "ee82437a32cc9ab66bd9f8f7d7e18e7ea7cd6e84a6530f6b257222747f6e6d07"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_badges",
+          "value": "[\"国産\",\"糖質3.5%\",\"200kcal\",\"タンパク質22g\"]",
+          "compareDigest": "d97bf42a46c965526778433fe9334adeecc3a8e150888d7aa31de968764ee810"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_label",
+          "value": "源泉水",
+          "compareDigest": "91655c7f2b24640e5a2ab380f41d2abb63bc8f3533a965ab36c724b055d97c46"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_display_name",
+          "value": "GENSEN",
+          "compareDigest": "b5f043c33c9bd4f72b0dad4dd0a859b03b1292fea036c70ca1c8ad77add8433d"
+        }
+      ]
+    }
+  },
+  "daichi": {
+    "id": "gid://shopify/Product/15940586373280",
+    "handle": "daichi-protein",
+    "status": "UNLISTED",
+    "descriptionHtml": "<p>Vegetable Protein</p>",
+    "metafields": {
+      "nodes": [
+        {
+          "namespace": "custom",
+          "key": "coming_soon",
+          "value": "true",
+          "compareDigest": "acc8a7699a2bf4cbd05f69678eac4fc236572041c28dfd0ab558e5fcf2ab6540"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_subtitle",
+          "value": "Vegetable Protein 1kg",
+          "compareDigest": "226899c49188346b8cda4117ed816924aedb5a6a52d02829f808f282e95ab84f"
+        },
+        {
+          "namespace": "seo",
+          "key": "hidden",
+          "value": "1",
+          "compareDigest": "d63bd9a826af91c1fea371965a64e11ee20f13e46b5f52c59901136605b3a487"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_catchphrase",
+          "value": "大地の恵みを、一杯に。",
+          "compareDigest": "da29c235bc9d1beb7e48144ec1e03157ff5c50ecabb2dc15c79d105533f2158e"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_label",
+          "value": "プロテイン",
+          "compareDigest": "3f58ca0d8924fd8fcf642b6e896a1c54f8cb85558b07cbac3db8cb3eeeaab97f"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_display_name",
+          "value": "DAICHI",
+          "compareDigest": "b10d72e44c0e18dc4fb81a59d61c90e46f60e5d3e6ccbd343a68d609b60d576a"
+        }
+      ]
+    },
+    "variants": {
+      "nodes": [
+        {
+          "id": "gid://shopify/ProductVariant/67970723872928",
+          "price": "0",
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "tracked": true
+          }
+        }
+      ]
+    },
+    "media": {
+      "nodes": [
+        {
+          "id": "gid://shopify/MediaImage/70782825496736",
+          "status": "READY"
+        }
+      ]
+    }
+  },
+  "metaobjectDefinitions": {
+    "nodes": [
+      {
+        "id": "gid://shopify/MetaobjectDefinition/41257009312",
+        "type": "shopify--knowledge-base-fact",
+        "displayNameKey": "title",
+        "fieldDefinitions": [
+          {
+            "key": "external_id",
+            "name": "External ID"
+          },
+          {
+            "key": "published",
+            "name": "Published"
+          },
+          {
+            "key": "category",
+            "name": "Category"
+          },
+          {
+            "key": "source",
+            "name": "Source"
+          },
+          {
+            "key": "title",
+            "name": "Title"
+          },
+          {
+            "key": "value_string",
+            "name": "Value String"
+          },
+          {
+            "key": "value_string_list",
+            "name": "Value String List"
+          },
+          {
+            "key": "value_boolean",
+            "name": "Value Boolean"
+          },
+          {
+            "key": "value_number",
+            "name": "Value Number"
+          },
+          {
+            "key": "value_reference",
+            "name": "Value Reference"
+          },
+          {
+            "key": "references",
+            "name": "References"
+          },
+          {
+            "key": "suggested_value_string",
+            "name": "Suggested Value String"
+          },
+          {
+            "key": "suggested_value_string_list",
+            "name": "Suggested Value String List"
+          },
+          {
+            "key": "suggested_value_boolean",
+            "name": "Suggested Value Boolean"
+          },
+          {
+            "key": "suggested_value_number",
+            "name": "Suggested Value Number"
+          },
+          {
+            "key": "suggested_value_reference",
+            "name": "Suggested Value Reference"
+          },
+          {
+            "key": "suggested_references",
+            "name": "Suggested References"
+          },
+          {
+            "key": "suggestion_state",
+            "name": "Suggestion State"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/MetaobjectDefinition/53385298080",
+        "type": "ichido_product_story",
+        "displayNameKey": "admin_name",
+        "fieldDefinitions": [
+          {
+            "key": "heading",
+            "name": "見出し"
+          },
+          {
+            "key": "body",
+            "name": "本文"
+          },
+          {
+            "key": "image",
+            "name": "画像"
+          },
+          {
+            "key": "point",
+            "name": "ポイント番号（導入は空欄）"
+          },
+          {
+            "key": "admin_name",
+            "name": "管理名（サイトには表示しません）"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/MetaobjectDefinition/53385330848",
+        "type": "ichido_product_faq",
+        "displayNameKey": "admin_name",
+        "fieldDefinitions": [
+          {
+            "key": "question",
+            "name": "質問"
+          },
+          {
+            "key": "answer",
+            "name": "回答"
+          },
+          {
+            "key": "admin_name",
+            "name": "管理名（サイトには表示しません）"
+          }
+        ]
+      }
+    ]
+  },
+  "stories": {
+    "nodes": [
+      {
+        "id": "gid://shopify/Metaobject/675792191648",
+        "handle": "gensensui-water-lake",
+        "displayName": "GENSEN｜01 導入",
+        "fields": [
+          {
+            "key": "heading",
+            "value": "地球の奥深くから、源泉水を。"
+          },
+          {
+            "key": "body",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"仕事や創作に集中するほど、自分のカラダのことは後回しになりがちです。 私たちのカラダの約半分以上を占める水だからこそ、毎日口にするものには、こだわりたい。 GENSENは、1000年以上の歴史を持つ宮城県・鳴子温泉郷の地下約1,000mから湧き出す天然の源泉水。 天然由来の成分を含みながら、硬度10mg/Lの超軟水で、やわらかくすっきりとした飲み心地です。\"}]}]}"
+          },
+          {
+            "key": "image",
+            "value": "gid://shopify/MediaImage/70782729879712"
+          },
+          {
+            "key": "point",
+            "value": null
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜01 導入"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675792257184",
+        "handle": "gensensui-water-source",
+        "displayName": "GENSEN｜02 水源",
+        "fields": [
+          {
+            "key": "heading",
+            "value": "違いは、水源の深さ。"
+          },
+          {
+            "key": "body",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"一般的なミネラルウォーターの多くが地下数十〜数百メートルから採水されるのに対し、 GENSENの水源は地下約1,000m。 そのため、地表からの酸化や汚染の影響を受けにくい環境にあり、水質検査でも「そのまま飲める源泉」と評価されたほどピュアな水。現在は地下約600mと約1,000mの2つの水源から採水しています。\"}]}]}"
+          },
+          {
+            "key": "image",
+            "value": "gid://shopify/MediaImage/70782729912480"
+          },
+          {
+            "key": "point",
+            "value": "1"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜02 水源"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675792289952",
+        "handle": "gensensui-water-facility",
+        "displayName": "GENSEN｜03 マイナス電荷",
+        "fields": [
+          {
+            "key": "heading",
+            "value": "地下深くで守られた「マイナス電荷」。"
+          },
+          {
+            "key": "body",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"地下深くで守られてきたGENSENには、「マイナス電荷」という特徴があります。 マイナス電荷とは、水が電子を保った状態のこと。水は空気や光、時間の影響によって少しずつ電子を失い、 性質が変化していきます。GENSENは、外気や光に触れにくい地下深くの環境によって、自然界の電子を保った状態にあります。近年、この水に含まれる電子と、人の細胞内でエネルギーを作る働きに関わる電子との類似性について研究が行われています。 GENSENでは、水が本来持つ状態をできるだけ損なわないよう、化学的な添加や過度な処理を行わず、 必要最小限の処理でボトリングしています。\"}]}]}"
+          },
+          {
+            "key": "image",
+            "value": "gid://shopify/MediaImage/70782729945248"
+          },
+          {
+            "key": "point",
+            "value": "2"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜03 マイナス電荷"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675792322720",
+        "handle": "gensensui-water-mineral",
+        "displayName": "GENSEN｜04 成分",
+        "fields": [
+          {
+            "key": "heading",
+            "value": "天然由来の成分を含む水。"
+          },
+          {
+            "key": "body",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"地下深くをめぐる過程で、さまざまな天然由来の成分を含んだ水に。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●炭酸水素イオン 67mg/L 炭酸水素イオンは血液のpHバランスを保ち、 身体のコンディションに関わる活性酸素を抑制することの期待ができます。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●メタケイ酸 47mg/L　シリカ換算： 36mg/L シリカを含む、温泉水由来の天然ミネラル成分。美容やウェルネス分野でも注目されている成分のひとつです\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●ナノシリカ粒径1〜5nm ナノスケールの微細なシリカが、水中に分散している状態。やわらかな口当たりと軽い飲み心地が特徴です。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●溶存酸素8.88mg/L 溶存酸素量とは、水の中に溶けている酸素の量を示す数値。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"※製造時溶存酸素量。時間の経過や保管環境により変化する可能性があり、同数値を保証するものではありません。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●硫酸イオン（サルフェート）39mg/L 火山性温泉に多く含まれる天然ミネラル。温泉の泉質や個性を特徴づける代表的な成分です\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●ゼータ電位-24.0 mV 水中の微細な粒子の分散性を示す指標。マイナス側に大きいほど、安定した状態を保ちやすいとされています。\"}]}]}"
+          },
+          {
+            "key": "image",
+            "value": "gid://shopify/MediaImage/70782729978016"
+          },
+          {
+            "key": "point",
+            "value": "3"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜04 成分"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675792355488",
+        "handle": "gensensui-water-waterfall",
+        "displayName": "GENSEN｜05 飲み心地",
+        "fields": [
+          {
+            "key": "heading",
+            "value": "それでいて、硬度10の超軟水。"
+          },
+          {
+            "key": "body",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"さまざまな天然由来の成分を含みながら、硬度はわずか10mg/Lの超軟水。まろやかで飲みやすく、 高齢者の方や乳幼児でも安心して飲むことができます。 さらに人の体液と近い弱アルカリ性。体との相性がよいため吸収率が高いと言われています。 デスクワークや会議、移動の合間など、日常の中で少しずつ水分を補う習慣を。\"}]}]}"
+          },
+          {
+            "key": "image",
+            "value": "gid://shopify/MediaImage/70782730010784"
+          },
+          {
+            "key": "point",
+            "value": "4"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜05 飲み心地"
+          }
+        ]
+      }
+    ]
+  },
+  "faqs": {
+    "nodes": [
+      {
+        "id": "gid://shopify/Metaobject/675795566752",
+        "handle": "gensensui-water-preview-1",
+        "displayName": "GENSEN｜仮FAQ 01",
+        "fields": [
+          {
+            "key": "question",
+            "value": "ダミーコピー。ダミーコピー。ダミーコピー。ダミーコピー。"
+          },
+          {
+            "key": "answer",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"回答文は準備中です。\"}]}]}"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜仮FAQ 01"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675795599520",
+        "handle": "gensensui-water-preview-2",
+        "displayName": "GENSEN｜仮FAQ 02",
+        "fields": [
+          {
+            "key": "question",
+            "value": "ダミーコピー。ダミーコピー。ダミーコピー。ダミーコピー。"
+          },
+          {
+            "key": "answer",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"回答文は準備中です。\"}]}]}"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜仮FAQ 02"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675795632288",
+        "handle": "gensensui-water-preview-3",
+        "displayName": "GENSEN｜仮FAQ 03",
+        "fields": [
+          {
+            "key": "question",
+            "value": "ダミーコピー。ダミーコピー。ダミーコピー。ダミーコピー。"
+          },
+          {
+            "key": "answer",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"回答文は準備中です。\"}]}]}"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜仮FAQ 03"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675795665056",
+        "handle": "gensensui-water-preview-4",
+        "displayName": "GENSEN｜仮FAQ 04",
+        "fields": [
+          {
+            "key": "question",
+            "value": "ダミーコピー。ダミーコピー。ダミーコピー。ダミーコピー。"
+          },
+          {
+            "key": "answer",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"回答文は準備中です。\"}]}]}"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜仮FAQ 04"
+          }
+        ]
+      },
+      {
+        "id": "gid://shopify/Metaobject/675795697824",
+        "handle": "gensensui-water-preview-5",
+        "displayName": "GENSEN｜仮FAQ 05",
+        "fields": [
+          {
+            "key": "question",
+            "value": "ダミーコピー。ダミーコピー。ダミーコピー。ダミーコピー。"
+          },
+          {
+            "key": "answer",
+            "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"回答文は準備中です。\"}]}]}"
+          },
+          {
+            "key": "admin_name",
+            "value": "GENSEN｜仮FAQ 05"
+          }
+        ]
+      }
+    ]
+  }
+}

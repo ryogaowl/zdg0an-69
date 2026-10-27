@@ -1,3 +1,5 @@
+body.gensen-product-page,
+body.gensen-product-page #MainContent { background: #222222; }
 .gensen-main-product {
   --color-foreground: 255, 255, 255;
   --color-background: 34, 34, 34;
@@ -7,6 +9,7 @@
   --color-link: 255, 105, 0;
   --buttons-radius: 40px;
   padding: 0;
+  background: #222;
 }
 .gensen-main-product > product-component > .page-width { max-width: 1200px; padding: 80px 40px 100px; }
 .gensen-main-product .product { display: grid; grid-template-columns: minmax(0, 640fr) minmax(0, 400fr); gap: 100px 80px; }
@@ -17,13 +20,15 @@
 .gensen-main-product .product__info-container.product__column-sticky { top: 30px; }
 .gensen-main-product media-gallery.product__column-sticky { position: static; }
 .gensen-main-product .product__title { margin: 0 0 10px; }
-.gensen-main-product .product__title h1 { font: 600 clamp(30px, 3vw, 44px)/1.35 'Montserrat', 'Noto Sans JP', sans-serif; overflow-wrap: anywhere; }
+.gensen-main-product .product__title h1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 13px; font: 600 50px/1.2 'Montserrat', 'Noto Sans JP', sans-serif; overflow-wrap: anywhere; }
+.gensen-main-product .product__title .gensen-product-label { font: 700 30px/1.2 'Noto Sans JP', sans-serif; }
 .gensen-main-product .product__info-container > div { margin-block: 24px; }
+.gensen-main-product .product__title + div { margin-top: 8px; }
 .gensen-main-product .product__info-container > .product__title { margin-top: 0; }
 .gensen-main-product .price { color: #fff; }
 .gensen-main-product .price--large { font-size: 28px; }
-.gensen-main-product .gensen-badges { display: flex; flex-wrap: wrap; margin-top: 20px !important; }
-.gensen-main-product .gensen-badges li { padding: 5px 14px; font-size: 12px; white-space: normal; }
+.gensen-main-product .gensen-badges { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 40px !important; }
+.gensen-main-product .gensen-badges li { padding: 4px; font-size: 10px; white-space: normal; overflow-wrap: anywhere; }
 .gensen-main-product .product-form { margin: 24px 0 0; }
 .gensen-main-product .product-form__submit { border-radius: 40px; min-height: 60px; font-size: 16px; }
 .gensen-main-product .product-form__submit::after, .gensen-main-product .product-form__submit::before { border-radius: 40px; }
@@ -44,11 +49,24 @@
 .gensen-main-product .gensen-related__card:hover { background: #222; }
 .gensen-main-product .product__media-list { margin: 0; }
 .gensen-main-product .product__media-item { background: #000; }
+.gensen-main-product .product-media-container.media-type-image { --aspect-ratio: 1; border: 0; background: #000; max-width: 100%; }
+.gensen-main-product .media-type-image .product__media img { object-fit: contain; padding: 13.125% 2% 2%; }
+.gensen-main-product .thumbnail img { object-fit: contain; padding: 13.125% 2% 2%; }
 .gensen-main-product .thumbnail-list { margin-top: 24px; padding: 0; }
 .gensen-main-product .thumbnail { background: #000; }
 .gensen-main-product .thumbnail[aria-current='true'] { border: 2px solid #ff6900; box-shadow: none; }
 .gensen-main-product .gensen-content { grid-column: 1; grid-row: 2; margin: 0; min-width: 0; }
-.gensen-main-product .gensen-story__body p + p, .gensen-main-product .gensen-product-description p + p { margin-top: 1em; }
+.gensen-main-product .gensen-story__heading h2 { min-width: 0; overflow-wrap: anywhere; }
+.gensen-main-product .gensen-faq__item summary,
+.gensen-main-product .gensen-faq__answer { overflow-wrap: anywhere; }
+.gensen-main-product .gensen-related__card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.gensen-main-product .gensen-related__text { min-width: 0; overflow-wrap: anywhere; }
+.gensen-main-product .gensen-catchphrase,
+.gensen-main-product .gensen-related__catch { white-space: pre-line; overflow-wrap: anywhere; }
+.gensen-main-product .gensen-catchphrase { margin-bottom: 24px; font-size: 30px; line-height: 1.4; }
+.gensen-main-product .gensen-product-description p + p { margin-top: 1em; }
+.gensen-main-product .gensen-related__text h3 .gensen-product-label { display: block; margin-top: 10px; font: 500 18px/1.4 'Noto Sans JP', sans-serif; }
+.gensen-main-product .gensen-related__catch { display: none; }
 .gensen-main-product .gensen-product-description { line-height: 1.8; overflow-wrap: anywhere; }
 .gensen-main-product .gensen-related__image img { object-fit: contain; }
 .gensen-main-product .gensen-footer { margin: 0; }
@@ -64,12 +82,23 @@
   .gensen-main-product .gensen-content { order: 2; margin-top: 80px; }
   .gensen-main-product .product__info-container.product__column-sticky { position: static; }
   .gensen-main-product .product__title h1 { font-size: 30px; }
+  .gensen-main-product .product__title .gensen-product-label { font-size: 18px; }
+  .gensen-main-product .gensen-subtitle { font-size: 14px; }
   .gensen-main-product .product__info-container > div { margin-block: 20px; }
   .gensen-main-product .product__media-list { width: 100%; margin: 0; scroll-padding-left: 0; }
   .gensen-main-product .product__media-item { width: 100%; margin-left: 0; padding: 0; }
   .gensen-main-product .product__media-list::after { display: none; }
   .gensen-main-product .slider-mobile-gutter, .gensen-main-product .thumbnail-slider { margin: 0; }
   .gensen-main-product .gensen-story__image { height: 250px; }
+  .gensen-main-product .gensen-badges { margin-top: 20px !important; }
+  .gensen-main-product .gensen-related__card { grid-template-columns: minmax(0, 1fr); }
+  .gensen-main-product .gensen-related__text { display: block; }
+  .gensen-main-product .gensen-related__text h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 15px; }
+  .gensen-main-product .gensen-related__text h3 .gensen-product-label { margin: 0; }
+  .gensen-main-product .gensen-related__catch { display: block; color: #fff; font-size: 18px; margin-top: 4px !important; }
+  .gensen-main-product .gensen-related__text { background: #222; }
+  .gensen-main-product .gensen-related__image { background: #000; }
+  .gensen-main-product .gensen-catchphrase { font-size: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .gensen-main-product *, .gensen-main-product *::before, .gensen-main-product *::after { transition: none !important; }

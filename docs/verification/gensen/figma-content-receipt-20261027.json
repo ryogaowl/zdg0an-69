@@ -1,0 +1,233 @@
+{
+  "results": [
+    {
+      "label": "product_display_name",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699769749664",
+            "key": "product_display_name"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "product_label",
+      "result": {
+        "metafieldDefinitionCreate": {
+          "createdDefinition": {
+            "id": "gid://shopify/MetafieldDefinition/699769782432",
+            "key": "product_label"
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "display-names",
+      "result": {
+        "metafieldsSet": {
+          "metafields": [
+            {
+              "namespace": "custom",
+              "key": "product_display_name",
+              "value": "GENSEN"
+            },
+            {
+              "namespace": "custom",
+              "key": "product_label",
+              "value": "源泉水"
+            },
+            {
+              "namespace": "custom",
+              "key": "product_display_name",
+              "value": "DAICHI"
+            },
+            {
+              "namespace": "custom",
+              "key": "product_label",
+              "value": "プロテイン"
+            }
+          ],
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:lake",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792191648",
+            "handle": "gensensui-water-lake",
+            "displayName": "GENSEN｜01 導入",
+            "fields": [
+              {
+                "key": "heading",
+                "value": "地球の奥深くから、源泉水を。"
+              },
+              {
+                "key": "body",
+                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"仕事や創作に集中するほど、自分のカラダのことは後回しになりがちです。 私たちのカラダの約半分以上を占める水だからこそ、毎日口にするものには、こだわりたい。 GENSENは、1000年以上の歴史を持つ宮城県・鳴子温泉郷の地下約1,000mから湧き出す天然の源泉水。 天然由来の成分を含みながら、硬度10mg/Lの超軟水で、やわらかくすっきりとした飲み心地です。\"}]}]}"
+              },
+              {
+                "key": "image",
+                "value": "gid://shopify/MediaImage/70782729879712"
+              },
+              {
+                "key": "point",
+                "value": null
+              },
+              {
+                "key": "admin_name",
+                "value": "GENSEN｜01 導入"
+              }
+            ]
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:source",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792257184",
+            "handle": "gensensui-water-source",
+            "displayName": "GENSEN｜02 水源",
+            "fields": [
+              {
+                "key": "heading",
+                "value": "違いは、水源の深さ。"
+              },
+              {
+                "key": "body",
+                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"一般的なミネラルウォーターの多くが地下数十〜数百メートルから採水されるのに対し、 GENSENの水源は地下約1,000m。 そのため、地表からの酸化や汚染の影響を受けにくい環境にあり、水質検査でも「そのまま飲める源泉」と評価されたほどピュアな水。現在は地下約600mと約1,000mの2つの水源から採水しています。\"}]}]}"
+              },
+              {
+                "key": "image",
+                "value": "gid://shopify/MediaImage/70782729912480"
+              },
+              {
+                "key": "point",
+                "value": "1"
+              },
+              {
+                "key": "admin_name",
+                "value": "GENSEN｜02 水源"
+              }
+            ]
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:facility",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792289952",
+            "handle": "gensensui-water-facility",
+            "displayName": "GENSEN｜03 マイナス電荷",
+            "fields": [
+              {
+                "key": "heading",
+                "value": "地下深くで守られた「マイナス電荷」。"
+              },
+              {
+                "key": "body",
+                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"地下深くで守られてきたGENSENには、「マイナス電荷」という特徴があります。 マイナス電荷とは、水が電子を保った状態のこと。水は空気や光、時間の影響によって少しずつ電子を失い、 性質が変化していきます。GENSENは、外気や光に触れにくい地下深くの環境によって、自然界の電子を保った状態にあります。近年、この水に含まれる電子と、人の細胞内でエネルギーを作る働きに関わる電子との類似性について研究が行われています。 GENSENでは、水が本来持つ状態をできるだけ損なわないよう、化学的な添加や過度な処理を行わず、 必要最小限の処理でボトリングしています。\"}]}]}"
+              },
+              {
+                "key": "image",
+                "value": "gid://shopify/MediaImage/70782729945248"
+              },
+              {
+                "key": "point",
+                "value": "2"
+              },
+              {
+                "key": "admin_name",
+                "value": "GENSEN｜03 マイナス電荷"
+              }
+            ]
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:mineral",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792322720",
+            "handle": "gensensui-water-mineral",
+            "displayName": "GENSEN｜04 成分",
+            "fields": [
+              {
+                "key": "heading",
+                "value": "天然由来の成分を含む水。"
+              },
+              {
+                "key": "body",
+                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"地下深くをめぐる過程で、さまざまな天然由来の成分を含んだ水に。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●炭酸水素イオン 67mg/L 炭酸水素イオンは血液のpHバランスを保ち、 身体のコンディションに関わる活性酸素を抑制することの期待ができます。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●メタケイ酸 47mg/L　シリカ換算： 36mg/L シリカを含む、温泉水由来の天然ミネラル成分。美容やウェルネス分野でも注目されている成分のひとつです\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●ナノシリカ粒径1〜5nm ナノスケールの微細なシリカが、水中に分散している状態。やわらかな口当たりと軽い飲み心地が特徴です。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●溶存酸素8.88mg/L 溶存酸素量とは、水の中に溶けている酸素の量を示す数値。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"※製造時溶存酸素量。時間の経過や保管環境により変化する可能性があり、同数値を保証するものではありません。\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●硫酸イオン（サルフェート）39mg/L 火山性温泉に多く含まれる天然ミネラル。温泉の泉質や個性を特徴づける代表的な成分です\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"●ゼータ電位-24.0 mV 水中の微細な粒子の分散性を示す指標。マイナス側に大きいほど、安定した状態を保ちやすいとされています。\"}]}]}"
+              },
+              {
+                "key": "image",
+                "value": "gid://shopify/MediaImage/70782729978016"
+              },
+              {
+                "key": "point",
+                "value": "3"
+              },
+              {
+                "key": "admin_name",
+                "value": "GENSEN｜04 成分"
+              }
+            ]
+          },
+          "userErrors": []
+        }
+      }
+    },
+    {
+      "label": "story:waterfall",
+      "result": {
+        "metaobjectUpsert": {
+          "metaobject": {
+            "id": "gid://shopify/Metaobject/675792355488",
+            "handle": "gensensui-water-waterfall",
+            "displayName": "GENSEN｜05 飲み心地",
+            "fields": [
+              {
+                "key": "heading",
+                "value": "それでいて、硬度10の超軟水。"
+              },
+              {
+                "key": "body",
+                "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"さまざまな天然由来の成分を含みながら、硬度はわずか10mg/Lの超軟水。まろやかで飲みやすく、 高齢者の方や乳幼児でも安心して飲むことができます。 さらに人の体液と近い弱アルカリ性。体との相性がよいため吸収率が高いと言われています。 デスクワークや会議、移動の合間など、日常の中で少しずつ水分を補う習慣を。\"}]}]}"
+              },
+              {
+                "key": "image",
+                "value": "gid://shopify/MediaImage/70782730010784"
+              },
+              {
+                "key": "point",
+                "value": "4"
+              },
+              {
+                "key": "admin_name",
+                "value": "GENSEN｜05 飲み心地"
+              }
+            ]
+          },
+          "userErrors": []
+        }
+      }
+    }
+  ]
+}

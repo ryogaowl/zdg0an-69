@@ -1,0 +1,26 @@
+{
+  "productVariantsBulkUpdate": {
+    "productVariants": [
+      {
+        "id": "gid://shopify/ProductVariant/67970723872928",
+        "inventoryPolicy": "DENY",
+        "inventoryQuantity": 0,
+        "inventoryItem": {
+          "tracked": true
+        }
+      }
+    ],
+    "userErrors": []
+  },
+  "metafieldsSet": {
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "related_products",
+        "type": "list.product_reference",
+        "value": "[\"gid://shopify/Product/15940586373280\"]"
+      }
+    ],
+    "userErrors": []
+  }
+}

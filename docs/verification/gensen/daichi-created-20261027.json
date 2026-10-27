@@ -1,0 +1,32 @@
+{
+  "productCreate": {
+    "product": {
+      "id": "gid://shopify/Product/15940586373280",
+      "title": "DAICHI／プロテイン",
+      "handle": "daichi-protein",
+      "status": "DRAFT",
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/67970723872928",
+            "price": "0",
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/69956783767712",
+              "tracked": false
+            },
+            "inventoryPolicy": "DENY"
+          }
+        ]
+      },
+      "media": {
+        "nodes": [
+          {
+            "id": "gid://shopify/MediaImage/70782825496736",
+            "status": "PROCESSING"
+          }
+        ]
+      }
+    },
+    "userErrors": []
+  }
+}

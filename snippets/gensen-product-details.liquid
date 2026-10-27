@@ -1,0 +1,12 @@
+{% doc %}
+  Product-owned subtitle and feature labels.
+  @param {product} product - Product to describe.
+{% enddoc %}
+{% if product.metafields.custom.product_subtitle.value != blank %}
+  <p class="gensen-subtitle">{{ product.metafields.custom.product_subtitle.value | escape }}</p>
+{% endif %}
+{% if product.metafields.custom.product_badges.value != blank %}
+  <ul class="gensen-badges" role="list">
+    {% for badge in product.metafields.custom.product_badges.value %}<li>{{ badge | escape }}</li>{% endfor %}
+  </ul>
+{% endif %}

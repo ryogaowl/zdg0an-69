@@ -1,0 +1,10 @@
+{
+  "metafieldDefinitionCreate": {
+    "createdDefinition": {
+      "id": "gid://shopify/MetafieldDefinition/699759657120",
+      "namespace": "custom",
+      "key": "coming_soon"
+    },
+    "userErrors": []
+  }
+}
