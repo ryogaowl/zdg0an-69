@@ -1,5 +1,56 @@
 # GENSEN 商品ページ 実装・検証記録
 
+## 最終確認（2026-10-27 23:40 JST）
+
+- 実装コミット `6c7fdf8` を `online-store` にプッシュ済み。GitHub連携先の下書きテーマ `200718221472` はUNPUBLISHED。変更したテーマ6ファイルのAPIチェックサムがローカルと一致。本番テーマの公開切替なし。
+- [確認済みの商品プレビュー](https://ichido.co/products/gensensui-water?preview_theme_id=200718221472&view=gensen)。実際のShopify商品データを表示。GENSENの通常URLへのテンプレート恒久割当は未実施。
+- ChromeのPC 1440px／SP 375pxで確認。ページ背景は `rgb(34,34,34)`、横はみ出しなし。PCギャラリー640px、購入欄の開始位置880px・幅400px。SPギャラリー325px・サムネイル70px。黒キャップが先頭、白キャップへの切替と画像拡大・閉じるが動作。
+- 説明5件、特徴ラベル4件、ダミーFAQ5件、Other Productを確認。FAQのクリック開閉・Enter操作と閉じた後の状態復元を確認。表示対象の画像読み込み失敗なし。
+- ユーザーによるDAICHIのオンラインストア掲載を確認。APIはUNLISTED、publishedAtあり、seo.hidden=1、在庫0・DENY。関連カードから `/products/daichi-protein?view=gensen` へ遷移し、価格表示0件・カート追加フォーム0件・販売準備中ボタン無効を確認。
+- Theme Checkは0エラー・既存15警告、diff whitespaceチェック正常。Toolkit Liquid検証は内部のFileType exportエラーで利用不能。Admin GraphQL操作はToolkitで検証済み。
+- ブラウザコンソールのerrorは0件。既存ShopifyカスタムWeb Pixelのsandbox警告あり。実注文・決済は行っていない。単一バリエーション／在庫0のため複数バリエーション購入とMikawayaは未検証。
+- FAQ ListはFigmaの装飾を復元済み。共通FAQ URLが未設定のため無効表示。Mikawayaは導入後に標準アプリブロックへ追加する。特徴ラベル・FAQ・説明文の確定は公開前に行う。
+- ヘッダー・フッターは既存の共通セクションを利用し、別担当の制作範囲とする。商品画像は実登録2点のため、Figmaの空サムネイルは増設していない。
+
+### 今回追加・修正したファイル（背景・コンテンツ・商品データ調整）
+
+実装・運用コード：
+
+| ファイル | 内容 |
+| --- | --- |
+| `assets/gensen-main-product.css` | ページ全体#222222、PC/SPの余白・画像・文字・ボタン寸法、hoverとFAQ装飾 |
+| `layout/theme.liquid` | GENSEN商品テンプレートのbodyクラス |
+| `sections/main-product.liquid` | 表示名・特徴の共通化、販売準備中の価格／フォーム非表示、FAQリンク設定 |
+| `snippets/gensen-product-content.liquid` | データ参照の説明・FAQ・DAICHIカード、Figma画像配置・FAQ List装飾 |
+| `snippets/gensen-product-details.liquid` | 商品補足と特徴ラベル表示を分離 |
+| `snippets/gensen-product-name.liquid` | 注文用の商品名と表示用の名前・ラベルを分離 |
+| `tools/refine-gensen-content.cjs` | 短い管理名・FAQ・特徴・キャッチコピーの登録処理（実行済み） |
+| `tools/align-gensen-figma-content.cjs` | Figma本文・表示名の登録処理（実行済み） |
+
+説明資料：`docs/knowledge/gensen-product-registration.md`（編集方法・掲載状態）、本ファイル（検証・共有文面・変更一覧）。
+
+検証画像：`main-product-pc-20261027.png`（PC）、`main-product-sp-20261027.png`（SP）、`main-product-faq-20261027.png`（FAQ）、`related-product-sp-20261027.png`（実カード）、`daichi-sp-20261027.png`（準備中の詳細）。
+
+データ証跡はすべて本ディレクトリ内。以下の各JSONを追加：
+
+- `black-bottle-created-20261027.json`、`black-bottle-reordered-20261027.json`：黒キャップ追加と並び順。
+- `coming-soon-definition-20261027.json`、`daichi-created-20261027.json`、`daichi-linked-20261027.json`：販売準備中定義・実商品登録・関連参照。
+- `content-refinement-before-20261027.json`、`content-refinement-receipt-20261027.json`、`content-refinement-after-20261027.json`：管理名・FAQ・特徴の変更前／結果／読み戻し。
+- `figma-content-plan-20261027.json`、`figma-content-before-20261027.json`、`figma-content-receipt-20261027.json`、`figma-content-after-20261027.json`：Figma照合・表示名・本文の変更計画／原本／結果／読み戻し。
+- `layout-before-background-20261027.json`、`theme-before-content-refinement-20261027.json`：対象テーマの変更前原本。
+- `product-media-after-20261027.json`：商品画像のREADY状態・並び順。
+- `theme-after-20261027.json`：470e7f1時点のテーマ読み戻し。
+- `final-readback-20261027.json`：bf641d8時点のテーマとDAICHI掲載状態の読み戻し。
+- `theme-final-20261027.json`：6c7fdf8時点の最終テーマ6ファイルのチェックサム。
+
+削除したファイルなし。今回の修正以外のファイルをこの一覧に混ぜていない。復旧時は対象コミットの差分と変更前JSONを参照し、必要なテーマファイルだけ戻す。ストアの商品・画像・メタフィールドはGitの復旧とは別操作。黒キャップの追加前メディアは保持している。
+
+### 先方共有用文面（未送信）
+
+商品ページの背景色を#222222に揃え、Figmaに合わせて黒キャップ画像・特徴ラベル・説明文・FAQを反映しました。既存の商品ページ機能を利用し、DAICHIも関連カードから詳細ページへ移動できます。DAICHIは販売準備中で価格非表示・購入不可です。PC・スマホの表示と画像切替、FAQ開閉を確認済みです。[下書きプレビュー](https://ichido.co/products/gensensui-water?preview_theme_id=200718221472&view=gensen)で見た目と掲載内容をご確認ください。本番テーマは未公開です。特徴ラベル・FAQの正式文言、共通FAQのリンク先、Mikawaya連携は公開前の設定事項として残っています。
+
+---
+
 ## main-product移行とFigma再照合（2026-10-27）
 
 - 着手前に共有済み[下書き商品プレビュー](https://ichido.co/products/gensensui-water?preview_theme_id=200718221472&view=gensen)を確認。専用セクションの旧表示が残っていた。
@@ -9,9 +60,9 @@
 - `main-product.liquid` のギャラリー、購入フォーム、価格、数量、在庫、バリエーション、アプリブロックをそのまま利用し、GENSEN用のスタイルと商品メタフィールド表示を追加。専用の商品フォーム・静的なタイトル・定期購入の灰色仮枠は新テンプレートで使わない。
 - ユーザー追記により専用ヘッダー・フッターを廃止し、共通header-group/footer-groupを利用。別担当の共通デザイン自体には手を加えない。
 - 商品データ追加はユーザー承認済み。ストア所有の編集項目6定義、説明・FAQの2定義、説明5エントリー、画像5点を作成。`seo.hidden=1`、商品補足、説明の参照を保存・読み戻し確認。価格・在庫・status・元のdescriptionHtml・templateSuffixの一致を確認。画像5点READY。
-- 後続のユーザー指示で、特徴ラベル4件とダミーFAQ5件を登録。DAICHIを関連商品として作成・参照済み。DAICHIの掲載はユーザーによる追加認証待ち。Mikawayaの実連携は未実施。
+- 後続のユーザー指示で、特徴ラベル4件とダミーFAQ5件を登録。DAICHIを関連商品として作成・参照済み。DAICHIはユーザーがUNLISTED・オンラインストア掲載を完了し、関連カードから詳細への実遷移を確認済み。Mikawayaの実連携は未実施。
 - Theme Check 0エラー・15警告。ToolkitのLiquid検証は内部のFileType exportエラーで実行不能。Admin GraphQLの操作はToolkit検証成功。
-- ボタンは色反転・オレンジ罫線のtransition。FAQは開閉アニメーションとreduced-motion対応。検証結果は後続追記。
+- ボタンは色反転・オレンジ罫線のtransition。FAQは開閉アニメーションとreduced-motion対応。検証結果は冒頭の最終確認を参照。
 
 ### 追加のデータ・デザイン修正
 
@@ -20,7 +71,7 @@
 - Figmaとの再照合により表示名・補足ラベル・5説明セクションの本文と段落を修正。注文等で使う商品標準のtitle/descriptionHtmlは維持。
 - GENSENのページ全体は#222222、画像枠・FAQ・Other Productパネルは#000000。共通ヘッダー・フッターの制作は対象外。
 - 指定の黒キャップ画像を商品メディアへ追加して先頭へ移動。元の白キャップ画像は削除せず残した。メディアの表示順は全テーマ共通。
-- DAICHIは価格未確定。coming_soon=true、在庫追跡0・DENY・seo.hidden=1。掲載認証はユーザーが担当。
+- DAICHIは価格未確定。coming_soon=true、在庫追跡0・DENY・seo.hidden=1。ユーザーによるオンラインストア掲載完了をAPI・実画面で確認。
 
 ### 今回の変更ファイル
 

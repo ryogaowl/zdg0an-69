@@ -2,18 +2,19 @@
 
 ## 現行の管理方法（2026-10-27）
 
-CLI Connectorを `zdg0an-69.myshopify.com` に接続し、商品 `15907648274592`（`gensensui-water`）を読み取り確認した。価格5,000円、在庫0、在庫切れ販売DENY、UNLISTED、画像1点、定期購入プランなし。商品名は「GENSEN／源泉水×24本セット」。元の商品説明を移行元に使い、元の説明・価格・在庫・公開状態は維持した。
+CLI Connectorを `zdg0an-69.myshopify.com` に接続し、商品 `15907648274592`（`gensensui-water`）を読み取り確認した。価格5,000円、在庫0、在庫切れ販売DENY、UNLISTED、定期購入プランなし。画像は後続修正で黒キャップを先頭に追加し、白キャップと合わせて2点。商品名は「GENSEN／源泉水×24本セット」。元の商品説明を移行元に使い、元の説明・価格・在庫・公開状態は維持した。
 
 ユーザーのメタフィールド追加承認に基づき、次を作成済み。テーマ専用の固定文言ではなく、商品管理画面から編集する。アプリを新規開発する案件ではないため、ストア所有の `custom` 名前空間・メタオブジェクトを使い、他の管理アプリからも扱えるようにした。
 
 | 管理項目 | 保存先・型 | 現在の内容 |
 | --- | --- | --- |
 | 商品名・画像・価格・在庫・バリエーション | Shopify標準の商品項目 | 既存データを表示。価格・在庫は今回未変更 |
+| 表示名・補足ラベル | `custom.product_display_name` / `custom.product_label`（single_line_text_field） | GENSEN／源泉水、DAICHI／プロテイン。注文用の商品名と分離 |
 | 商品補足 | `custom.product_subtitle` / single_line_text_field | Core Water 1ケース（24本） |
 | 特徴ラベル | `custom.product_badges` / list.single_line_text_field | ユーザー指定によりFigmaの4件をプレビュー用に登録：国産・糖質3.5%・200kcal・タンパク質22g。販売情報は未確定 |
 | 説明セクション | `custom.product_stories` / list.metaobject_reference | 5件。順序は商品の参照リストで変更 |
 | FAQ | `custom.product_faqs` / list.metaobject_reference | Figmaと同じダミー質問5件、回答「回答文は準備中です。」を登録 |
-| 関連商品 | `custom.related_products` / list.product_reference | DAICHIの実商品を参照。下書き中はLiquidから取得できないため非表示 |
+| 関連商品 | `custom.related_products` / list.product_reference | DAICHIの実商品を参照。UNLISTED・オンラインストア掲載済みで、カードから詳細への遷移を確認済み |
 | キャッチコピー | `custom.product_catchphrase` / multi_line_text_field | DAICHI「大地の恵みを、一杯に。」。商品単位で直接編集、カードと詳細で共用 |
 | 販売準備中 | `custom.coming_soon` / boolean | DAICHIはtrue。今回のmain-productでは価格・数量・在庫表示・購入フォームを出さず、無効な「販売準備中」ボタンを表示 |
 | 検索非表示 | `seo.hidden` / number_integer | `1`を保存・再取得確認済み |
@@ -24,13 +25,13 @@ CLI Connectorを `zdg0an-69.myshopify.com` に接続し、商品 `15907648274592
 
 更新は、まず対象の商品を開く。キャッチコピー・商品補足・特徴ラベルは商品内で直接編集。長い説明とFAQは商品の参照先を開き、見出しと本文を別々に編集する。本文はリッチテキストで段落を追加できる。改行のためのHTML入力は不要。見出し・質問・ラベルは画面幅で折り返し、高さを固定しない。キャッチコピーは通常1行入力でよく、意図的な改行も許容する。
 
-DAICHI（`15940586373280` / `daichi-protein`）は価格未確定の販売準備用商品として登録。画像READY、在庫追跡あり・0・DENY、seo.hidden=1、templateSuffix=gensen。Shopifyの初期価格0は販売価格として採用していない。現時点はDRAFT。UNLISTEDとオンラインストア掲載は承認済みだが、追加認証をユーザーが行うため未実施。公開テーマには今回の価格非表示処理を反映しない。
+DAICHI（`15940586373280` / `daichi-protein`）は価格未確定の販売準備用商品として登録。画像READY、在庫追跡あり・0・DENY、seo.hidden=1、templateSuffix=gensen。Shopifyの初期価格0は販売価格として採用していない。ユーザーがUNLISTEDへの変更とオンラインストア掲載を実施。2026-10-27にAPIのpublishedAt・onlineStoreUrlと、実際の関連カード／詳細ページを確認済み。公開テーマには今回の価格非表示処理を反映しない。
 
 仮ラベル・FAQの確定値への差替えは公開前の作業。ストアデータはテーマ間で共通だが、今回の表示処理は下書きテーマ内。公開中テーマは変更していない。
 
 GENSENテンプレートは既存の `main-product.liquid` を利用する。購入フォーム、価格、数量、バリエーション、メディアギャラリー、アプリブロックは標準機能を利用。商品補足・特徴は追加ブロック、長文は説明セクションの参照データから表示する。説明セクションが未設定の場合は標準の商品説明を表示。FAQ・関連商品は未設定時に非表示。
 
-ヘッダー・フッターは別担当者の共通セクションを利用する。今回の商品ページ専用デザインは作成しない。Mikawayaはまだ未導入で、`main-product` のアプリブロックとして後から配置・実動作確認する。商品テンプレートの恒久割当と本番テーマ公開は未実施。
+ヘッダー・フッターは別担当者の共通セクションを利用する。今回の商品ページ専用デザインは作成しない。Mikawayaはまだ未導入で、`main-product` のアプリブロックとして後から配置・実動作確認する。GENSENの恒久割当と本番テーマ公開は未実施。DAICHIはgensen割当済み。共通FAQページのリンクはmain-productの「FAQ一覧リンク」で設定する。未設定時のFAQ Listは無効表示。
 
 移行元・実行計画・結果・読み戻しは `docs/verification/gensen/*20261027.json` に保存。`tools/migrate-gensen-product-data.cjs` は実行済みの移行処理であり、レシートが存在する状態での再実行を禁止する。日々の更新には使わず管理画面から編集する。ストアデータはGitを戻しても復旧しない。
 

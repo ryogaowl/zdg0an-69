@@ -1,0 +1,87 @@
+{
+  "theme": {
+    "id": "gid://shopify/OnlineStoreTheme/200718221472",
+    "name": "zdg0an-69/online-store",
+    "role": "UNPUBLISHED",
+    "files": {
+      "nodes": [
+        {
+          "filename": "assets/gensen-main-product.css",
+          "checksumMd5": "5ad694f957aece12c1984f99ffd82fd4"
+        },
+        {
+          "filename": "layout/theme.liquid",
+          "checksumMd5": "4344e6867f5bd349d2e1189c49a0cc68"
+        },
+        {
+          "filename": "sections/main-product.liquid",
+          "checksumMd5": "5b75f82a116e73616bf983179689d7bc"
+        },
+        {
+          "filename": "snippets/gensen-product-content.liquid",
+          "checksumMd5": "9e2a7dd607f3c01d2333164f52c1f031"
+        },
+        {
+          "filename": "snippets/gensen-product-details.liquid",
+          "checksumMd5": "a60d5811a02c5d31df7b3d29f1808aba"
+        },
+        {
+          "filename": "snippets/gensen-product-name.liquid",
+          "checksumMd5": "bcf3b68085c0c6151bc941ab00e19f16"
+        }
+      ]
+    }
+  },
+  "product": {
+    "id": "gid://shopify/Product/15940586373280",
+    "status": "UNLISTED",
+    "publishedAt": "2026-10-27T14:26:16Z",
+    "onlineStoreUrl": "https://ichido.co/products/daichi-protein",
+    "metafields": {
+      "nodes": [
+        {
+          "namespace": "custom",
+          "key": "coming_soon",
+          "value": "true"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_subtitle",
+          "value": "Vegetable Protein 1kg"
+        },
+        {
+          "namespace": "seo",
+          "key": "hidden",
+          "value": "1"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_catchphrase",
+          "value": "大地の恵みを、一杯に。"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_label",
+          "value": "プロテイン"
+        },
+        {
+          "namespace": "custom",
+          "key": "product_display_name",
+          "value": "DAICHI"
+        }
+      ]
+    },
+    "variants": {
+      "nodes": [
+        {
+          "price": "0",
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "inventoryItem": {
+            "tracked": true
+          }
+        }
+      ]
+    }
+  }
+}

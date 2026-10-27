@@ -1,0 +1,35 @@
+{
+  "theme": {
+    "id": "gid://shopify/OnlineStoreTheme/200718221472",
+    "name": "zdg0an-69/online-store",
+    "role": "UNPUBLISHED",
+    "files": {
+      "nodes": [
+        {
+          "filename": "assets/gensen-main-product.css",
+          "checksumMd5": "cd228e3661150b8f1faaae3c1bab832f"
+        },
+        {
+          "filename": "layout/theme.liquid",
+          "checksumMd5": "4344e6867f5bd349d2e1189c49a0cc68"
+        },
+        {
+          "filename": "sections/main-product.liquid",
+          "checksumMd5": "7be6faf8ca4f1af04e8035bc61bf6560"
+        },
+        {
+          "filename": "snippets/gensen-product-content.liquid",
+          "checksumMd5": "4e8ec13a0c1a71798f9cce308d9ce9dc"
+        },
+        {
+          "filename": "snippets/gensen-product-details.liquid",
+          "checksumMd5": "a60d5811a02c5d31df7b3d29f1808aba"
+        },
+        {
+          "filename": "snippets/gensen-product-name.liquid",
+          "checksumMd5": "bcf3b68085c0c6151bc941ab00e19f16"
+        }
+      ]
+    }
+  }
+}
