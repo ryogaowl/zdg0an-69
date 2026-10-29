@@ -1,0 +1,19 @@
+{
+  "theme": {
+    "id": "gid://shopify/OnlineStoreTheme/200718221472",
+    "name": "zdg0an-69/online-store",
+    "role": "UNPUBLISHED",
+    "files": {
+      "nodes": [
+        {
+          "filename": "assets/ichido-commerce.css",
+          "checksumMd5": "55e4f833b440bd5e36b5117daa5dcb77"
+        },
+        {
+          "filename": "layout/theme.liquid",
+          "checksumMd5": "18ffa8fb2d6838900ac3ed3c8001c98a"
+        }
+      ]
+    }
+  }
+}
