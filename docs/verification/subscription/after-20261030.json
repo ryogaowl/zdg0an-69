@@ -1,0 +1,19 @@
+{
+  "theme": {
+    "id": "gid://shopify/OnlineStoreTheme/200718221472",
+    "name": "zdg0an-69/online-store",
+    "role": "UNPUBLISHED",
+    "files": {
+      "nodes": [
+        {
+          "filename": "assets/gensen-main-product.css",
+          "checksumMd5": "af0a94f3ae57005bdf46136806494455"
+        },
+        {
+          "filename": "templates/product.gensen.json",
+          "checksumMd5": "b5c0a9c4548f6843e0bbcd1c336dee5c"
+        }
+      ]
+    }
+  }
+}
