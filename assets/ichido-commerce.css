@@ -1,0 +1,376 @@
+.ichido-service-page,
+.ichido-service-page #MainContent,
+.ichido-service-page #MainContent .gradient,
+cart-drawer .drawer__inner,
+cart-notification .cart-notification {
+  --color-foreground: 255, 255, 255;
+  --color-background: 34, 34, 34;
+  --gradient-background: #222222;
+  --color-button: 255, 105, 0;
+  --color-button-text: 0, 0, 0;
+  --color-secondary-button-text: 255, 105, 0;
+  --color-link: 255, 105, 0;
+  --buttons-radius: 40px;
+  --buttons-radius-outset: 40px;
+  --inputs-radius: 0px;
+  background: #222222;
+  color: #ffffff;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer .drawer__inner, cart-notification .cart-notification) {
+  font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.ichido-service-page #MainContent {
+  padding-block: 80px 100px;
+  min-height: 60vh;
+}
+
+.ichido-service-page #MainContent h1,
+.ichido-service-page #MainContent h2,
+cart-drawer .drawer__heading,
+cart-drawer .cart__empty-text,
+cart-notification .cart-notification__heading {
+  color: #ff6900;
+  font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.ichido-service-page #MainContent h1 {
+  font-size: clamp(30px, 3.5vw, 50px);
+  letter-spacing: .02em;
+}
+
+.ichido-service-page #MainContent .page-width {
+  max-width: 1200px;
+  padding-inline: 40px;
+}
+
+.ichido-service-page #MainContent :is(a, button, input, textarea):focus-visible,
+cart-drawer :is(a, button, input, textarea):focus-visible,
+cart-notification :is(a, button):focus-visible {
+  outline: 2px solid #ff6900;
+  outline-offset: 4px;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) .button {
+  min-height: 60px;
+  border: 1px solid #ff6900;
+  border-radius: 40px;
+  background: #ff6900;
+  color: #000000;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-align: center;
+  padding: 14px 28px;
+  transition: background-color .22s ease, color .22s ease, border-color .22s ease;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) .button::before,
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) .button::after {
+  box-shadow: none;
+  border-radius: inherit;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) .button:not(:disabled):not([aria-disabled='true']):is(:hover, :focus-visible) {
+  background: #222222;
+  color: #ff6900;
+  border-color: #ff6900;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) .button--secondary {
+  background: transparent;
+  color: #ff6900;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) .button--secondary:not(:disabled):is(:hover, :focus-visible) {
+  background: #ff6900;
+  color: #000000;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) :is(.link, .underlined-link, .rte a) {
+  color: #ff6900;
+  text-underline-offset: 5px;
+  transition: color .22s ease;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer, cart-notification) :is(.link, .underlined-link, .rte a):hover {
+  color: #ffffff;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer) :is(.field__input, .quantity) {
+  background: #222222;
+  color: #ffffff;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer) :is(.field, .quantity)::after {
+  box-shadow: 0 0 0 1px #777777;
+  transition: box-shadow .22s ease;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer) :is(.field, .quantity):focus-within::after {
+  box-shadow: 0 0 0 1px #ff6900;
+}
+
+:is(.ichido-service-page #MainContent, cart-drawer) :is(.field__label, .form__label) {
+  color: #dddddd;
+}
+
+.ichido-cart-page #MainContent cart-items {
+  padding-top: 0;
+}
+
+.ichido-cart-page #MainContent .title-wrapper-with-link {
+  margin: 0 0 48px;
+  gap: 24px;
+}
+
+.ichido-cart-page #MainContent .cart__warnings {
+  padding: 80px 32px;
+  background: #000000;
+  border-top: 1px solid #ff6900;
+}
+
+.ichido-cart-page #MainContent .cart__empty-text {
+  margin: 0 0 32px;
+  font-size: clamp(26px, 3vw, 36px);
+}
+
+.ichido-cart-page #MainContent .cart__warnings .button {
+  width: min(100%, 300px);
+}
+
+.ichido-cart-page #MainContent .cart__login-title {
+  margin-top: 48px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+:is(.ichido-cart-page #MainContent, cart-drawer) .cart-item__name,
+cart-notification .cart-notification-product__name {
+  color: #ffffff;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+}
+
+:is(.ichido-cart-page #MainContent, cart-drawer) .cart-item__name:hover {
+  color: #ff6900;
+}
+
+:is(.ichido-cart-page #MainContent, cart-drawer) .cart-item__image-container {
+  background: #000000;
+  border: 0;
+}
+
+:is(.ichido-cart-page #MainContent, cart-drawer) .cart-item__image {
+  object-fit: contain;
+  max-height: 160px;
+}
+
+.ichido-cart-page #MainContent .cart-items thead th {
+  color: #ff6900;
+  border-bottom: 1px solid #666666;
+  padding-bottom: 20px;
+}
+
+.ichido-cart-page #MainContent .cart__items {
+  border-bottom-color: #666666;
+}
+
+.ichido-cart-page #MainContent .cart__blocks {
+  box-sizing: border-box;
+  padding: 32px;
+  width: min(100%, 440px);
+  background: #000000;
+}
+
+:is(.ichido-cart-page #MainContent, cart-drawer) .totals {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+:is(.ichido-cart-page #MainContent, cart-drawer) .totals__total-value {
+  color: #ffffff;
+  font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+}
+
+.ichido-cart-page #MainContent .cart__checkout-button {
+  max-width: none;
+}
+
+.ichido-contact-page #MainContent .page-width {
+  max-width: 880px;
+}
+
+.ichido-contact-page #MainContent > .shopify-section:first-child .page-width {
+  padding-block: 0 32px;
+}
+
+.ichido-contact-page #MainContent .main-page-title {
+  margin-bottom: 24px;
+}
+
+.ichido-contact-page #MainContent .contact {
+  padding-block: 0;
+}
+
+.ichido-contact-page #ContactForm {
+  padding: 40px;
+  background: #000000;
+  border-top: 1px solid #ff6900;
+}
+
+.ichido-contact-page #ContactForm .field {
+  margin-bottom: 24px;
+}
+
+.ichido-contact-page #ContactForm .field__input {
+  min-height: 60px;
+  font-size: 16px;
+}
+
+.ichido-contact-page #ContactForm .field__label {
+  top: 19px;
+}
+
+.ichido-contact-page #ContactForm .field__input:focus ~ .field__label,
+.ichido-contact-page #ContactForm .field__input:not(:placeholder-shown) ~ .field__label {
+  top: 6px;
+}
+
+.ichido-contact-page #ContactForm .text-area {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.ichido-contact-page #ContactForm .contact__button {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.ichido-contact-page #ContactForm .button {
+  width: min(100%, 300px);
+}
+
+.ichido-contact-page #ContactForm :is(.form-status, .form-status-list) {
+  line-height: 1.8;
+  color: #ffffff;
+}
+
+.ichido-contact-page #ContactForm .form__message {
+  margin-bottom: 24px;
+}
+
+.ichido-contact-page #ContactForm .contact__field-error {
+  color: #ffb68a;
+}
+
+cart-drawer.drawer {
+  background: rgb(0 0 0 / 65%);
+}
+
+cart-drawer .drawer__inner {
+  width: 480px;
+  padding-inline: 28px;
+  border-color: #555555;
+  transition: transform .3s ease;
+}
+
+cart-drawer .drawer__header,
+cart-drawer .drawer__footer {
+  background: #222222;
+  padding-block: 24px;
+}
+
+cart-drawer .drawer__heading {
+  font-size: 28px;
+}
+
+cart-drawer .drawer__close,
+cart-notification .cart-notification__close {
+  color: #ff6900;
+  transition: color .22s ease;
+}
+
+cart-drawer .drawer__close:hover,
+cart-notification .cart-notification__close:hover {
+  color: #ffffff;
+}
+
+cart-drawer .cart__empty-text {
+  font-size: 26px;
+}
+
+cart-drawer .cart__login-title {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+cart-notification .cart-notification {
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid #ff6900;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 35%);
+}
+
+cart-notification .cart-notification__heading {
+  font-size: 16px;
+}
+
+cart-notification .cart-notification__close {
+  margin: -12px -16px 0 12px;
+}
+
+@media (max-width: 749px) {
+  .ichido-service-page #MainContent {
+    padding-block: 40px 60px;
+  }
+
+  .ichido-service-page #MainContent .page-width {
+    padding-inline: 25px;
+  }
+
+  .ichido-cart-page #MainContent .title-wrapper-with-link {
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .ichido-cart-page #MainContent .cart__warnings {
+    padding: 48px 24px;
+  }
+
+  .ichido-cart-page #MainContent .cart__blocks {
+    padding: 24px;
+    width: 100%;
+  }
+
+  .ichido-contact-page #ContactForm {
+    padding: 28px 20px;
+  }
+
+  .ichido-contact-page #ContactForm .contact__fields {
+    display: block;
+  }
+
+  cart-drawer .drawer__inner {
+    padding-inline: 20px;
+  }
+
+  cart-notification .cart-notification {
+    padding: 24px;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ichido-service-page #MainContent *,
+  cart-drawer *,
+  cart-notification * {
+    transition: none !important;
+  }
+}
