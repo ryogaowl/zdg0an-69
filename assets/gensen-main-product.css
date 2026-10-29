@@ -98,7 +98,7 @@ body.gensen-product-page #MainContent { background: #222222; }
 .gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label > div { min-width: 0; }
 .gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label p { color: inherit; line-height: 1.6; }
 .gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label > div:first-child > p:first-child { margin: 0 0 6px; font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
-.gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label > div:first-child > p + p { margin: 0; color: #ccc; font-size: 12px; overflow-wrap: anywhere; }
+.gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label > div:first-child > p + p { margin: 0; color: #ccc; font-size: 12px; overflow-wrap: anywhere; white-space: normal; text-wrap: balance; }
 .gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label > div:last-child > p { margin: 0; font-size: 18px; font-weight: 600; white-space: nowrap; }
 .gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label::before,
 .gensen-main-product .product__info-container .huckleberry-subscription-widget-container[data-widget-version='2'] input[name='planOption'] + label::after {
