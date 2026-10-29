@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -7,12 +16,18 @@
           "type": "title",
           "settings": {}
         },
+        "product_details": {
+          "type": "product_details",
+          "settings": {}
+        },
         "price": {
           "type": "price",
+          "disabled": true,
           "settings": {}
         },
         "variant-picker": {
           "type": "variant_picker",
+          "disabled": true,
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle"
@@ -20,7 +35,31 @@
         },
         "quantity-selector": {
           "type": "quantity_selector",
+          "disabled": true,
           "settings": {}
+        },
+        "product-inventory": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": false
+          }
+        },
+        "shopify_apps_blocks_app_block_v2_67cce3d8_a1e5_43f3_8d2d_0c320d8c46e7_AMEpLb": {
+          "type": "shopify://apps//blocks/app-block-v2/67cce3d8-a1e5-43f3-8d2d-0c320d8c46e7",
+          "settings": {
+            "subscription_label": "お得定期便",
+            "subscription_message": "毎月送料無料！",
+            "onetime_purchase_label": "通常配送",
+            "onetime_purchase_message": "1回限り",
+            "selected_main_color": "#000000",
+            "selected_sub_color": "#535353",
+            "selected_frame_color": "#000000",
+            "selected_background_color": "#ffffff",
+            "selected_border_size": 2
+          }
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -28,18 +67,6 @@
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
           }
-        },
-        "product-inventory": {
-          "type": "inventory",
-          "settings": {
-            "text_style": "body",
-            "inventory_threshold": 10,
-            "show_inventory_quantity": false
-          }
-        },
-        "product_details": {
-          "type": "product_details",
-          "settings": {}
         }
       },
       "block_order": [
@@ -49,23 +76,25 @@
         "variant-picker",
         "quantity-selector",
         "product-inventory",
+        "shopify_apps_blocks_app_block_v2_67cce3d8_a1e5_43f3_8d2d_0c320d8c46e7_AMEpLb",
         "buy_buttons"
       ],
       "settings": {
+        "gensen_design": true,
+        "gensen_faq_link": "",
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": false,
         "media_fit": "contain",
         "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
         "media_position": "left",
         "image_zoom": "lightbox",
-        "mobile_thumbnails": "show",
         "hide_variants": false,
         "enable_video_looping": false,
         "padding_top": 0,
-        "padding_bottom": 0,
-        "gensen_design": true
+        "padding_bottom": 0
       }
     }
   },
