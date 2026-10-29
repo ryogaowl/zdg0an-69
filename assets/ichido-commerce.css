@@ -40,7 +40,7 @@ cart-notification .cart-notification__heading {
 }
 
 .ichido-service-page #MainContent h1 {
-  font-size: clamp(30px, 3.5vw, 50px);
+  font-size: clamp(28px, 2.5vw, 36px);
   letter-spacing: .02em;
 }
 
@@ -138,7 +138,7 @@ cart-notification :is(a, button):focus-visible {
 
 .ichido-cart-page #MainContent .cart__empty-text {
   margin: 0 0 32px;
-  font-size: clamp(26px, 3vw, 36px);
+  font-size: clamp(24px, 2vw, 28px);
 }
 
 .ichido-cart-page #MainContent .cart__warnings .button {
