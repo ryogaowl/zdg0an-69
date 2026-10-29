@@ -213,6 +213,7 @@ cart-notification .cart-notification-product__name {
 
 .ichido-contact-page #MainContent .main-page-title {
   margin-bottom: 24px;
+  text-align: center;
 }
 
 .ichido-contact-page #MainContent .contact {
@@ -232,6 +233,20 @@ cart-notification .cart-notification-product__name {
 .ichido-contact-page #ContactForm .field__input {
   min-height: 60px;
   font-size: 16px;
+}
+
+.ichido-contact-page #ContactForm .field__input:focus,
+.ichido-contact-page #ContactForm .field__input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.ichido-contact-page #ContactForm .field:focus-within::after {
+  box-shadow: 0 0 0 1px #777777;
+}
+
+.ichido-contact-page #ContactForm .field__input:focus ~ .field__label {
+  color: #ff6900;
 }
 
 .ichido-contact-page #ContactForm .field__label {
@@ -327,6 +342,14 @@ cart-notification .cart-notification__close {
 }
 
 @media (max-width: 749px) {
+  .ichido-service-page #MainContent h1 {
+    font-size: 24px;
+  }
+
+  .ichido-cart-page #MainContent .cart__empty-text {
+    font-size: 22px;
+  }
+
   .ichido-service-page #MainContent {
     padding-block: 40px 60px;
   }
