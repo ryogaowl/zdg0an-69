@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -526,6 +535,13 @@
       "send_on_label": "送信日 (任意)",
       "expanded": "ギフトカードカードの受取人フォームを展開しました",
       "collapsed": "ギフトカードカードの受取人フォームを折りたたみました"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "payment": {
+        "purchase_options_subscription_agreement_label_wallets": "カートには自動更新される定期購入が含まれています。"
+      }
     }
   }
 }
