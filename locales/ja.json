@@ -536,12 +536,5 @@
       "expanded": "ギフトカードカードの受取人フォームを展開しました",
       "collapsed": "ギフトカードカードの受取人フォームを折りたたみました"
     }
-  },
-  "shopify": {
-    "checkout": {
-      "payment": {
-        "purchase_options_subscription_agreement_label_wallets": "カートには自動更新される定期購入が含まれています。"
-      }
-    }
   }
 }
